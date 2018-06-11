@@ -6,7 +6,7 @@ package org.teamwe.carrent.utils;
  */
 
 public class StringUtil {
-    boolean nullOrEmpty(String string) {
+    public static boolean nullOrEmpty(String string) {
         return string == null || string.length() == 0;
     }
 }
