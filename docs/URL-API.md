@@ -50,11 +50,17 @@ url: get `/active`
     "code": "验证码"
 }
 ```
-2. 返回值
+2. 返回值: 用户实体类
 ```json
 {
+"email": "",
+"name": "",
+"credit": "",
+"points": "",
+"license": "",
 "type": 0,
-"hash": "用户头像的hash"
+"hash": "用户头像的hash",
+"phone": ""
 }
 ```
 
@@ -63,11 +69,14 @@ url: get `/active`
 返回值
 ```json
 {
-"credit": "信用分",
-"points": "积分",
-"name": "名字",
-"license": "驾照码",
-"phone?": ""
+"email": "",
+"name": "",
+"credit": "",
+"points": "",
+"license": "",
+"type": 0,
+"hash": "用户头像的hash",
+"phone": ""
 }
 ```
 2. put '/user'
