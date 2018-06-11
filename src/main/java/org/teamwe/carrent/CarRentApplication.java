@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class CarrentApplication {
+public class CarRentApplication {
 
     @GetMapping("/")
     public String hello() {
@@ -15,6 +15,6 @@ public class CarrentApplication {
     }
 
 	public static void main(String[] args) {
-		SpringApplication.run(CarrentApplication.class, args);
+		SpringApplication.run(CarRentApplication.class, args);
 	}
 }
