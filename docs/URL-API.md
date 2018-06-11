@@ -53,6 +53,7 @@ url: get `/active`
 2. 返回值
 ```json
 {
+"type": 0,
 "hash": "用户头像的hash"
 }
 ```
