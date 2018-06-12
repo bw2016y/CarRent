@@ -25,7 +25,20 @@ repositories {
 
 
 dependencies {
+
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile (group: 'mysql', name: 'mysql-connector-java', version: '8.0.11')
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.0.2.RELEASE'
+
+// https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+	compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.3.0'
+
+
+
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }
