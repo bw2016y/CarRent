@@ -10,7 +10,7 @@ public interface RegisterService {
      *
      * @param name 注册用户名
      * @param email 注册邮箱
-     * @param password 密码， 哈希后的
+     * @param password 密码, 未哈希过
      * @param license 驾照条码
      * @param head 头像哈希值
      * @param type 用户类型

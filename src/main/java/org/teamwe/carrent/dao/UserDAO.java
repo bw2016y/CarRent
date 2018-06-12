@@ -1,6 +1,6 @@
 package org.teamwe.carrent.dao;
 
-import org.teamwe.carrent.bean.User;
+import org.teamwe.carrent.entity.User;
 
 public interface UserDAO {
 
