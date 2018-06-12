@@ -1,5 +1,7 @@
 package org.teamwe.carrent.entity;
 
+import java.util.List;
+
 public class Car {
     public  int  type;
 
@@ -14,7 +16,7 @@ public class Car {
     private  int card;
 
     private  String brand;
-    private  String img;
+    private List<String> img;
     private  String  message;
 
 
@@ -26,7 +28,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(int card, String brand, String img, String message, int price, int ischecked, int available, int status) {
+    public Car(int card, String brand, List<String> img, String message, int price, int ischecked, int available, int status) {
         this.card = card;
         this.brand = brand;
         this.img = img;
@@ -45,7 +47,7 @@ public class Car {
         return brand;
     }
 
-    public String getImg() {
+    public List<String> getImg() {
         return img;
     }
 
@@ -77,7 +79,7 @@ public class Car {
         this.brand = brand;
     }
 
-    public void setImg(String img) {
+    public void setImg(List<String> img) {
         this.img = img;
     }
 

@@ -13,5 +13,6 @@ spring:
           max-total:  10
 hello:
       myname: bwy
-
+mybatis:
+        type-aliases-package: cn.saytime.bean
 
