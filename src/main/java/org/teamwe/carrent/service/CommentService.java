@@ -9,15 +9,13 @@ import java.util.List;
 
 public interface CommentService {
     /**
-     *
      * @param orderId 订单id
-     * @param comment  用户评论
+     * @param comment 用户评论
      * @return {@link org.teamwe.carrent.utils.ReturnStatus}
      */
-    int comment(String orderId,String comment);
+    int comment(String orderId, String comment);
 
     /**
-     *
      * @param card 车牌号
      * @return 用户名、评论时间、评论内容的列表
      */

@@ -83,7 +83,19 @@ url: get `/active`
 }
 ```
 3. delete '/user/:email'
-
+4. get '/password' 请求重置密码
+```json
+{
+"email": ""
+}
+```
+5. put '/password' 使用序列码和密码发送重置密码请求
+```json
+{
+"hash":"",
+"password": ""
+}
+```
 ## 技师审核
 1. get '/engineer' 获取当前所有等待审核的技师名单
 返回值
@@ -162,7 +174,7 @@ post '/car'
     "message": ""
     }
     ```
-    - put '/checkcar/:card' 
+    - put '/checkcar/:card'
 5. 查找车辆
    - get '/car', 页号, 每页长度, 汽车类型, 汽车品牌
    ```json
