@@ -53,14 +53,8 @@ url: get `/active`
 2. 返回值: 用户实体类
 ```json
 {
-"email": "",
 "name": "",
-"credit": "",
-"points": "",
-"license": "",
-"type": 0,
-"hash": "用户头像的hash",
-"phone": ""
+"hash": "用户头像的hash"
 }
 ```
 
@@ -95,7 +89,14 @@ url: get `/active`
 返回值
 ```json
 {
-"email": []
+"email": "",
+"name": "",
+"credit": "",
+"points": "",
+"license": "",
+"type": 0,
+"hash": "用户头像的hash",
+"phone": ""
 }
 ```
 2. put '/engineer' 管理员审核技师
@@ -106,16 +107,34 @@ url: get `/active`
 ```
 
 ## 车辆管理
-1. get '/type' 获取所有车辆类型
+1. get '/type' 获取所有车辆类型, 包括座位数
 ```json
 {
     "type": []
 }
 ```
-2. get '/brand/:key' 
+2. 管理员添加类型，座位数
+post '/type'
 ```json
 {
-"brand": "name"
+"number": 0
+}
+```
+2. get '/brand/:key' , 名字和logo哈希码
+```json
+{
+"brand": [{
+  "name": "",
+  "hash": ""
+}]
+}
+```
+3. 管理员添加品牌， 名称和logo
+post  '/brand'
+```json
+{
+"name": "",
+"hash": ""
 }
 ```
 3. 用户上传车辆信息
@@ -144,7 +163,17 @@ post '/car'
     }
     ```
     - put '/checkcar/:card' 
-
+5. 查找车辆
+   - get '/car', 页号, 每页长度, 汽车类型, 汽车品牌
+   ```json
+    {
+       "page": 0,
+       "length": 0,
+       "type": 0,
+       "brand": ""
+    }
+    ```
+   
 ## 订单管理
 1. 生成订单
     - put '/order'
@@ -181,9 +210,8 @@ put '/order'
 1. post '/comment' 后端生成时间
 ```json
 {
-"email": "",
-"card": "",
-"content": ""
+ "content":"comment",
+ "orderId":""
 }
 ```
 2. get '/comment/:card'

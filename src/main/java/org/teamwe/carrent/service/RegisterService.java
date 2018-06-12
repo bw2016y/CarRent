@@ -14,11 +14,10 @@ public interface RegisterService {
      * @param license 驾照条码
      * @param head 头像哈希值
      * @param type 用户类型
-     * @param hash 激活所用哈希值
      * @param phone 电话， 可选
      * @return 空或者null表示注册成功， 否则注册失败
      */
-    String register(String name, String email, String password, String license, String head, int type, String hash, String phone);
+    String register(String name, String email, String password, String license, String head, int type, String phone);
 
     /**
      *
