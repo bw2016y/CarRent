@@ -84,8 +84,12 @@ public class BCryptMd5Hash implements Hash {
 
     @Override
     public String genRandomChar(int length) {
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            logger.error("Sleep Error ");
+        }
         Random random = new Random(System.currentTimeMillis());
-
         length = Math.max(1, length);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {

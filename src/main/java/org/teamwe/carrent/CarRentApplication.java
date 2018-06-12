@@ -13,8 +13,13 @@ public class CarRentApplication {
     public String hello() {
         return "Hello, Car Rent System!";
     }
+    @GetMapping("/test")
+    public String ttt() {
+        return "Hello, TTT!";
+    }
 
-	public static void main(String[] args) {
+
+    public static void main(String[] args) {
 		SpringApplication.run(CarRentApplication.class, args);
 	}
 }
