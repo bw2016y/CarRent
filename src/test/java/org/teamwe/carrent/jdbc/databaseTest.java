@@ -1,5 +1,6 @@
 package org.teamwe.carrent.jdbc;
 
+import com.mysql.cj.protocol.Resultset;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,21 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.teamwe.carrent.dao.UserDAOimpl;
 import org.teamwe.carrent.entity.User;
+import org.teamwe.carrent.utils.DBut;
 import org.teamwe.carrent.utils.DButils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class databaseTest {
+
+    @Autowired
+    DBut db;
+
 
     @Autowired
     ApplicationContext applicationContext;
@@ -43,5 +51,28 @@ public class databaseTest {
 
         Connection con=DButils.getConnection();
         System.out.println(con);
+
+
+        db.init();
+        Connection con2=db.getConnection();
+        System.out.println(con2);
+
+        ResultSet rs;
+        String sql="select * from user where email=?";
+        PreparedStatement ps=con2.prepareStatement(sql);
+        ps.setString(1,"1844002977@qq.com");
+        rs=  ps.executeQuery();
+        while(rs.next()){
+            rs.getString("email");
+            rs.getString("name");
+            System.out.println( rs.getString("email"));
+            System.out.println( rs.getString("name"));
+        }
+
+
+
+
+
+
     }
 }
