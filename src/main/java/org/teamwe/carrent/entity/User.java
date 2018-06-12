@@ -6,24 +6,33 @@ public class User {
     public static int ENGENEER = 1;
     public static int ADMINISTRATOR = 2;
 
-    private  String  email;
-    private  String  password;
-    private  String  name;
-    private  String  licence;
-    private  String  head;
-    private  String  phone;
 
-    private  int   type;
-    private  int   credit;
+    private String email;
+    private String password;
+    private String name;
 
-    private  int  isvalidated;
-    private  int  status;
-    private  int   points;
+    private String licence;
+    private String head;
+    private String phone;
 
+    private int type;
+    private int credit;
+    private int isvalidated;
 
-    public User() {
+    private int status;
+    private int points;
+
+    public static int getCommenUser() {
+        return COMMEN_USER;
     }
 
+    public static int getENGENEER() {
+        return ENGENEER;
+    }
+
+    public static int getADMINISTRATOR() {
+        return ADMINISTRATOR;
+    }
 
     public String getEmail() {
         return email;
@@ -67,6 +76,18 @@ public class User {
 
     public int getPoints() {
         return points;
+    }
+
+    public static void setCommenUser(int commenUser) {
+        COMMEN_USER = commenUser;
+    }
+
+    public static void setENGENEER(int ENGENEER) {
+        User.ENGENEER = ENGENEER;
+    }
+
+    public static void setADMINISTRATOR(int ADMINISTRATOR) {
+        User.ADMINISTRATOR = ADMINISTRATOR;
     }
 
     public void setEmail(String email) {
@@ -142,5 +163,16 @@ public class User {
         this.isvalidated = isvalidated;
         this.status = status;
         this.points = points;
+    }
+
+    public User() {
+    }
+
+    public User(String email, String password, int type, int isvalidated, int status) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.isvalidated = isvalidated;
+        this.status = status;
     }
 }

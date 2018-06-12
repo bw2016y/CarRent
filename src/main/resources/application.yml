@@ -1,5 +1,5 @@
 spring:
-       datasource:
+      datasource:
         driver-class-name:  com.mysql.cj.jdbc.Driver
         url:   jdbc:mysql://123.207.172.223:3306/car?useUnicode=true&characterEncoding=utf8
         username:  team
