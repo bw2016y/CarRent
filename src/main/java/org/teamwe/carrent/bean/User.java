@@ -6,5 +6,12 @@ public class User {
     public static int ENGENEER = 1;
     public static int ADMINISTRATOR = 2;
 
+    private  String  email;
+    private  String  name;
+    private  int  status;
+    private  int  isvalidated;
+    private
+
+
 
 }
