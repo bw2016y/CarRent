@@ -1,5 +1,6 @@
 package org.teamwe.carrent;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,9 @@ public class CarRentApplication {
     public String hello() {
         return "Hello, Car Rent System!";
     }
-    @GetMapping("/test")
+    @GetMapping("/${hello.myname}")
     public String ttt() {
-        return "Hello, TTT!";
+        return "Hell";
     }
 
 
