@@ -7,20 +7,20 @@ public class User {
     public static int ADMINISTRATOR = 2;
 
 
-    private String email;
-    private String password;
-    private String name;
+    private  String  email;
+    private  String  password;
+    private  String  name;
 
-    private String licence;
-    private String head;
-    private String phone;
+    private  String  licence;
+    private  String  head;
+    private  String  phone;
 
-    private int type;
-    private int credit;
-    private int isvalidated;
+    private  int    type;
+    private  int   credit;
+    private  int  isvalidated;
 
-    private int status;
-    private int points;
+    private  int   status;
+    private  int   points;
 
     public static int getCommenUser() {
         return COMMEN_USER;
