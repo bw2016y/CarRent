@@ -71,7 +71,7 @@ public interface UserDAO {
      * @param email
      * @return
      */
-    User Get_userByEmial(String email);
+     User Get_userByEmial(String email);
 
 
     /**
