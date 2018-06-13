@@ -1,6 +1,5 @@
 package org.teamwe.carrent.jdbc;
 
-import com.mysql.cj.protocol.Resultset;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +7,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.teamwe.carrent.dao.UserDAOimpl;
-import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.utils.DBut;
 import org.teamwe.carrent.utils.DButils;
 
