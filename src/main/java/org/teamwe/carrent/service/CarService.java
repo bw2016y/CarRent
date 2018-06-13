@@ -10,6 +10,17 @@ import java.util.List;
  */
 
 public interface CarService {
+
+
+    /**
+     *   根据card值 返回所有图片hash
+     * @param card
+     * @return
+     */
+    public  String[] get_car_imgs(String card);
+
+
+
     /**
      * 用户上传车辆信息
      *
