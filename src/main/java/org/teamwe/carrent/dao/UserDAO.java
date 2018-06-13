@@ -14,7 +14,7 @@ public interface UserDAO {
      * @param email
      * @return    true (email 存在)  false(email 不存在)
      */
-      boolean Check_Email_Phy(String email);
+    //  boolean Check_Email_Phy(String email);
 
 
 
@@ -23,7 +23,7 @@ public interface UserDAO {
      * @param email
      * @return    true (email 存在)  false(email 不存在)
      */
-    boolean Check_Email_Logic(String email);
+   // boolean Check_Email_Logic(String email);
 
 
       /**
@@ -35,13 +35,10 @@ public interface UserDAO {
 
     /**
      *
-     * @param email    用户账户
-     * @param hash     激活hash
-     * @param begin    开始时间
-     * @param end      结束时间
-     * @return         true(存入成功) false(存入失败)
+     * @param user
+     * @return
      */
-     boolean save_hash_user(String email,String hash,long begin,long end);
+     boolean save_hash_user(TempUser user);
 
     /**
      *
@@ -65,7 +62,7 @@ public interface UserDAO {
      * @param email  在用户表里 更改用户的激活状态
      * @return     true(更改成功) false(更改失败)
      */
-    boolean  active_user(String email);
+    //boolean  active_user(String email);
 
 
     /**
