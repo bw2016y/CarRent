@@ -85,4 +85,6 @@ public interface CarService {
      * @return Car对象的列表
      */
     List<Car> getCars(int begin, int length, int type, String brand);
+
+    
 }
