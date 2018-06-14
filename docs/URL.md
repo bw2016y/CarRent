@@ -133,7 +133,7 @@
         - `email`: 用户email
         - `type`: 车辆类型
         - `card`: 车牌号
-        - `brand`: 车品牌
+        - `brand`: 车品牌, 车品牌与车型连接发送
         - `file`: 车图像文件列表
         - `message`: 汽车简介
         - `price`: 汽车价格
