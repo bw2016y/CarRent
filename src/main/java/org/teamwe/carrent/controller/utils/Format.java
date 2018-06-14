@@ -26,9 +26,7 @@ public class Format {
      */
     private Map<String, Object> data = new HashMap<>();
 
-    public static Format getInstance() {
-        return new Format();
-    }
+    public Format() {}
 
     public Format code(int code) {
         this.code = code;
