@@ -4,7 +4,7 @@ import org.teamwe.carrent.entity.Car;
 
 import java.util.List;
 
-public interface CarDAO {
+public interface   CarDAO {
 
     /**
      *

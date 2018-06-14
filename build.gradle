@@ -44,6 +44,14 @@ dependencies {
 
     compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
+	compile group: 'org.apache.commons', name: 'commons-email', version: '1.4'
+
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+
+
 
 
     compile('org.springframework.boot:spring-boot-starter-web')

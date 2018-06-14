@@ -22,5 +22,5 @@ public interface RegisterService {
      * @param hash 激活所用哈希
      * @return 空或者null表示注册成功， 否则注册失败
      */
-    String active(String hash);
+    String active(String email,String hash);
 }
