@@ -11,3 +11,12 @@
      9  phone       varchar     允许空值 
      10 credit      int     允许空值
      11 points      int     允许空值
+## car
+    1 card      int     主键      非空
+    2 brand     varchar     非空
+    3 message       varchar 
+    4 price         int      非空
+    5 ischecked     int      非空 0未检查 1已检查
+    6 available     int     非空 0 可用  1不可用
+    7 status        int     非空 0逻辑存在 1逻辑删除
+    8 type          int     非空  表示汽车的可乘坐人数                  
