@@ -1,6 +1,7 @@
 package org.teamwe.carrent.jdbc;
 
 import com.mysql.cj.protocol.Resultset;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.teamwe.carrent.dao.GetSqlSessionFactory;
+import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.dao.UserDAOimpl;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.utils.DBut;
@@ -18,34 +21,34 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class databaseTest {
 
     //@Autowired
     //DBut db;
 
 
-    @Autowired
-    ApplicationContext applicationContext;
-    @Autowired
-    DataSourceProperties dataSourceProperties;
+   // @Autowired
+  //  ApplicationContext applicationContext;
+  //  @Autowired
+   // DataSourceProperties dataSourceProperties;
 
-    @Test
-    public void testJdbc(){
-
+//    @Test
+//    public void testJdbc(){
+//
 //         UserDAOimpl test=new UserDAOimpl();
 //         User user=test.Get_userByEmial("1844002977@qq.com");
 //         System.out.println(user.toString());
-        DataSource dataSource=applicationContext.getBean(DataSource.class);
-        System.out.println(dataSource);
-        System.out.println(dataSource.getClass().getName());
-        System.out.println(dataSourceProperties);
-        System.out.println("finish");
-    }
+//        DataSource dataSource=applicationContext.getBean(DataSource.class);
+//        System.out.println(dataSource);
+//        System.out.println(dataSource.getClass().getName());
+//        System.out.println(dataSourceProperties);
+//        System.out.println("finish");
+//    }
 
 
-    @Test
+    @Ignore
     public  void test_con()throws  Exception{
 
 
@@ -77,16 +80,35 @@ public class databaseTest {
 
     }
 
+//    @Ignore
+//    public  void test_add()throws  Exception{
+//
+//        UserDAOimpl udi= new UserDAOimpl();
+//        User user=new User("123.com","123","sddd","null","null","null",1,0,1,0,0);
+//        //  User user=new User("100.com","123" ,1,1,0);
+//        // User user=new User();
+//        int val= udi.Add_usr(user);
+//        System.out.println(val);
+//
+//        System.out.println("hello");
+//    }
+
+
     @Test
-    public  void test_add()throws  Exception{
+    public  void test_new()throws  Exception{
 
-        UserDAOimpl udi= new UserDAOimpl();
-        User user=new User("123.com","123","sddd","null","null","null",1,0,1,0,0);
-        //  User user=new User("100.com","123" ,1,1,0);
-        // User user=new User();
-        int val= udi.Add_usr(user);
-        System.out.println(val);
+        //UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
+       //User user=new User("new6.com","12345","sddd","null","null","null",1,0,1,0,0);
+      //  System.out.println(ts.Add_usr(user));
 
-        System.out.println("hello");
+
+
+         UserDAO ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
+        //  String email="1844002977@qq.com";
+        // ts.Get_userByEmial(email);
+          String email="100.com";
+         ts.Delete_user(email);
+
+
     }
 }
