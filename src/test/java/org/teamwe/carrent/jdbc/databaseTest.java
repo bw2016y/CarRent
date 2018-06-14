@@ -22,8 +22,8 @@ import java.sql.ResultSet;
 @SpringBootTest
 public class databaseTest {
 
-    @Autowired
-    DBut db;
+    //@Autowired
+    //DBut db;
 
 
     @Autowired
@@ -53,13 +53,13 @@ public class databaseTest {
         System.out.println(con);
 
 
-        db.init();
-        Connection con2=db.getConnection();
-        System.out.println(con2);
+      //  db.init();
+      //  Connection con2=db.getConnection();
+      //  System.out.println(con2);
 
         ResultSet rs;
         String sql="select * from user where email=?";
-        PreparedStatement ps=con2.prepareStatement(sql);
+        PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,"1844002977@qq.com");
         rs=  ps.executeQuery();
         while(rs.next()){
@@ -74,5 +74,18 @@ public class databaseTest {
 
 
 
+    }
+
+    @Test
+    public  void test_add()throws  Exception{
+
+            UserDAOimpl udi= new UserDAOimpl();
+                    User user=new User("123.com","123","sddd","null","null","null",1,0,1,0,0);
+            //  User user=new User("100.com","123" ,1,1,0);
+           // User user=new User();
+            int val= udi.Add_usr(user);
+            System.out.println(val);
+
+           System.out.println("hello");
     }
 }
