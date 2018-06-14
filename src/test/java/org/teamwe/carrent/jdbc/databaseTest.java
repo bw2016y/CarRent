@@ -30,19 +30,20 @@ public class databaseTest {
     ApplicationContext applicationContext;
     @Autowired
     DataSourceProperties dataSourceProperties;
+
     @Test
     public void testJdbc(){
 
 //         UserDAOimpl test=new UserDAOimpl();
 //         User user=test.Get_userByEmial("1844002977@qq.com");
 //         System.out.println(user.toString());
-
         DataSource dataSource=applicationContext.getBean(DataSource.class);
         System.out.println(dataSource);
         System.out.println(dataSource.getClass().getName());
         System.out.println(dataSourceProperties);
         System.out.println("finish");
     }
+
 
     @Test
     public  void test_con()throws  Exception{
