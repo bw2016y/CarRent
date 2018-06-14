@@ -19,24 +19,24 @@ public class UserDAOimpl  implements  UserDAO {
 
     @Override
     public int Add_usr(User user) {
-         int return_val;
-         Connection con=null;
-         String email=user.getEmail();
-         String password=user.getPassword();
-         String name=user.getName();
-         String licence=user.getLicence();
-         String head=user.getHead();
-         String phone=user.getPhone();
+        int return_val;
+        Connection con=null;
+        String email=user.getEmail();
+        String password=user.getPassword();
+        String name=user.getName();
+        String licence=user.getLicence();
+        String head=user.getHead();
+        String phone=user.getPhone();
 
-         int type=  user.getType();
-         int credit=user.getCredit();
-         int points=user.getPoints();
-         int status=user.getStatus();
-         int isvalidated=user.getIsvalidated();
+        int type=  user.getType();
+        int credit=user.getCredit();
+        int points=user.getPoints();
+        int status=user.getStatus();
+        int isvalidated=user.getIsvalidated();
 
         try{
 
-              con=DButils.getConnection();
+            con=DButils.getConnection();
             String sql="insert  into  user(email,password,name,licence,head,phone,type,credit,points,status,isvalidated) " +
                     " values(?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps=con.prepareStatement(sql);
@@ -56,17 +56,17 @@ public class UserDAOimpl  implements  UserDAO {
             return_val=  ps.executeUpdate();
             return return_val;
         } catch (Exception e){
-          e.printStackTrace();
-          return  -1;
+            e.printStackTrace();
+            return  -1;
         }
-         finally {
-             if(con!=null){
-                 try {
-                     con.close();
-                 } catch (SQLException e) {
-                     e.printStackTrace();
-                 }
-             }
+        finally {
+            if(con!=null){
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
