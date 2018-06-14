@@ -22,7 +22,7 @@ public interface CarDAO {
      * @param type
      * @return
      */
-    public List<Car>  select_car_by_brand_Type_available(String brand,String type);
+    public List<Car>  select_car_by_brand_Type_available(String brand,int type);
 
     /**
      *  返回所有待检查车辆

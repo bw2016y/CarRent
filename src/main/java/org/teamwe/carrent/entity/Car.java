@@ -1,54 +1,48 @@
 package org.teamwe.carrent.entity;
 
-import java.util.List;
-
 public class Car {
-    public  int  type;
 
-    public int getType() {
-        return type;
-    }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 
-    private  int card;
 
+    private  String  card;
     private  String brand;
-    private List<String> img;
     private  String  message;
 
+    private  int price;
+    private int ischecked;
+    private int available;
 
-    private   int  price;
-    private   int  ischecked;
-    private   int  available;
-    private   int   status;
+    private int status;
+    private int type;
 
-    public Car() {
-    }
-
-    public Car(int card, String brand, List<String> img, String message, int price, int ischecked, int available, int status) {
+    public Car(String card, String brand, String message, int price, int ischecked, int available, int status, int type) {
         this.card = card;
         this.brand = brand;
-        this.img = img;
         this.message = message;
         this.price = price;
         this.ischecked = ischecked;
         this.available = available;
         this.status = status;
+        this.type = type;
     }
 
-    public int getCard() {
+    public Car(String card, String brand, int price, int ischecked, int available, int status, int type) {
+        this.card = card;
+        this.brand = brand;
+        this.price = price;
+        this.ischecked = ischecked;
+        this.available = available;
+        this.status = status;
+        this.type = type;
+    }
+
+    public String getCard() {
         return card;
     }
 
     public String getBrand() {
         return brand;
-    }
-
-    public List<String> getImg() {
-        return img;
     }
 
     public String getMessage() {
@@ -71,16 +65,16 @@ public class Car {
         return status;
     }
 
-    public void setCard(int card) {
+    public int getType() {
+        return type;
+    }
+
+    public void setCard(String card) {
         this.card = card;
     }
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public void setImg(List<String> img) {
-        this.img = img;
     }
 
     public void setMessage(String message) {
@@ -103,18 +97,24 @@ public class Car {
         this.status = status;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Car() {
+    }
 
     @Override
     public String toString() {
         return "Car{" +
                 "card=" + card +
                 ", brand='" + brand + '\'' +
-                ", img='" + img + '\'' +
                 ", message='" + message + '\'' +
                 ", price=" + price +
                 ", ischecked=" + ischecked +
                 ", available=" + available +
                 ", status=" + status +
+                ", type=" + type +
                 '}';
     }
 }

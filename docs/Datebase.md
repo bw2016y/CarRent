@@ -12,7 +12,7 @@
      10 credit      int     允许空值
      11 points      int     允许空值
 ## car
-    1 card      int     主键      非空
+    1 card      varchar     主键      非空
     2 brand     varchar     非空
     3 message       varchar 
     4 price         int      非空

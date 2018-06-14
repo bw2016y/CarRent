@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+   <insert id="insertCar" parameterType="org.teamwe.carrent.entity.Car" >
+       insert into car(card,brand,message,price,ischecked,available,status,type)
+       values (#{card},#{brand},#{message},#{price},#{ischecked},#{available},#{status},#{type})
+
+   </insert>
+
+    <select id="select_car_by_brand_type"  parameterType="org.teamwe.carrent.entity.Car" resultType="org.teamwe.carrent.entity.Car">
+
+    select * from car where brand=#{brand} and type=#{type}
+
+    </select>
+
+
+</mapper>

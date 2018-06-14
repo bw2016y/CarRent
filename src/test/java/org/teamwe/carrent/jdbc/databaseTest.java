@@ -9,9 +9,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.teamwe.carrent.dao.GetSqlSessionFactory;
-import org.teamwe.carrent.dao.UserDAO;
-import org.teamwe.carrent.dao.UserDAOimpl;
+import org.teamwe.carrent.dao.*;
+import org.teamwe.carrent.entity.Car;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.utils.DBut;
 import org.teamwe.carrent.utils.DButils;
@@ -103,12 +102,17 @@ public class databaseTest {
 
 
 
-         UserDAO ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
+       //  UserDAO ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
         //  String email="1844002977@qq.com";
         // ts.Get_userByEmial(email);
-          String email="100.com";
-         ts.Delete_user(email);
+      //    String email="100.com";
+      //   ts.Delete_user(email);
+        CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
+
+        Car car=new Car("1899","dazhong","good",100,1,0,0,8);
 
 
+       // cs.select_car_by_brand_Type_available("Audi",4);
+        cs.save_car();
     }
 }
