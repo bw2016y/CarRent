@@ -16,10 +16,10 @@ public class ParamValidateTest {
         String[] result = new String[1];
         boolean r = new ParamValidate(result)
                 .name("   fds   ").email("hello@123.0")
-                .license("123123123123123155", true)
-                .password("hello").type("1", User.COMMEN_USER, User.ENGENEER).
+                .license("123123123123123159", true).file(null, 10, false)
+                .password("hello0").type("1", User.COMMEN_USER, User.ENGENEER).
                         validate();
-        assert !r;
+        assert r;
         System.out.println(result[0]);
     }
 }

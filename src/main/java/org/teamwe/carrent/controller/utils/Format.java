@@ -26,7 +26,8 @@ public class Format {
      */
     private Map<String, Object> data = new HashMap<>();
 
-    public Format() {}
+    public Format() {
+    }
 
     public Format code(int code) {
         this.code = code;
@@ -53,5 +54,14 @@ public class Format {
 
     public Map<String, Object> getData() {
         return data;
+    }
+
+    @Override
+    public String toString() {
+        return "Format{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

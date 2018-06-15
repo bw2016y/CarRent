@@ -10,20 +10,23 @@ import org.teamwe.carrent.utils.hash.Hash;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 
 /**
  * @author FDws
  * Created on 2018/6/15 9:11
  */
 @Component
-@ConfigurationProperties(prefix = "path")
+@ConfigurationProperties(prefix = "file")
 public class FileUtil {
     private static Logger log = LoggerFactory.getLogger(FileUtil.class);
     /**
      * Project Image path
      */
-    private String image = "./image";
+    private String imagePath = "./imagePath";
+    /**
+     * The upload file's max size
+     */
+    private long maxFileSize = 5 * 1024 * 1024;
 
     private File imageParent = null;
 
@@ -34,18 +37,26 @@ public class FileUtil {
         this.hash = hash;
     }
 
-    public String getImage() {
-        return image;
+    public long getMaxFileSize() {
+        return maxFileSize;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setMaxFileSize(long maxFileSize) {
+        this.maxFileSize = maxFileSize;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public File getImageParent() {
         if (imageParent != null) return imageParent;
 
-        imageParent = new File(image);
+        imageParent = new File(imagePath);
         if (imageParent.isDirectory()) {
             return imageParent;
         } else if (!imageParent.exists() && imageParent.mkdirs()) {

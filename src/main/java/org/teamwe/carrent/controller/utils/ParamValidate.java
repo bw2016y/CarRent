@@ -1,6 +1,7 @@
 package org.teamwe.carrent.controller.utils;
 
 
+import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.utils.StringUtil;
 
 /**
@@ -24,7 +25,7 @@ public class ParamValidate {
     /**
      * 调用者传入的, 存放失败消息的数组, 以便调用者使用
      */
-    private String[] result = null;
+    private String[] result;
 
     /**
      * 构造函数
@@ -154,12 +155,13 @@ public class ParamValidate {
      * 验证用户类型是否正确
      *
      * @param type  用户类型
-     * @param types 合法类型
+     * @param ty    First type
+     * @param types other types
      * @return this
      */
-    public ParamValidate type(String type, int... types) {
+    public ParamValidate type(String type, int ty, int... types) {
         if (failure) return this;
-        String msg = "Type is illegal! 0: common user, 1: engineer";
+        String msg = "Type is illegal! 0: common user, 1: engineer ";
         if (type == null ||
                 type.trim().length() != 1 ||
                 type.trim().charAt(0) < '0' ||
@@ -170,6 +172,7 @@ public class ParamValidate {
         }
         type = type.trim();
         int t = type.charAt(0) - '0';
+        if (t == ty) return this;
         for (int tt : types) {
             if (t == tt) {
                 return this;
@@ -177,6 +180,24 @@ public class ParamValidate {
         }
         this.failure = true;
         this.message = msg;
+        return this;
+    }
+
+    /**
+     * 验证上传的文件
+     *
+     * @param f       文件
+     * @param max     最大长度
+     * @param require 是否必须
+     * @return this
+     */
+    public ParamValidate file(MultipartFile f, long max, boolean require) {
+        if (failure) return this;
+        if ((f == null || f.isEmpty()) && !require) return this;
+        if (f == null || f.isEmpty() || f.getSize() > max) {
+            this.failure = true;
+            this.message = "File size is to big";
+        }
         return this;
     }
 
