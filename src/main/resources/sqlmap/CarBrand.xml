@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+   <insert id="insert_brand"  parameterType="org.teamwe.carrent.entity.CarBrand">
+       insert into car_brand(brand,img)
+       values (#{brand},#{img})
+
+   </insert>
+    <select id="select_all"  resultType="org.teamwe.carrent.entity.CarBrand">
+
+      select * from car_brand ;
+    </select>
+</mapper>

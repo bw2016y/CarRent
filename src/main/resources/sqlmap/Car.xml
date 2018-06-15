@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+   <insert id="insertCar" parameterType="org.teamwe.carrent.entity.Car" >
+       insert into car(card,brand,message,price,ischecked,available,status,type)
+       values (#{card},#{brand},#{message},#{price},#{ischecked},#{available},#{status},#{type})
+
+   </insert>
+
+    <select id="select_car_by_brand_type"  parameterType="org.teamwe.carrent.entity.Car" resultType="org.teamwe.carrent.entity.Car">
+
+    select * from car where brand=#{brand} and type=#{type}
+
+    </select>
+
+     <select id="select_unchecked_car"   resultType="org.teamwe.carrent.entity.Car">
+
+    select * from car where ischecked = 0
+
+     </select>
+
+    <select id="get_car_by_card"  parameterType="String" resultType="org.teamwe.carrent.entity.Car">
+
+        select * from car where card =#{card}
+    </select>
+    <update id="update_car" parameterType="org.teamwe.carrent.entity.Car">
+        update car set
+        brand =#{brand},
+        message =#{message},
+        price =#{price},
+        ischecked =#{ischecked},
+        available=#{available},
+        status =#{status},
+        type =#{type}
+        where card =#{card}
+    </update>
+
+</mapper>

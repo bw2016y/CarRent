@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+    <insert id="insertUser" parameterType="org.teamwe.carrent.entity.User">
+
+
+        insert into user(email,password,name,licence,head,phone,type,credit,points,status,isvalidated)
+
+        values(#{email},#{password},#{name},#{licence},#{head},#{phone},#{type},#{credit},#{points},#{status},#{isvalidated})
+
+
+    </insert>
+
+
+
+
+    <select id="findUserByEmail" parameterType="java.lang.String" resultType="org.teamwe.carrent.entity.User">
+        select * from user where email = #{email}
+    </select>
+
+    <select id="findallUser"   resultType="org.teamwe.carrent.entity.User">
+        select * from user ;
+    </select>
+
+
+    <select id="find_unchecked_engineers"   resultType="org.teamwe.carrent.entity.User">
+        select * from user where type =1
+    </select>
+
+    <update id="update_User" parameterType="org.teamwe.carrent.entity.User">
+       update user set
+      password =#{password},
+      name =#{name},
+      licence= #{licence},
+      head=#{head},
+      phone =#{phone},
+      type =#{type},
+      credit =#{credit},
+      points =#{points},
+      status =#{status},
+      isvalidated =#{isvalidated}
+      where email=#{email}
+
+    </update>
+
+    <delete id="deleteUserByEmail"  parameterType="String">
+        delete from user where email=#{email}
+    </delete>
+
+
+</mapper>

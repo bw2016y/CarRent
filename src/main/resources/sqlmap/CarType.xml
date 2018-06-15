@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+    <insert id="insert_type"  parameterType="org.teamwe.carrent.entity.CarType">
+       insert into car_type(type,description)
+       values (#{type},#{description})
+
+   </insert>
+    <select id="select_all_type"  resultType="org.teamwe.carrent.entity.CarType">
+
+      select * from  car_type;
+
+     </select>
+
+</mapper>

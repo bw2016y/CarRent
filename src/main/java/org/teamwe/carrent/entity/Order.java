@@ -4,12 +4,26 @@ public class Order {
 
     private int  orderid;
     private String email;
-    private int   card;
+    private String  card;
     private long  timebegin;
     private long  timeende;
     private long  timeendr;
     private String comment;
     private int    status;
+
+    public Order() {
+    }
+
+    public Order(int orderid, String email, String card, long timebegin, long timeende, long timeendr, String comment, int status) {
+        this.orderid = orderid;
+        this.email = email;
+        this.card = card;
+        this.timebegin = timebegin;
+        this.timeende = timeende;
+        this.timeendr = timeendr;
+        this.comment = comment;
+        this.status = status;
+    }
 
     public int getOrderid() {
         return orderid;
@@ -19,7 +33,7 @@ public class Order {
         return email;
     }
 
-    public int getCard() {
+    public String getCard() {
         return card;
     }
 
@@ -51,7 +65,7 @@ public class Order {
         this.email = email;
     }
 
-    public void setCard(int card) {
+    public void setCard(String card) {
         this.card = card;
     }
 
@@ -80,23 +94,12 @@ public class Order {
         return "Order{" +
                 "orderid=" + orderid +
                 ", email='" + email + '\'' +
-                ", card=" + card +
+                ", card='" + card + '\'' +
                 ", timebegin=" + timebegin +
                 ", timeende=" + timeende +
                 ", timeendr=" + timeendr +
                 ", comment='" + comment + '\'' +
                 ", status=" + status +
                 '}';
-    }
-
-
-    public Order() {
-    }
-
-    public Order(int orderid, String email, int card, int status) {
-        this.orderid = orderid;
-        this.email = email;
-        this.card = card;
-        this.status = status;
     }
 }
