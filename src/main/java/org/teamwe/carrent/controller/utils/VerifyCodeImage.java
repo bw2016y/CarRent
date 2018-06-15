@@ -14,6 +14,8 @@ import java.util.Random;
  */
 
 public class VerifyCodeImage {
+    public static String NAME = VerifyCodeImage.class.getName();
+    public static String TIME = VerifyCodeImage.class.getName() + "-Time";
     private static final char[] chars = {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',

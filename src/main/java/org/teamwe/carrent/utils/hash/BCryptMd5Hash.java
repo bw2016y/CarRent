@@ -63,7 +63,22 @@ public class BCryptMd5Hash implements Hash {
 
     @Override
     public String hashFile(String file) {
-        File f = new File(file);
+        return hashFile(new File(file));
+    }
+
+    @Override
+    public String genRandomChar(int length) {
+        Random random = new Random();
+        length = Math.max(1, length);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append(chars[random.nextInt(chars.length)]);
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String hashFile(File f) {
         if (f.isDirectory() || !f.exists()) return null;
         long length = Math.min(maxHashLength, f.length());
         byte[] content = new byte[5 * 1024 * 1024];
@@ -77,20 +92,14 @@ public class BCryptMd5Hash implements Hash {
             }
             return MD5Encoder.encode(digest.digest());
         } catch (IOException e) {
-            logger.error("Hash File: " + file + " error!");
+            logger.error("Hash File: " + f.getAbsolutePath() + " error!");
         }
-        return null;
+        return System.nanoTime() + "" + System.currentTimeMillis();
     }
 
     @Override
-    public String genRandomChar(int length) {
-        Random random = new Random();
-        length = Math.max(1, length);
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            sb.append(chars[random.nextInt(chars.length)]);
-        }
-        return sb.toString();
+    public String hashBytes(byte[] bytes) {
+        return hash(bytes);
     }
 
     private String hash(byte[] bytes) {
