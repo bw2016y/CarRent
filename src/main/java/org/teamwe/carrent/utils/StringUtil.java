@@ -27,4 +27,17 @@ public class StringUtil {
         String MAIL_PATTERN = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
         return mail.matches(MAIL_PATTERN);
     }
+
+    /**
+     * Print String array
+     *
+     * @param items items
+     */
+    public static void print(String... items) {
+        System.out.print("Items: [");
+        for (String item : items) {
+            System.out.print(item + ", ");
+        }
+        System.out.println("]");
+    }
 }

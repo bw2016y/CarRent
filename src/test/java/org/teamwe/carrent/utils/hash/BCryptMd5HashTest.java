@@ -3,6 +3,7 @@ package org.teamwe.carrent.utils.hash;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.*;
@@ -54,11 +55,18 @@ public class BCryptMd5HashTest {
 
     @Test
     public void genSalt() {
-        assertNull(hash.genSalt());
+        assertNotNull(hash.genSalt());
     }
 
     @Test
     public void hashFile() {
+    }
+
+    @Test
+    public void hashByte(){
+        String demo = "123";
+        System.out.println(hash.hashBytes(demo.getBytes()));
+        System.out.println(hash.hashNormal(demo));
     }
 
     @Test

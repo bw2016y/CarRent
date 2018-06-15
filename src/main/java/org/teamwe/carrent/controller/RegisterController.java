@@ -1,18 +1,24 @@
 package org.teamwe.carrent.controller;
 
-import org.springframework.core.env.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.teamwe.carrent.controller.utils.FileUtil;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.ParamValidate;
 import org.teamwe.carrent.controller.utils.VerifyCodeImage;
 import org.teamwe.carrent.service.RegisterService;
 import org.teamwe.carrent.utils.ReturnStatus;
+import org.teamwe.carrent.utils.StringUtil;
 import org.teamwe.carrent.utils.hash.Hash;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.concurrent.Callable;
 
 /**
@@ -23,18 +29,26 @@ import java.util.concurrent.Callable;
  */
 @RestController
 public class RegisterController {
-    private RegisterService service;
-    private Environment env;
-    private Hash hash;
+    private static Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-    public Callable<Format> register(@RequestParam String name,
-                                     @RequestParam String email,
-                                     @RequestParam String password,
-                                     @RequestParam String license,
-                                     @RequestParam MultipartFile file,
-                                     @RequestParam String type,
-                                     @RequestParam String phone,
-                                     @RequestParam String code,
+    private RegisterService service;
+
+    private final FileUtil fileUtil;
+
+    @Autowired
+    public RegisterController(FileUtil fu) {
+        this.fileUtil = fu;
+    }
+
+    @PostMapping("/user")
+    public Callable<Format> register(@RequestParam(required = false) String name,
+                                     @RequestParam(required = false) String email,
+                                     @RequestParam(required = false) String password,
+                                     @RequestParam(required = false) String license,
+                                     @RequestParam(required = false) MultipartFile file,
+                                     @RequestParam(required = false) String type,
+                                     @RequestParam(required = false) String phone,
+                                     @RequestParam(required = false) String code,
                                      HttpSession session) {
 
         Object c = session.getAttribute(VerifyCodeImage.NAME);
@@ -46,21 +60,19 @@ public class RegisterController {
         if (new ParamValidate(msg).name(name).email(email).password(password).
                 license(license, false).type(type).phone(phone, false).validate()) {
             return () -> {
-                // TODO 完成注册功能
-                File parent = new File(env.getProperty("path.image", System.getProperty("user.home")));
-                return null;
+                String fileName = fileUtil.saveImage(file);
+                String r = service.register(name.trim(),
+                        email.trim(), password.trim(),
+                        license.trim(), fileName,
+                        Integer.parseInt(type.trim()), phone.trim());
+
+                if (StringUtil.nullOrEmpty(r)) {
+                    return new Format().code(ReturnStatus.SUCCESS);
+                }
+                return new Format().code(ReturnStatus.FAILURE).message(r);
             };
         }
 
-        return () -> new Format().code(0);
-    }
-
-    private String suffix(String name) {
-        for (int i = name.length() - 1; i >= 0; i--) {
-            if (name.charAt(i) == '.') {
-                return name.substring(i + 1, name.length());
-            }
-        }
-        return "";
+        return () -> new Format().code(1);
     }
 }

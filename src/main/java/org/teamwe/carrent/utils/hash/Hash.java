@@ -1,5 +1,7 @@
 package org.teamwe.carrent.utils.hash;
 
+import java.io.File;
+
 /**
  * 哈希函数, 负责进行哈希
  * 包括两种不同的哈希方法,
@@ -67,4 +69,20 @@ public interface Hash {
      * @return 随机的字符串
      */
     String genRandomChar(int length);
+
+    /**
+     * 哈希文件
+     *
+     * @param file 文件
+     * @return 哈希后的字符串
+     */
+    String hashFile(File file);
+
+    /**
+     * 哈希Byte
+     *
+     * @param bytes Byte Array
+     * @return 哈希后的字符串
+     */
+    String hashBytes(byte[] bytes);
 }

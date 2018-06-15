@@ -15,4 +15,5 @@ hello:
       myname: bwy
 mybatis:
         type-aliases-package: cn.saytime.bean
-
+path:
+  image: c:/temp/image
