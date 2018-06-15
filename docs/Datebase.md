@@ -20,3 +20,22 @@
     6 available     int     非空 0 可用  1不可用
     7 status        int     非空 0逻辑存在 1逻辑删除
     8 type          int     非空  表示汽车的可乘坐人数                  
+## ordertable
+    1  orderid      int     主键    NOT  NULL 自增
+    2 email         varchar 非空
+    3 card          varchar 非空
+    4 timebegin     bigint  
+    5 timeende      bigint 
+    6 timeendr      bigint
+    7 comment       varchar
+    8 status        int     非空 0逻辑存在 1逻辑删除
+##  car_brand
+    1 brand         varchar 主键  非空
+    2 img           varchar 
+##  car_img
+    1 imgid         int     主键 非空 自增
+    2 card          varchar     
+    3 img           varchar 
+## car_type
+    1 type          int     主键 非空
+    2 description   varchar 
