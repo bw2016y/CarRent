@@ -10,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.teamwe.carrent.dao.*;
-import org.teamwe.carrent.entity.Car;
-import org.teamwe.carrent.entity.User;
+import org.teamwe.carrent.entity.*;
 import org.teamwe.carrent.utils.DBut;
 import org.teamwe.carrent.utils.DButils;
 
@@ -107,12 +106,63 @@ public class databaseTest {
         // ts.Get_userByEmial(email);
       //    String email="100.com";
       //   ts.Delete_user(email);
-        CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
+       // CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
 
-        Car car=new Car("1899","dazhong","good",100,1,0,0,8);
+        //Car car=new Car("9999","benz","good",101,1,0,0,8);
 
 
        // cs.select_car_by_brand_Type_available("Audi",4);
-        cs.save_car();
+
+        //  cs.select_unchecked_car();
+      //  cs.save_car(car);
+       // System.out.println(cs.update_car(car));
+       // Car car=cs.get_car("9999");
+      //  if(car==null){
+      //      System.out.println("there is null");
+     //   }
+      //  System.out.println(car.toString());
+  //  OrderDAO od=new OrderDAOimpl(GetSqlSessionFactory.get_fac());
+   // Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
+//   Order order=new Order();
+//   order.setOrderid(2);
+//   order.setEmail("abcddd@qq.com");
+//   order.setCard("8889");
+//   order.setComment("nice");
+//   order.setStatus(0);
+//   order.setTimebegin(1);
+//   order.setTimeende(2);
+//   order.setTimeendr(3);
+   //od.add_Order(order);
+       // od.get_Orders_by_email("1844002977@qq.com");
+      //  od.get_Orders_by_card("8888");
+    //    od.update_order(order);
+
+
+//        CarBrandDAO cb= new CarBrandDAOimpl(GetSqlSessionFactory.get_fac());
+//        CarBrand carBrand=new CarBrand("benz","xixi");
+//        CarBrand carBrand2=new CarBrand("Audi","haha");
+//        cb.add_brand(carBrand);
+//        cb.add_brand(carBrand2);
+//
+//        cb.get_all_brand_img();
+     //   CartypeDAO ct=new CartypeDAOimpl(GetSqlSessionFactory.get_fac());
+//       CarType carType=new CarType(2,"niubicar");
+//        CarType carType2=new CarType(4,"normal");
+//        ct.add_type(carType);
+//        ct.add_type(carType2);
+       // ct.get_all_type();
+
+        CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
+        CarImg carImg=new CarImg();
+        carImg.setCard("8888");
+        carImg.setImg("xixidemo");
+        CarImg carImg2=new CarImg();
+        carImg2.setCard("8888");
+        carImg2.setImg("xixidemo2");
+        ci.sava_img(carImg);
+        ci.sava_img(carImg2);
+        ci.get_cardimg_by_card("8888");
+
+
     }
 }

@@ -15,5 +15,26 @@
 
     </select>
 
+     <select id="select_unchecked_car"   resultType="org.teamwe.carrent.entity.Car">
+
+    select * from car where ischecked = 0
+
+     </select>
+
+    <select id="get_car_by_card"  parameterType="String" resultType="org.teamwe.carrent.entity.Car">
+
+        select * from car where card =#{card}
+    </select>
+    <update id="update_car" parameterType="org.teamwe.carrent.entity.Car">
+        update car set
+        brand =#{brand},
+        message =#{message},
+        price =#{price},
+        ischecked =#{ischecked},
+        available=#{available},
+        status =#{status},
+        type =#{type}
+        where card =#{card}
+    </update>
 
 </mapper>

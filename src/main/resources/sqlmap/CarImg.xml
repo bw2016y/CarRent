@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+    <insert id="insert_car_img"  parameterType="org.teamwe.carrent.entity.CarImg">
+
+        <selectKey keyProperty="imgid" order="AFTER"
+                   resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+       insert into car_img( card , img)
+       values (#{card},#{img})
+
+   </insert>
+    <select id="select_img_by_card"  parameterType="String" resultType="org.teamwe.carrent.entity.CarImg">
+
+      select * from car_img where card =#{card}
+    </select>
+</mapper>
