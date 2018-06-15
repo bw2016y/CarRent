@@ -57,7 +57,7 @@
 1. 获取用户信息
     - 请求URL` GET '/user/:email`
     - 无请求参数
-    - 返回值
+    - 返回值, 有user前缀, 例如使用user.email 获取email
         - `email`: 用户邮箱
         - `name`: 用户名
         - `credit`: 用户信用
