@@ -44,13 +44,13 @@ dependencies {
 
     compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 
-	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
 	compile group: 'org.apache.commons', name: 'commons-email', version: '1.4'
 
-	// https://mvnrepository.com/artifact/javax.mail/mail
 	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
 
+	compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
 
+	compile group: 'org.apache.commons', name: 'commons-jexl', version: '2.1.1'
 
 
 
