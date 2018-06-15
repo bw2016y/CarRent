@@ -105,4 +105,6 @@ public class BCryptMd5Hash implements Hash {
     private String hash(byte[] bytes) {
         return MD5Encoder.encode(digest.digest(bytes));
     }
+
+
 }

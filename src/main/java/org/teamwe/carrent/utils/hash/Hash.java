@@ -26,8 +26,8 @@ public interface Hash {
      * 使用密码和盐值进行哈希
      *
      * @param password 待哈希的密码
-     * @param salt     盐值
-     * @return 哈希后的密码
+     * @param salt     盐值=已哈希的密码
+     * @return 哈希+盐后的密码判断是否与哈希相等
      */
     String hashPassword(String password, String salt);
 
