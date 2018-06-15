@@ -47,6 +47,7 @@
     - 返回值
         - `name`: 用户头像
         - `file`: 用户头像文件名
+        - `type`: 用户类型
 2. 登出
     - 请求URL `DELETE '/session'`
     - 无请求参数
