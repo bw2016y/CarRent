@@ -66,14 +66,13 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public String register(String name, String email, String password, String license, String head, int type, String phone) {
 
-//        try {
-//            hashh = new BCryptMd5Hash();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
+
+        if(userDao.Get_userByEmial(email) != null){
+            return "该邮箱已被注册！";
+        }
 
         String password_hash = hashh.hashPassword(password);
-        //String password_hash = password;
+
 
 
        User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points);
@@ -90,39 +89,6 @@ public class RegisterServiceImpl implements RegisterService {
 
 
 
-
-
-
-//        //调用UserDao的Add_usr 方法存储用户记录，返回值为result1
-//        int result1 = userDao.Add_usr(user);
-//
-//        if(result1 >= 0){
-//            //插入用户成功
-//
-//            String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
-//            System.out.println(random_string);
-//            long beginTime = System.currentTimeMillis();//发送邮件时间
-//            long endTime = beginTime + 1800000;//验证时限为30分钟，30*60*1000
-//            TempUser tempUser = new TempUser(email,random_string,beginTime,endTime);//将临时激活码存储到临时用户表里
-//
-//            int result2 = tempUserDAO.save_hash_user(tempUser);
-//
-//
-//            if(result2 >= 0){
-//                //存储临时用户成功
-//                String title = "注册邮件";
-//                String text = "<body><p>你们好吗</p><a href=\"www.baidu.com\">点击链接</a>"+random_string+"</body>";
-//                System.out.println("邮件发送成功！");
-//                boolean result3 = EmailTest.sendMail(email,title,text);
-//                if(result3 == false){
-//                    System.out.println("邮件发送失败！！！");
-//                }
-//
-//            }
-//
-//
-//        }
-
         return "数据库异常，请检查服务器！";
     }
 
@@ -131,28 +97,9 @@ public class RegisterServiceImpl implements RegisterService {
      * @return 空或者null表示注册成功， 否则注册失败
      */
     @Override
-    public String active(String email,String hash) {
+    public String active(String hash) {
 
-        TempUser tempUser = tempUserDAO.get_hash_user(email); //通过email获得临时记录
-        if (tempUser != null) { //判断临时
-            User user = userDao.Get_userByEmial(email);
 
-            long time_now = System.currentTimeMillis();
-            if (hash == tempUser.getHash() && time_now < tempUser.getEndTime()) {
-                user.setIsvalidated(1);
-              int result1 =  userDao.Update_user(user);
-              if(result1 < 0){
-                  return "数据库暂停服务，激活失败";
-              }
-
-                int  result2 = tempUserDAO.delete_temp_user(email);
-                if(result1 < 0){
-                    return "数据库暂停服务，激活失败";
-                }
-
-            }
-            return null;
-        }
 
         return "规定时间内未激活，请重新注册";
     }
