@@ -6,6 +6,8 @@ package org.teamwe.carrent.utils;
  */
 
 public class StringUtil {
+    public static String ILLEGAL_EMAIL = "Illegal email address";
+    public static String NO_SUCH_USER = "No such user";
 
     /**
      * Judge if the string is null or empty

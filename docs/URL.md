@@ -79,9 +79,8 @@
     - 无请求参数
     - 无实际返回值
 4. 忘记密码与重置
-    - 请求发送重置邮件的URL` GET '/password'`
-    - 请求参数为
-        - `email`: 用户的`email`
+    - 请求发送重置邮件的URL` GET '/password/:email'`
+    - 无请求参数
     - 邮件格式为`/reset?id=:hash`
     - 重置密码URL `PUT '/password'`
     - 请求参数为
