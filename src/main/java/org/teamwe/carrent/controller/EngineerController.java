@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.teamwe.carrent.controller.utils.Format;
-import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.EngineerService;
 import org.teamwe.carrent.utils.ReturnStatus;
 import org.teamwe.carrent.utils.StringUtil;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author FDws
@@ -23,8 +21,8 @@ public class EngineerController {
     private EngineerService service;
 
     @GetMapping("/engineer")
-    public List<User> getEngineerList() {
-        return Arrays.asList(service.getEngineer());
+    public Format getEngineerList() {
+        return new Format().code(ReturnStatus.SUCCESS).addData("engineers", Arrays.asList(service.getEngineer()));
     }
 
     @PutMapping("/engineer")
