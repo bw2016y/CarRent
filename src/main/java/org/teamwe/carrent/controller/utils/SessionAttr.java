@@ -7,7 +7,7 @@ import org.teamwe.carrent.entity.User;
  * Created on 2018/6/18 13:57
  */
 
-public class SessionParam {
+public class SessionAttr {
     public static String USER_ID = User.class.getName();
     public static String USER_TYPE = USER_ID + "_TYPE";
 }
