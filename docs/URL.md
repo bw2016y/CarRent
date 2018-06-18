@@ -169,7 +169,7 @@
 -------
 ## 订单管理
 1. 生成订单
-    - 请求URL`PUT '/order'`
+    - 请求URL`POST '/order'`
     - 请求参数
         - `email`: 生成订单的账号
         - `card`: 车牌号
@@ -177,9 +177,9 @@
         - `timeend`: 结束时间
     - 无实际返回值
 2. 获取订单
-    - 请求URL`GET '/user/:id/order`
+    - 请求URL`GET '/user/:email/order`
     - 无请求参数
-    - 返回值
+    - 返回值, 订单列表`orders`, 迭代获取每个order后点取值 
         - `id`: 订单id
         - `card`: 车牌号
         - `timebegin`: 开始时间
