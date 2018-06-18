@@ -19,13 +19,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class databaseTest {
 
     //@Autowired
     //DBut db;
 
+    @Autowired
+    CarimgDAO ci;
 
    // @Autowired
   //  ApplicationContext applicationContext;
@@ -122,7 +124,7 @@ public class databaseTest {
      //   }
       //  System.out.println(car.toString());
   //  OrderDAO od=new OrderDAOimpl(GetSqlSessionFactory.get_fac());
-   // Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
+     //Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
 //   Order order=new Order();
 //   order.setOrderid(2);
 //   order.setEmail("abcddd@qq.com");
@@ -136,6 +138,7 @@ public class databaseTest {
        // od.get_Orders_by_email("1844002977@qq.com");
       //  od.get_Orders_by_card("8888");
     //    od.update_order(order);
+// od.add_Order(order);
 
 
 //        CarBrandDAO cb= new CarBrandDAOimpl(GetSqlSessionFactory.get_fac());
@@ -152,16 +155,18 @@ public class databaseTest {
 //        ct.add_type(carType2);
        // ct.get_all_type();
 
-        CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
-        CarImg carImg=new CarImg();
-        carImg.setCard("8888");
-        carImg.setImg("xixidemo");
-        CarImg carImg2=new CarImg();
-        carImg2.setCard("8888");
-        carImg2.setImg("xixidemo2");
-        ci.sava_img(carImg);
-        ci.sava_img(carImg2);
+       //CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
+//         CarImg carImg=new CarImg();
+//         carImg.setCard("9999");
+//         carImg.setImg("ccc");
+//         carImg.setImgid(1);
+//        CarImg carImg2=new CarImg();
+//        carImg2.setCard("8888");
+//        carImg2.setImg("xixidemo2");
+//        ci.sava_img(carImg);
+//        ci.sava_img(carImg2);
         ci.get_cardimg_by_card("8888");
+
 
 
     }

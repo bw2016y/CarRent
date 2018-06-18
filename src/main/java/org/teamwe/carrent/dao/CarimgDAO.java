@@ -1,9 +1,10 @@
 package org.teamwe.carrent.dao;
 
+import org.springframework.stereotype.Repository;
 import org.teamwe.carrent.entity.CarImg;
 
 import java.util.List;
-
+//@Repository
 public interface CarimgDAO {
 
 
