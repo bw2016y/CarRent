@@ -11,6 +11,10 @@ spring:
           initial-size: 5
           connection-properties: characterEncoding=utf8
           max-total:  10
+      mvc:
+        view:
+          suffix: .jsp
+          prefix: /
 hello:
       myname: bwy
 mybatis:
