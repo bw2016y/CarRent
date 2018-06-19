@@ -42,8 +42,9 @@ public class OrderController {
     }
 
     @PutMapping("/order")
-    public Format finishOrder(@RequestParam String id) {
-        return new Format().code(service.finishOrder(id));
+    public Format finishOrder(@RequestParam String id,
+                              @RequestParam int level) {
+        return new Format().code(service.finishOrder(id, level));
     }
 
     @DeleteMapping("/order/{orderId}")
