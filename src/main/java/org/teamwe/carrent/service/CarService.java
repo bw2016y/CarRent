@@ -13,12 +13,12 @@ public interface CarService {
 
 
     /**
-     *   根据card值 返回所有图片hash
-     * @param card
-     * @return
+     * 根据card值 返回所有图片hash
+     *
+     * @param card Car id
+     * @return image array
      */
-    public  String[] get_car_imgs(String card);
-
+    public String[] get_car_imgs(String card);
 
 
     /**
@@ -86,5 +86,11 @@ public interface CarService {
      */
     List<Car> getCars(int begin, int length, int type, String brand);
 
-    
+    /**
+     * @param type   Car type
+     * @param brand  Car brand
+     * @param length Length of one page
+     * @return ALl of car pages
+     */
+    int carPages(int type, String brand, int length);
 }
