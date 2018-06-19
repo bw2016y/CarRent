@@ -30,9 +30,8 @@
         - 当`code`为0时标识注册成功
 2. 激活用户
     - 服务器发送的激活链接格式为`/active?id=:hash`
-    - 请求URL为`GET '/active'`
-    - 请求包含的参数为
-        - `id`: 服务器发送邮件中的序列码,即url中的`id`
+    - 请求URL为`GET '/active/:id'`, id即为邮件中的激活序列号
+    - 无请求参数
     - 返回值
         - 当`code`为0时标识激活成功
         - 当`code`为1时标识激活失败
@@ -57,7 +56,7 @@
 1. 获取用户信息
     - 请求URL` GET '/user/:email`
     - 无请求参数
-    - 返回值
+    - 返回值, 有user前缀, 例如使用user.email 获取email
         - `email`: 用户邮箱
         - `name`: 用户名
         - `credit`: 用户信用
@@ -79,9 +78,8 @@
     - 无请求参数
     - 无实际返回值
 4. 忘记密码与重置
-    - 请求发送重置邮件的URL` GET '/password'`
-    - 请求参数为
-        - `email`: 用户的`email`
+    - 请求发送重置邮件的URL` GET '/password/:email'`
+    - 无请求参数
     - 邮件格式为`/reset?id=:hash`
     - 重置密码URL `PUT '/password'`
     - 请求参数为
@@ -93,7 +91,7 @@
 1. 获取待审核技师列表
     - 请求URL`GET '/engineer'`
     - 无请求参数
-    - 返回值
+    - 返回值:(`engineers`) 技师列表, 拥有以下属性, 迭代遍历数组取出每个技师, 点取属性
         - `email`: 技师的`email`
         - `name`: 技师名
         - `hash`: 头像名
@@ -109,7 +107,7 @@
     - 请求URL`GET '/type'`
     - 无请求参数
     - 返回值
-        - `type[]`: 车辆类型数组
+        - `types[]`: 车辆类型数组
 2. 添加车辆类型
     - 请求URL `POST '/type'`
     - 请求参数
@@ -142,7 +140,7 @@
 6. 获取待审核车辆
     - 请求URL `GET '/checkcar'`
     - 无请求参数
-    - 返回值
+    - 返回值车辆列表, `cars[]`, 迭代获取每个汽车, 然后点取属性
         - `img`: 车辆的图片列表
         - `type`: 车辆类型
         - `card`: 车牌
@@ -170,7 +168,7 @@
 -------
 ## 订单管理
 1. 生成订单
-    - 请求URL`PUT '/order'`
+    - 请求URL`POST '/order'`
     - 请求参数
         - `email`: 生成订单的账号
         - `card`: 车牌号
@@ -178,9 +176,9 @@
         - `timeend`: 结束时间
     - 无实际返回值
 2. 获取订单
-    - 请求URL`GET '/user/:id/order`
+    - 请求URL`GET '/user/:email/order`
     - 无请求参数
-    - 返回值
+    - 返回值, 订单列表`orders`, 迭代获取每个order后点取值 
         - `id`: 订单id
         - `card`: 车牌号
         - `timebegin`: 开始时间
