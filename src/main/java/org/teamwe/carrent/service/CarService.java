@@ -18,7 +18,7 @@ public interface CarService {
      * @param card Car id
      * @return image array
      */
-    public String[] get_car_imgs(String card);
+    String[] get_car_imgs(String card);
 
 
     /**
