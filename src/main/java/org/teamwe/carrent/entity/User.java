@@ -22,61 +22,9 @@ public class User {
     private  int   status;
     private  int   points;
 
-    public static int getCommenUser() {
-        return COMMEN_USER;
-    }
+    private  int   isauthorized;
+    private  long   balance;
 
-    public static int getENGENEER() {
-        return ENGENEER;
-    }
-
-    public static int getADMINISTRATOR() {
-        return ADMINISTRATOR;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLicence() {
-        return licence;
-    }
-
-    public String getHead() {
-        return head;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public int getIsvalidated() {
-        return isvalidated;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public int getPoints() {
-        return points;
-    }
 
     public static void setCommenUser(int commenUser) {
         COMMEN_USER = commenUser;
@@ -134,6 +82,108 @@ public class User {
         this.points = points;
     }
 
+    public void setIsauthorized(int isauthorized) {
+        this.isauthorized = isauthorized;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
+
+    public static int getCommenUser() {
+        return COMMEN_USER;
+    }
+
+    public static int getENGENEER() {
+        return ENGENEER;
+    }
+
+    public static int getADMINISTRATOR() {
+        return ADMINISTRATOR;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLicence() {
+        return licence;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public int getIsvalidated() {
+        return isvalidated;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getIsauthorized() {
+        return isauthorized;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public User(String email, String password, String name, String licence, String head, String phone, int type, int credit, int isvalidated, int status, int points, int isauthorized, long balance) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.licence = licence;
+        this.head = head;
+        this.phone = phone;
+        this.type = type;
+        this.credit = credit;
+        this.isvalidated = isvalidated;
+        this.status = status;
+        this.points = points;
+        this.isauthorized = isauthorized;
+        this.balance = balance;
+    }
+
+    public User(String email, String password, int type, int isvalidated, int status) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.isvalidated = isvalidated;
+        this.status = status;
+    }
+
+
+
+
+    public User() {
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -148,31 +198,8 @@ public class User {
                 ", isvalidated=" + isvalidated +
                 ", status=" + status +
                 ", points=" + points +
+                ", isauthorized=" + isauthorized +
+                ", balance=" + balance +
                 '}';
-    }
-
-    public User(String email, String password, String name, String licence, String head, String phone, int type, int credit, int isvalidated, int status, int points) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.licence = licence;
-        this.head = head;
-        this.phone = phone;
-        this.type = type;
-        this.credit = credit;
-        this.isvalidated = isvalidated;
-        this.status = status;
-        this.points = points;
-    }
-
-    public User() {
-    }
-
-    public User(String email, String password, int type, int isvalidated, int status) {
-        this.email = email;
-        this.password = password;
-        this.type = type;
-        this.isvalidated = isvalidated;
-        this.status = status;
     }
 }

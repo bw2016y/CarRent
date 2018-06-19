@@ -97,9 +97,9 @@ public class databaseTest {
     @Test
     public  void test_new()throws  Exception{
 
-        //UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
-       //User user=new User("new6.com","12345","sddd","null","null","null",1,0,1,0,0);
-      //  System.out.println(ts.Add_usr(user));
+        UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
+       User user=new User("new7.com","12345","sddd","null","null","null",1,0,1,0,0,0,1000);
+       System.out.println(ts.Add_usr(user));
 
 
 
@@ -108,12 +108,16 @@ public class databaseTest {
         // ts.Get_userByEmial(email);
       //    String email="100.com";
       //   ts.Delete_user(email);
-       // CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
+      //     CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
 
         //Car car=new Car("9999","benz","good",101,1,0,0,8);
-
-
-       // cs.select_car_by_brand_Type_available("Audi",4);
+        // cs.get_car_pages(2,0,null);
+        // cs.get_car_pages(10,4,null);
+        // cs.select_car_by_brand_Type_available("Audi",4);
+        //cs.get_car_pages(10,0,"benz");
+       //    int i=cs.get_car_pages(2,4,"benz");
+      //    for(int c=1;c<=i;c++)
+      //     cs.get_cars(c,2,4,"benz");
 
         //  cs.select_unchecked_car();
       //  cs.save_car(car);
@@ -165,7 +169,7 @@ public class databaseTest {
 //        carImg2.setImg("xixidemo2");
 //        ci.sava_img(carImg);
 //        ci.sava_img(carImg2);
-        ci.get_cardimg_by_card("8888");
+      //  ci.get_cardimg_by_card("8888");
 
 
 

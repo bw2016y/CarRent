@@ -10,6 +10,38 @@ public class Order {
     private long  timeendr;
     private String comment;
     private int    status;
+    private int   type;
+    private long  money;
+
+    public int getType() {
+        return type;
+    }
+
+    public long getMoney() {
+        return money;
+    }
+
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setMoney(long money) {
+        this.money = money;
+    }
+
+    public Order(int orderid, String email, String card, long timebegin, long timeende, long timeendr, String comment, int status, int type, long money) {
+        this.orderid = orderid;
+        this.email = email;
+        this.card = card;
+        this.timebegin = timebegin;
+        this.timeende = timeende;
+        this.timeendr = timeendr;
+        this.comment = comment;
+        this.status = status;
+        this.type = type;
+        this.money = money;
+    }
 
     public Order() {
     }
@@ -100,6 +132,8 @@ public class Order {
                 ", timeendr=" + timeendr +
                 ", comment='" + comment + '\'' +
                 ", status=" + status +
+                ", type=" + type +
+                ", money=" + money +
                 '}';
     }
 }

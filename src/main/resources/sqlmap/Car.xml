@@ -11,7 +11,7 @@
 
     <select id="select_car_by_brand_type"  parameterType="org.teamwe.carrent.entity.Car" resultType="org.teamwe.carrent.entity.Car">
 
-    select * from car where brand=#{brand} and type=#{type}
+    select * from car where brand=#{brand} and type=#{type} and  available = 0
 
     </select>
 
@@ -36,5 +36,38 @@
         type =#{type}
         where card =#{card}
     </update>
+
+
+    <select id="get_car_pages" parameterType="org.teamwe.carrent.entity.TempCar"  resultType="int">
+
+    select  count(*) from car
+    where 1=1  and  available = 0
+    <if test="type!=null and type!=0">
+        and type = #{type}
+    </if>
+
+    <if test="brand!=null and brand!=''">
+        and brand = #{brand}
+    </if>
+
+
+
+    </select>
+   <select id="get_cars_by_pages_type_brand"  parameterType="org.teamwe.carrent.entity.TempCar"
+          resultType="org.teamwe.carrent.entity.Car">
+     select *  from car
+     where 1=1   and  available = 0
+       <if test="type!=null and type!=0">
+           and type = #{type}
+       </if>
+
+       <if test="brand!=null and brand!=''">
+           and brand = #{brand}
+       </if>
+
+       limit #{page},#{length}
+
+   </select>
+
 
 </mapper>

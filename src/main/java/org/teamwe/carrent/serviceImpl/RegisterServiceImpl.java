@@ -75,7 +75,7 @@ public class RegisterServiceImpl implements RegisterService {
 
 
 
-       User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points);
+       User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points,0,100);
         System.out.println(user.toString());
         int result1 = resisTest.insertUser(user);//将用户注册信息插入Redis
 
