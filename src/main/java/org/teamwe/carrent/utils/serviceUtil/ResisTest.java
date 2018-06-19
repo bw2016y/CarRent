@@ -28,15 +28,18 @@ public class ResisTest {
 
     }
 //插入一条String类型的记录
-    public static void insertString(String key,String value){
+    public  void insertString(String key,String value){
         Jedis jedis = ResisTest.jdeisConnection();
         //简单的key-value 存储
         jedis.set(key, value);
-        System.out.println(jedis.get(key));
+        jedis.expire(key,3000);
+        System.out.println("插入redis一条string："+jedis.get(key));
         jedis.disconnect();
     }
+
+
 //插入一条user记录，key设置为email
-    public  int insertUser(User user){
+    public  int insertUser(User user,String hash_random){
 
         Jedis jedis = ResisTest.jdeisConnection();
 
@@ -66,9 +69,9 @@ public class ResisTest {
         userMap.put("Points",String.valueOf(points));
 
         String result = null;
-        result = jedis.hmset(email, userMap);
+        result = jedis.hmset(hash_random, userMap);
 
-        System.out.println(result);
+
         if(result == null) //判断是否插入成功
             return ReturnStatus.FAILURE;
 
@@ -88,10 +91,12 @@ public class ResisTest {
 
 
     }
-//删除key为email的记录
-    public  boolean delete(String email){
+//删除主键为key的记录
+    public  boolean delete(String key){
         Jedis jedis = ResisTest.jdeisConnection();
-        long result = jedis.del(email);//del返回long值
+        long result = jedis.del(key);//del返回long值
+
+        System.out.println("删除主键为"+key+"的记录");
 
         jedis.disconnect();
 
@@ -102,16 +107,16 @@ public class ResisTest {
 
 
     }
-//依据email获得该用户的所有注册信息
-    public User getUser(String email){
+//依据激活码的hash值获得该用户的所有注册信息
+    public User getUser(String key_hash){
         Jedis jedis = ResisTest.jdeisConnection();
         User user = new User();
 
-        Iterator<String> iter = jedis.hkeys(email).iterator();
+        Iterator<String> iter = jedis.hkeys(key_hash).iterator();
         while (iter.hasNext()) {
             String key = iter.next();
-            String value = jedis.hget(email, key);
-            System.out.println(key + ":" + value);
+            String value = jedis.hget(key_hash, key);
+            //System.out.println(key + ":" + value);
 
 //            try {
 //                Map<String,Object> map=new HashMap<String,Object>();
@@ -127,18 +132,29 @@ public class ResisTest {
             judge(key, value, user);
         }
 
-        System.out.println(user.toString());
+        System.out.println("从redis中读取到的user"+user.toString());
 
        jedis.disconnect();
         return user;
     }
 
-    public boolean isExist(String email){
+    public boolean isExist(String key){
         Jedis jedis = ResisTest.jdeisConnection();
-        Boolean isexist = jedis.exists(email);
+        Boolean isexist = jedis.exists(key);
         jedis.disconnect();
         return isexist;
 
+    }
+
+    public String getString(String key){//获得key——value对中的value
+        String value = null;
+        Jedis jedis = ResisTest.jdeisConnection();
+
+        value= jedis.get(key);
+        jedis.disconnect();
+
+
+        return value;
     }
 
 
@@ -196,7 +212,7 @@ public class ResisTest {
         }
     }
     public static void main(String[] args) {
-       // System.out.println(new ResisTest().getUser("1553741667@qq.com"));
+        //System.out.println(new ResisTest().getUser("1553741667@qq.com"));
         //new ResisTest().delete("1553741667@qq.com");
 
 
