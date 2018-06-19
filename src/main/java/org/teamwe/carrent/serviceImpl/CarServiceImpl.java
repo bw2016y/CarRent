@@ -73,4 +73,9 @@ public class CarServiceImpl implements CarService {
     public List<Car> getCars(int begin, int length, int type, String brand) {
         return null;
     }
+
+    @Override
+    public int carPages(int type, String brand, int length) {
+        return 0;
+    }
 }

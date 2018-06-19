@@ -11,6 +11,16 @@ import java.util.List;
 
 public interface OrderService {
     /**
+     * 技师对订单的评级
+     */
+    int BEST = 0;
+    int GOOD = 1;
+    int WELL = 2;
+    int MID = 3;
+    int BAD = 4;
+    int WORSE = 5;
+
+    /**
      * @param email     客户id
      * @param card      车牌号
      * @param timebegin 开始租车时间
@@ -26,10 +36,13 @@ public interface OrderService {
     List<Order> getOrders(String email);
 
     /**
+     * 技师查阅并且用户已支付之后由技师调用
+     *
      * @param orderId 订单id
+     * @param level   技师对订单的评级, 供信用分和积分的加减
      * @return {@link org.teamwe.carrent.utils.ReturnStatus}
      */
-    int finishOrder(String orderId);
+    int finishOrder(String orderId, int level);
 
     /**
      * 取消订单
@@ -39,4 +52,27 @@ public interface OrderService {
      */
     int deleteOrder(String orderId);
 
+    /**
+     * 根据订单id获取
+     *
+     * @param orderId 订单id
+     * @return 订单
+     */
+    Order getById(String orderId);
+
+    /**
+     * 技师结束用车, 停止计时
+     *
+     * @param orderId 订单id
+     * @return 是否成功
+     */
+    int endOrder(String orderId);
+
+    /**
+     * 用户支付完成后调用
+     *
+     * @param orderId 订单id
+     * @return 是否成功
+     */
+    int payOrder(String orderId);
 }

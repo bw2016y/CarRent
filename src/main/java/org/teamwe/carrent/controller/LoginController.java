@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.ParamValidate;
+import org.teamwe.carrent.controller.utils.SessionAttr;
 import org.teamwe.carrent.controller.utils.VerifyCodeImage;
-import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.LoginService;
 import org.teamwe.carrent.utils.ReturnStatus;
 
@@ -37,7 +37,7 @@ public class LoginController {
             String[] re = service.login(email.trim(), password.trim());
             if (re.length == 3) {
 
-                addFlag(session, email.trim());
+                addFlag(session, email.trim(), re[2]);
                 removeCode(session);
 
                 return new Format().code(ReturnStatus.SUCCESS)
@@ -53,11 +53,12 @@ public class LoginController {
 
     @DeleteMapping("/session")
     public void logout(HttpSession session) {
-        session.removeAttribute(User.class.getName());
+        session.removeAttribute(SessionAttr.USER_ID);
     }
 
-    private void addFlag(HttpSession session, String email) {
-        session.setAttribute(User.class.getName(), email);
+    private void addFlag(HttpSession session, String email, String type) {
+        session.setAttribute(SessionAttr.USER_ID, email);
+        session.setAttribute(SessionAttr.USER_TYPE, type);
     }
 
     private void removeCode(HttpSession session) {

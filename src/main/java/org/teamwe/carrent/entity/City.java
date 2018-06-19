@@ -1,5 +1,6 @@
 package org.teamwe.carrent.entity;
 
+ 
 public class City {
     private String city;
     private String site;

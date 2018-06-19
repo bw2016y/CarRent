@@ -6,6 +6,10 @@ package org.teamwe.carrent.utils;
  */
 
 public class StringUtil {
+    public static String ILLEGAL_EMAIL = "Illegal email address";
+    public static String NO_SUCH_USER = "No such user";
+    public static String PARAM_ILLEGAL = "Parameters is illegal";
+    public static String ERROR_OCCUR = "Some error occur in server";
 
     /**
      * Judge if the string is null or empty
