@@ -56,7 +56,7 @@ public interface   CarDAO {
 
 
     /**
-     *  返回car 的列表 (全部可用)
+     *  返回car 的每页的列表 (全部可用)
      *
      * @param page      页数
      * @param length    每页的长度
