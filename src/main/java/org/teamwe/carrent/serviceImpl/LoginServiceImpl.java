@@ -27,13 +27,15 @@ public class LoginServiceImpl implements LoginService {
         if(user == null||user.getStatus() == 1){//判断用户是否物理存在且逻辑存在,1表示逻辑删除
             String[] message1 = new String[1];
             message1[0] = "用户不存在，请检查邮箱是否正确！";
+            System.out.println("用户不存在或已经被逻辑删除");
             return  message1;
         }
 
         String hash_password = user.getPassword();
-        if(hash_password == hash.hashPassword(password,hash.genSalt())){ //判断密码是否正确
+        if(!hash_password.equals(hash.hashPassword(password, user.getPassword()))){ //判断密码是否正确
             String[] message1 = new String[1];
             message1[0] = "密码错误！";
+            System.out.println("密码错误！");
             return  message1;
 
         }
@@ -42,6 +44,8 @@ public class LoginServiceImpl implements LoginService {
         message2[0] = user.getName();
         message2[1] = user.getHead();
         message2[2] = String.valueOf(user.getType());
+
+        System.out.println("登录成功");
 
 
         return message2;

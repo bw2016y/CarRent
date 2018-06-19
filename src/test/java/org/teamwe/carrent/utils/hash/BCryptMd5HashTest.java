@@ -36,6 +36,16 @@ public class BCryptMd5HashTest {
 
     @Test
     public void hashPassword1() {
+        System.out.println(hash.genSalt());
+        System.out.println(hash.genSalt());
+
+        String a = "1111111";
+
+        String aa = hash.hashPassword(a);
+        System.out.println(aa);
+
+        System.out.println(hash.hashPassword(a,aa));
+
     }
 
     @Test
@@ -51,6 +61,9 @@ public class BCryptMd5HashTest {
 
     @Test
     public void hashNormal1() {
+        String a = "dfsdfdsf";
+        System.out.println(hash.hashNormal(a));
+        System.out.println(hash.hashNormal(a));
     }
 
     @Test

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.TempUserDAO;
 import org.teamwe.carrent.dao.UserDAO;
+import org.teamwe.carrent.dao.UserDAOimpl;
 import org.teamwe.carrent.entity.TempUser;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.RegisterService;
@@ -23,17 +24,17 @@ import java.security.NoSuchAlgorithmException;
  5  isvalidated    int      非空  0用户未验证   1 用户已经验证
  */
 
-//@Service
+@Service
 public class RegisterServiceImpl implements RegisterService {
     private  static  int credit = 1000;
     private  static  int isvalidated = 0;
     private  static  int status = 0;
     private  static  int points = 1000;
 
-    //@Autowired
+    @Autowired
     private UserDAO userDao;
 
-    //@Autowired
+    @Autowired
     private Hash hashh;
 
     {
@@ -66,30 +67,53 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public String register(String name, String email, String password, String license, String head, int type, String phone) {
 
+        User user_temp = userDao.Get_userByEmial(email);
 
-        if(userDao.Get_userByEmial(email) != null){
-            return "该邮箱已被注册！";
+        if(user_temp != null&&user_temp.getStatus()==1){//表示该用户物理存在但是逻辑不存在，再注册时直接改变为逻辑存在
+            user_temp.setStatus(0);
+            userDao.Update_user(user_temp);
+
+            System.out.println("表示该用户物理存在但是逻辑不存在，再注册时直接改变为逻辑存在");
+            return null;
+        }
+        if(user_temp != null&&user_temp.getStatus()==0){//用户逻辑存在
+
+            System.out.println("用户逻辑存在");
+            return "该邮箱已经注册！";
+        }
+
+        if(resisTest.isExist(email)){
+            System.out.println("该邮箱已经申请注册，请在规定时间内完成激活！");
+            return "该邮箱已经申请注册，请在规定时间内完成激活！";
         }
 
         String password_hash = hashh.hashPassword(password);
 
 
 
+
+
        User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points,0,100);
         System.out.println(user.toString());
-        int result1 = resisTest.insertUser(user);//将用户注册信息插入Redis
+        int result1 = resisTest.insertUser(user," ");//将用户注册信息插入Redis
 
-        if(result1 == ReturnStatus.SUCCESS){//插入注册信息成功后，给用户发送邮件
-
-            String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
-            System.out.println(random_string);
-            long beginTime = System.currentTimeMillis();//发送邮件时间
-            long endTime = beginTime + 1800000;//验证时限为30分钟，30*60*1000
-        }
+        String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
+        System.out.println("随机字符："+random_string);
 
 
+        String hash_random_string = hashh.hashNormal(random_string);
+        EmailTest.sendMail(email,"激活账号",random_string);
 
-        return "数据库异常，请检查服务器！";
+        System.out.println("随机字符的hash："+hash_random_string);
+
+        resisTest.insertUser(user,hash_random_string);//将用户信息插入redis，key为随机字符的hash
+        resisTest.insertString(email," ");//将用户email插入redis，用来表明用户已经在注册过程中
+
+        System.out.println("插入到redis成功");
+
+        return null;
+
+
     }
 
     /**
@@ -98,10 +122,30 @@ public class RegisterServiceImpl implements RegisterService {
      */
     @Override
     public String active(String hash) {
+        String hash_random = hashh.hashNormal(hash);
+
+        if(!resisTest.isExist(hash_random)){
+            System.out.println("随机字符的hash："+hash_random);
+            System.out.println("未在规定时间内激活，请重新注册！");
+            return "未在规定时间内激活，请重新注册！";
+        }
+
+        User user = resisTest.getUser(hashh.hashNormal(hash));//用随机字符的hash值取出user信息
+
+        System.out.println("从redis中取user信息："+user.toString());
+
+        if(userDao.Add_usr(user) < 0){
+            System.out.println("数据库异常，无法插入数据!");
+            return "数据库异常，无法插入数据!";
+        }
+
+        resisTest.delete(user.getEmail());
+        resisTest.delete(hash_random);
+
+        System.out.println("激活成功");
 
 
-
-        return "规定时间内未激活，请重新注册";
+        return null;
     }
 
 }
