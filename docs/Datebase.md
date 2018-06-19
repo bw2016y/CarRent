@@ -11,6 +11,8 @@
      9  phone       varchar     允许空值 
      10 credit      int     允许空值
      11 points      int     允许空值
+     12 isauthorized int                    0技师验证成功 1技师未验证
+     13 balance   bigint  允许空值          账户余额
 ## car
     1 card      varchar     主键      非空
     2 brand     varchar     非空
@@ -19,16 +21,21 @@
     5 ischecked     int      非空 0未检查 1已检查
     6 available     int     非空 0 可用  1不可用
     7 status        int     非空 0逻辑存在 1逻辑删除
-    8 type          int     非空  表示汽车的可乘坐人数                  
+    8 type          int     非空  表示汽车的可乘坐人数
+    9 email       varchar     非空      车主          
+    10 city       varchar     非空      城市        
 ## ordertable
     1  orderid      int     主键    NOT  NULL 自增
     2 email         varchar 非空
     3 card          varchar 非空
     4 timebegin     bigint  
-    5 timeende      bigint 
-    6 timeendr      bigint
+    5 timeende      bigint         
+    6 timeendr      bigint        评论时间
     7 comment       varchar
     8 status        int     非空 0逻辑存在 1逻辑删除
+    9 type       int       非空       0 订单进行中（开始计时-结束计时） 1 订单未支付（结束计时-付款） 2 订单未完成 （付款-技师检查） 3 订单已完成 （技师检查-用户评论） 
+    10 money      bigint                  订单数额     
+
 ##  car_brand
     1 brand         varchar 主键  非空
     2 img           varchar 
@@ -39,3 +46,6 @@
 ## car_type
     1 type          int     主键 非空
     2 description   varchar 
+## citytable
+    1 city          varchar     非空      主键  
+    2 site          varchar     

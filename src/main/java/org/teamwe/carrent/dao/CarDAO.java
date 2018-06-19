@@ -45,4 +45,31 @@ public interface   CarDAO {
      */
     public int update_car(Car car);
 
+    /**
+     *    返回总页数 (全部可用)
+     * @param length    每页的长度
+     * @param type      车的类型
+     * @param brand     车的品牌
+     * @return
+     */
+    public int get_car_pages(int length ,int type ,String brand);
+
+
+    /**
+     *  返回car 的每页的列表 (全部可用)
+     *
+     * @param page      页数
+     * @param length    每页的长度
+     * @param type      车的类型        0  查询所有
+     * @param brand     车的品牌       null 查询所有品牌
+     * @return
+     */
+    public List<Car> get_cars(int page,int length,int type,String brand);
+
+
+
+
+
+
+
 }

@@ -16,6 +16,11 @@ public class Car {
     private int status;
     private int type;
 
+    private String email;
+    private String city;
+
+
+
     public Car(String card, String brand, String message, int price, int ischecked, int available, int status, int type) {
         this.card = card;
         this.brand = brand;
@@ -25,6 +30,19 @@ public class Car {
         this.available = available;
         this.status = status;
         this.type = type;
+    }
+
+    public Car(String card, String brand, String message, int price, int ischecked, int available, int status, int type, String email, String city) {
+        this.card = card;
+        this.brand = brand;
+        this.message = message;
+        this.price = price;
+        this.ischecked = ischecked;
+        this.available = available;
+        this.status = status;
+        this.type = type;
+        this.email = email;
+        this.city = city;
     }
 
     public Car(String card, String brand, int price, int ischecked, int available, int status, int type) {
@@ -104,10 +122,27 @@ public class Car {
     public Car() {
     }
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
-                "card=" + card +
+                "card='" + card + '\'' +
                 ", brand='" + brand + '\'' +
                 ", message='" + message + '\'' +
                 ", price=" + price +
@@ -115,6 +150,8 @@ public class Car {
                 ", available=" + available +
                 ", status=" + status +
                 ", type=" + type +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

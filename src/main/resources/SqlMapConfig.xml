@@ -15,7 +15,9 @@
                 <property name="username" value="team" />
                 <property name="password" value="teampass" />
             </dataSource>
+
         </environment>
+
     </environments>
 
     <mappers>

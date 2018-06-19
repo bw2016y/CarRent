@@ -7,9 +7,9 @@
     <insert id="insertUser" parameterType="org.teamwe.carrent.entity.User">
 
 
-        insert into user(email,password,name,licence,head,phone,type,credit,points,status,isvalidated)
+        insert into user(email,password,name,licence,head,phone,type,credit,points,status,isvalidated,isauthorized,balance)
 
-        values(#{email},#{password},#{name},#{licence},#{head},#{phone},#{type},#{credit},#{points},#{status},#{isvalidated})
+        values(#{email},#{password},#{name},#{licence},#{head},#{phone},#{type},#{credit},#{points},#{status},#{isvalidated},#{isauthorized},#{balance})
 
 
     </insert>
@@ -41,7 +41,9 @@
       credit =#{credit},
       points =#{points},
       status =#{status},
-      isvalidated =#{isvalidated}
+      isvalidated =#{isvalidated},
+      isauthorized=#{isauthorized},
+      balance=#{balance}
       where email=#{email}
 
     </update>

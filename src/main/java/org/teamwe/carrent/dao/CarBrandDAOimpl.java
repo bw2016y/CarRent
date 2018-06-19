@@ -2,6 +2,7 @@ package org.teamwe.carrent.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 import org.teamwe.carrent.entity.CarBrand;
 import org.teamwe.carrent.entity.User;
 

@@ -14,7 +14,7 @@ public interface OrderDAO {
 
 
     /**
-     *  返回某用户的所有订单记录
+     *  返回某用户的所有订单记录（逻辑存在）
      * @param email
      * @return
      */

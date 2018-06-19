@@ -19,13 +19,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class databaseTest {
 
     //@Autowired
     //DBut db;
 
+    @Autowired
+    CarimgDAO ci;
 
    // @Autowired
   //  ApplicationContext applicationContext;
@@ -95,9 +97,9 @@ public class databaseTest {
     @Test
     public  void test_new()throws  Exception{
 
-        //UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
-       //User user=new User("new6.com","12345","sddd","null","null","null",1,0,1,0,0);
-      //  System.out.println(ts.Add_usr(user));
+        UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
+       User user=new User("new7.com","12345","sddd","null","null","null",1,0,1,0,0,0,1000);
+       System.out.println(ts.Add_usr(user));
 
 
 
@@ -106,12 +108,16 @@ public class databaseTest {
         // ts.Get_userByEmial(email);
       //    String email="100.com";
       //   ts.Delete_user(email);
-       // CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
+      //     CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
 
         //Car car=new Car("9999","benz","good",101,1,0,0,8);
-
-
-       // cs.select_car_by_brand_Type_available("Audi",4);
+        // cs.get_car_pages(2,0,null);
+        // cs.get_car_pages(10,4,null);
+        // cs.select_car_by_brand_Type_available("Audi",4);
+        //cs.get_car_pages(10,0,"benz");
+       //    int i=cs.get_car_pages(2,4,"benz");
+      //    for(int c=1;c<=i;c++)
+      //     cs.get_cars(c,2,4,"benz");
 
         //  cs.select_unchecked_car();
       //  cs.save_car(car);
@@ -122,7 +128,7 @@ public class databaseTest {
      //   }
       //  System.out.println(car.toString());
   //  OrderDAO od=new OrderDAOimpl(GetSqlSessionFactory.get_fac());
-   // Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
+     //Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
 //   Order order=new Order();
 //   order.setOrderid(2);
 //   order.setEmail("abcddd@qq.com");
@@ -136,6 +142,7 @@ public class databaseTest {
        // od.get_Orders_by_email("1844002977@qq.com");
       //  od.get_Orders_by_card("8888");
     //    od.update_order(order);
+// od.add_Order(order);
 
 
 //        CarBrandDAO cb= new CarBrandDAOimpl(GetSqlSessionFactory.get_fac());
@@ -152,16 +159,18 @@ public class databaseTest {
 //        ct.add_type(carType2);
        // ct.get_all_type();
 
-        CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
-        CarImg carImg=new CarImg();
-        carImg.setCard("8888");
-        carImg.setImg("xixidemo");
-        CarImg carImg2=new CarImg();
-        carImg2.setCard("8888");
-        carImg2.setImg("xixidemo2");
-        ci.sava_img(carImg);
-        ci.sava_img(carImg2);
-        ci.get_cardimg_by_card("8888");
+       //CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
+//         CarImg carImg=new CarImg();
+//         carImg.setCard("9999");
+//         carImg.setImg("ccc");
+//         carImg.setImgid(1);
+//        CarImg carImg2=new CarImg();
+//        carImg2.setCard("8888");
+//        carImg2.setImg("xixidemo2");
+//        ci.sava_img(carImg);
+//        ci.sava_img(carImg2);
+      //  ci.get_cardimg_by_card("8888");
+
 
 
     }

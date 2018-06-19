@@ -53,6 +53,8 @@ dependencies {
 	compile group: 'org.apache.commons', name: 'commons-jexl', version: '2.1.1'
 
 
+	compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+
 
     compile('org.springframework.boot:spring-boot-starter-web')
     optional('org.springframework.boot:spring-boot-configuration-processor')
