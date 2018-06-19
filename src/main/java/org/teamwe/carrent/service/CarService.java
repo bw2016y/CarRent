@@ -84,7 +84,7 @@ public interface CarService {
      * @param brand  车辆品牌
      * @return Car对象的列表
      */
-    List<Car> getCars(int begin, int length, int type, String brand);
+    List<Car> getCars(int begin, int length, int type, String brand,String city);
 
     /**
      * @param type   Car type
@@ -92,5 +92,5 @@ public interface CarService {
      * @param length Length of one page
      * @return ALl of car pages
      */
-    int carPages(int type, String brand, int length);
+    int carPages(int type, String brand, int length,String city);
 }
