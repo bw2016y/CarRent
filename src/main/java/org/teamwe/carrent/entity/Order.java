@@ -121,6 +121,18 @@ public class Order {
         this.status = status;
     }
 
+    public Order(String email, String card, long timebegin, long timeende, long timeendr, String comment, int status, int type, long money) {
+        this.email = email;
+        this.card = card;
+        this.timebegin = timebegin;
+        this.timeende = timeende;
+        this.timeendr = timeendr;
+        this.comment = comment;
+        this.status = status;
+        this.type = type;
+        this.money = money;
+    }
+
     @Override
     public String toString() {
         return "Order{" +

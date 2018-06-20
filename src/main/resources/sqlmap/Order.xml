@@ -11,9 +11,9 @@
             select LAST_INSERT_ID()
         </selectKey>
 
-        insert into ordertable (email,card,timebegin,timeende,timeendr,comment,status)
+        insert into ordertable (email,card,timebegin,timeende,timeendr,comment,status,type,money)
 
-        values(#{email},#{card},#{timebegin},#{timeende},#{timeendr},#{comment},#{status})
+        values(#{email},#{card},#{timebegin},#{timeende},#{timeendr},#{comment},#{status},#{type},#{money})
 
 
     </insert>
@@ -39,7 +39,9 @@
         timeende =#{timeende},
         timeendr =#{timeendr},
         comment =#{comment},
-        status=#{status}
+        status=#{status},
+        type=#{type},
+        money=#{money}
         where orderid =#{orderid}
 
     </update>
