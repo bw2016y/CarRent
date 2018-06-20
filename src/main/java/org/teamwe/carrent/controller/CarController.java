@@ -25,7 +25,6 @@ public class CarController {
     private FileUtil fu;
     private Hash hash;
 
-    // TODO Talk to add new get request
     @GetMapping("/images/:card")
     public Format getCarImages(@PathVariable String card) {
         return new Format().code(ReturnStatus.SUCCESS).
