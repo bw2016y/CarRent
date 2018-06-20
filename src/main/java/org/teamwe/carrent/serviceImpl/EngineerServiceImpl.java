@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.EngineerService;
+import org.teamwe.carrent.utils.ReturnStatus;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,15 @@ public class EngineerServiceImpl implements EngineerService {
      */
     @Override
     public int check(String email) {
-        return 0;
+        User engineer = userDAO.Get_userByEmial(email);
+        engineer.setIsauthorized(1);
+        int result = userDAO.Update_user(engineer);
+
+        if(result < 0){
+            System.out.println("技师更新失败");
+            return ReturnStatus.FAILURE;
+        }
+
+        return ReturnStatus.SUCCESS;
     }
 }

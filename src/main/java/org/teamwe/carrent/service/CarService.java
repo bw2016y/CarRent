@@ -31,6 +31,7 @@ public interface CarService {
      * @param hash    车辆图片哈希列表
      * @param message 车辆简介
      * @param price   车辆价格
+     *        city   车辆所在城市
      * @return 成功或者失败 {@link org.teamwe.carrent.utils.ReturnStatus}
      */
     int addCar(String email, int type, String card, String brand, String[] hash, String message, int price, String city);

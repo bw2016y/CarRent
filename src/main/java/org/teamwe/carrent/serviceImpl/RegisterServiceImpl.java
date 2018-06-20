@@ -22,6 +22,8 @@ import java.security.NoSuchAlgorithmException;
  3  type        int     非空  0 普通用户 1 技师 2 管理员
  4  status         int      非空  0 记录逻辑存在 1 记录逻辑删除
  5  isvalidated    int      非空  0用户未验证   1 用户已经验证
+    12 isauthorized int                    1技师验证成功 0技师未验证
+     13 balance   bigint  允许空值          账户余额
  */
 
 @Service
@@ -93,7 +95,7 @@ public class RegisterServiceImpl implements RegisterService {
 
 
 
-       User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points,0,100);
+       User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points,0,0);
         System.out.println(user.toString());
         int result1 = resisTest.insertUser(user," ");//将用户注册信息插入Redis
 
@@ -130,7 +132,7 @@ public class RegisterServiceImpl implements RegisterService {
             return "未在规定时间内激活，请重新注册！";
         }
 
-        User user = resisTest.getUser(hashh.hashNormal(hash));//用随机字符的hash值取出user信息
+        User user = resisTest.getUser(hash_random);//用随机字符的hash值取出user信息
 
         System.out.println("从redis中取user信息："+user.toString());
 

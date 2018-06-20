@@ -66,14 +66,12 @@ public class OrderServiceImpl implements OrderService {
         return orders;
     }
 
-    /**
-     * @param orderId 订单id
-     * @return {@link org.teamwe.carrent.utils.ReturnStatus}
-     */
     @Override
     public int finishOrder(String orderId, int level) {
         return 0;
     }
+
+
 
     /**
      * 取消订单
