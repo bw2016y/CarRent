@@ -238,7 +238,9 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCars(int begin, int length, int type, String brand, String city) {
         List<Car> newlist = new ArrayList<Car>(length);
+
         newlist = carDAO.get_cars(begin,length,type,brand,city);
+
         return newlist;
     }
 }
