@@ -81,7 +81,7 @@ public class CarServiceImpl implements CarService {
      */
 
     @Override
-    public int addCar(String email, int type, String card, String brand, String[] hash, String message, int price) {
+    public int addCar(String email, int type, String card, String brand, String[] hash, String message, int price, String city) {
 
         Car car = new Car(card,brand,message,price,ischecked,available,status,type);//上传车辆信息
         if(carDAO.save_car(car) < 0){ //保存车辆信息

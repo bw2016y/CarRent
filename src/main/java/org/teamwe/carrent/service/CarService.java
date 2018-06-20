@@ -33,7 +33,7 @@ public interface CarService {
      * @param price   车辆价格
      * @return 成功或者失败 {@link org.teamwe.carrent.utils.ReturnStatus}
      */
-    int addCar(String email, int type, String card, String brand, String[] hash, String message, int price);
+    int addCar(String email, int type, String card, String brand, String[] hash, String message, int price, String city);
 
     /**
      * 获取所有类型
@@ -84,7 +84,7 @@ public interface CarService {
      * @param brand  车辆品牌
      * @return Car对象的列表
      */
-    List<Car> getCars(int begin, int length, int type, String brand,String city);
+    List<Car> getCars(int begin, int length, int type, String brand, String city);
 
     /**
      * @param type   Car type
@@ -92,5 +92,5 @@ public interface CarService {
      * @param length Length of one page
      * @return ALl of car pages
      */
-    int carPages(int type, String brand, int length,String city);
+    int carPages(int type, String brand, int length, String city);
 }

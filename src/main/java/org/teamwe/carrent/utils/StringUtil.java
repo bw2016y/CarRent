@@ -10,6 +10,7 @@ public class StringUtil {
     public static String NO_SUCH_USER = "No such user";
     public static String PARAM_ILLEGAL = "Parameters is illegal";
     public static String ERROR_OCCUR = "Some error occur in server";
+    public static String ERROR_PAGE = "This is error page, please close this page and send request again!";
 
     /**
      * Judge if the string is null or empty

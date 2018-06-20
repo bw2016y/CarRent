@@ -21,13 +21,13 @@ public class FileUtil {
     /**
      * Project Image path
      */
-    @Value("${file.imagePath}")
-    private String imagePath = "./imagePath";
+    @Value("${file.image-path:./}")
+    private String imagePath;
     /**
      * The upload file's max size
      */
-    @Value("${file.maxFileSize}")
-    private long maxFileSize = 5 * 1024 * 1024;
+    @Value("${file.max-file-size:5242880}")
+    private long maxFileSize;
 
     private File imageParent = null;
 

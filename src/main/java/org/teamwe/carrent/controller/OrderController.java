@@ -51,4 +51,9 @@ public class OrderController {
     public Format cancelOrder(@PathVariable String orderId) {
         return new Format().code(service.deleteOrder(orderId));
     }
+
+    @DeleteMapping("/order/{id}/time")
+    public Format endOrder(@PathVariable String id) {
+        return new Format().code(service.endOrder(id));
+    }
 }

@@ -64,7 +64,8 @@ public class CarController {
                          @RequestParam String brand,
                          @RequestParam("file") MultipartFile[] files,
                          @RequestParam String message,
-                         @RequestParam int price) {
+                         @RequestParam int price,
+                         @RequestParam String city) {
 
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
@@ -81,7 +82,7 @@ public class CarController {
         }
 
         return new Format().code(service.addCar(email.trim(),
-                type, card.trim(), brand.trim(), im, message, price));
+                type, card.trim(), brand.trim(), im, message, price, city));
     }
 
     @GetMapping("/checkcar")
@@ -107,5 +108,14 @@ public class CarController {
         }
         return new Format().code(ReturnStatus.SUCCESS)
                 .addData("cars", service.getCars(begin, length, type, brand.trim(), city));
+    }
+
+    @GetMapping("/car/pages")
+    public Format getPages(@RequestParam int type,
+                           @RequestParam String brand,
+                           @RequestParam int length,
+                           @RequestParam String city) {
+        return new Format().code(ReturnStatus.SUCCESS).
+                addData("page", service.carPages(type, brand, length, city));
     }
 }
