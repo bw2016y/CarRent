@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
         }
 
         String hash_password = user.getPassword();
-        if(!hash_password.equals(hash.hashPassword(password, user.getPassword()))){ //判断密码是否正确
+        if(!hash_password.equals(hash.hashPassword(password, hash_password))){ //判断密码是否正确
             String[] message1 = new String[1];
             message1[0] = "密码错误！";
             System.out.println("密码错误！");
