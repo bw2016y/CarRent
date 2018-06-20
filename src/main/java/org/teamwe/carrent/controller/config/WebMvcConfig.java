@@ -13,10 +13,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     /**
      * Allowed Origins
      */
-    @Value("#{'${project.allowed.origins}'.split(', *')}")
+    @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
     private String[] allowedOrigins;
 
-    @Value("#{'${project.allowed.methods:GET, POST, PUT, DELETE}'.split(', *')}")
+    @Value("#{'${project.controller.allowed.methods:GET, POST, PUT, DELETE}'.split(', *')}")
     private String[] allowedMethods;
 
     public String[] getAllowedMethods() {

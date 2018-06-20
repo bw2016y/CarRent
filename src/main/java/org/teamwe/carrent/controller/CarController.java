@@ -99,12 +99,8 @@ public class CarController {
                           @RequestParam int length,
                           @RequestParam int type,
                           @RequestParam String city,
-                          @RequestParam(required = false) String brand) {
+                          @RequestParam String brand) {
 
-        if (brand == null || brand.trim().length() == 0) {
-            return new Format().code(ReturnStatus.SUCCESS)
-                    .addData("cars", service.getCars(begin, length, type, null, city));
-        }
         return new Format().code(ReturnStatus.SUCCESS)
                 .addData("cars", service.getCars(begin, length, type, brand.trim(), city));
     }

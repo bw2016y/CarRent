@@ -25,7 +25,11 @@ file:
   max-file-size: 5242880 #5MB
 
 project:
-  allowed:
-    origins: a.com, b.com, c.com
-    methods: GET, POST, PUT, DELETE
-  domain: http://localhost:${server.port}
+  controller:
+    allowed:
+      origins: a.com, b.com, c.com
+      methods: GET, POST, PUT, DELETE
+    domain: http://localhost:8008 #后端域名
+    domain-front: http://localhost:8080 #前端域名
+    verify:
+      interval: 1000

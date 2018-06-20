@@ -23,8 +23,11 @@ import java.util.Map;
 @Configuration
 public class AlipayConfig {
 
-    @Value("${project.domain}")
+    @Value("${project.controller.domain}")
     private String domain;
+
+    @Value("${project.controller.domain-front}")
+    private String domainFront;
 
     private AlipayClient client;
 
@@ -89,7 +92,7 @@ public class AlipayConfig {
     private String getReturn_url() {
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
         String return_url = "/pay";
-        return domain + return_url;
+        return domainFront + return_url;
     }
 
     private String getSign_type() {
