@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +39,9 @@ public class databaseTest {
    CartypeDAO cartypeDAO;
    @Autowired
    CityDAO cityDAO;
-    @Ignore
+
+
+   @Ignore
     public void testJdbc(){
 
 //        UserDAOimpl test=new UserDAOimpl();
@@ -107,7 +110,7 @@ public class databaseTest {
      // userDAO.getUserlist();
     //  User newuser=new User("new9.com","124","sddd","null","null","null",1,0,1,0,0,0,1000);
    //   userDAO.Update_user(newuser);
-    //   userDAO.get_unchecked_engineers();
+        userDAO.get_unchecked_engineers();
     // userDAO.Get_userByEmial("new9.com");
 
     }
@@ -146,9 +149,13 @@ public class databaseTest {
 
       //  orderDAO.get_Orders_by_email("123.com");
      //   orderDAO.get_Orders_by_card("9999");
+       Order  order=  orderDAO.get_order(3);
+      //order.get(0).getMoney();
 
-
-
+        //System.out.println(order.get(0).getMoney());
+        long m=order.getMoney();
+        System.out.println(order.toString());
+        System.out.println(m);
 
 
     }

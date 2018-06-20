@@ -13,6 +13,7 @@ public class Order {
     private int   type;
     private long  money;
 
+
     public int getType() {
         return type;
     }

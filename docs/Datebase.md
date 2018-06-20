@@ -28,8 +28,8 @@
     1  orderid      int     主键    NOT  NULL 自增
     2 email         varchar 非空
     3 card          varchar 非空
-    4 timebegin     bigint  
-    5 timeende      bigint         
+    4 timebegin     bigint         开始时间
+    5 timeende      bigint        实际结束时间    
     6 timeendr      bigint        评论时间
     7 comment       varchar
     8 status        int     非空 0逻辑存在 1逻辑删除

@@ -1,5 +1,8 @@
 package org.teamwe.carrent.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class User {
 
     public static int COMMEN_USER = 0;
@@ -7,7 +10,9 @@ public class User {
     public static int ADMINISTRATOR = 2;
 
 
+
     private  String  email;
+    @JsonIgnore
     private  String  password;
     private  String  name;
 
