@@ -23,6 +23,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     private String[] allowedOrigins;
 
     @Value("#{'${project.controller.allowed.methods:GET, POST, PUT, DELETE, OPTIONS}'.split(', *')}")
+
     private String[] allowedMethods;
 
     private final PermitInterceptor permitInterceptor;
