@@ -3,8 +3,8 @@ package org.teamwe.carrent.controller.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.utils.hash.Hash;
 
@@ -15,17 +15,18 @@ import java.io.IOException;
  * @author FDws
  * Created on 2018/6/15 9:11
  */
-@Component
-@ConfigurationProperties(prefix = "file")
+@Configuration
 public class FileUtil {
     private static Logger log = LoggerFactory.getLogger(FileUtil.class);
     /**
      * Project Image path
      */
+    @Value("${file.imagePath}")
     private String imagePath = "./imagePath";
     /**
      * The upload file's max size
      */
+    @Value("${file.maxFileSize}")
     private long maxFileSize = 5 * 1024 * 1024;
 
     private File imageParent = null;
@@ -39,18 +40,6 @@ public class FileUtil {
 
     public long getMaxFileSize() {
         return maxFileSize;
-    }
-
-    public void setMaxFileSize(long maxFileSize) {
-        this.maxFileSize = maxFileSize;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public File getImageParent() {
