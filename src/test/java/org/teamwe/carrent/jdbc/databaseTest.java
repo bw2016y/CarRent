@@ -43,7 +43,6 @@ public class databaseTest {
 
    @Ignore
     public void testJdbc(){
-
 //        UserDAOimpl test=new UserDAOimpl();
 //        User user=test.Get_userByEmial("1844002977@qq.com");
 //         System.out.println(user.toString());
@@ -149,6 +148,7 @@ public class databaseTest {
 
       //  orderDAO.get_Orders_by_email("123.com");
      //   orderDAO.get_Orders_by_card("9999");
+
        Order  order=  orderDAO.get_order(3);
       //order.get(0).getMoney();
 
@@ -200,7 +200,6 @@ public class databaseTest {
 
        // cityDAO.get_city("xian");
       //  City city=new City("xian","哈哈");
-
         //   cityDAO.update_city(city);
          cityDAO.get_cities();
     }
