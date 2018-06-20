@@ -1,11 +1,13 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.LoginService;
 import org.teamwe.carrent.utils.hash.Hash;
 
+@Service
 public class LoginServiceImpl implements LoginService {
 
     @Autowired
@@ -21,8 +23,10 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public String[] login(String email, String password) {
+        System.out.println(password);
         User user = null;
         user = userDAO.Get_userByEmial(email);
+        System.out.println(user.toString());
 
         if(user == null||user.getStatus() == 1){//判断用户是否物理存在且逻辑存在,1表示逻辑删除
             String[] message1 = new String[1];
@@ -46,6 +50,7 @@ public class LoginServiceImpl implements LoginService {
         message2[2] = String.valueOf(user.getType());
 
         System.out.println("登录成功");
+        System.out.println(message2[0]);
 
 
         return message2;

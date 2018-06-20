@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.EngineerService;
@@ -9,6 +10,7 @@ import org.teamwe.carrent.utils.ReturnStatus;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class EngineerServiceImpl implements EngineerService {
 
     @Autowired
@@ -24,10 +26,12 @@ public class EngineerServiceImpl implements EngineerService {
         List<User> users = userDAO.get_unchecked_engineers();
 
         User[] engineer = new User[users.size()];
+        System.out.println("技师数："+ users.size());
 
         int i = 0;
         for (Iterator<User> iterator = users.iterator();iterator.hasNext();) {
             User user = iterator.next();
+            //System.out.println(user.toString());
             engineer[i] = user;
             i++;
 
@@ -49,10 +53,11 @@ public class EngineerServiceImpl implements EngineerService {
         int result = userDAO.Update_user(engineer);
 
         if(result < 0){
-            System.out.println("技师更新失败");
+            System.out.println("技师激活失败");
             return ReturnStatus.FAILURE;
         }
 
+        System.out.println("技师激活成功");
         return ReturnStatus.SUCCESS;
     }
 }

@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.CarBrandDAO;
 import org.teamwe.carrent.dao.CarDAO;
 import org.teamwe.carrent.dao.CarimgDAO;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class CarServiceImpl implements CarService {
 
     /**
@@ -58,11 +60,11 @@ public class CarServiceImpl implements CarService {
 
             CarImg carImg = carImgIterator.next();
             carImages[i] = carImg.getImg();
+            System.out.println(carImages[i]);
             i++;
 
         }
 
-        System.out.println("输出该车辆所有图片hash"+carImages.toString());
 
         return carImages;
     }
@@ -114,8 +116,7 @@ public class CarServiceImpl implements CarService {
 
             types.add(carType.getType());
         }
-
-        System.out.println("获得所有车辆类型"+types.toString());
+        System.out.println("共有车型："+ types.size());
 
         return types;
     }
@@ -128,7 +129,8 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public int addType(int number) {
-        CarType carType = new CarType(number," ");
+        String decr = "这是"+number+"座车";
+        CarType carType = new CarType(number,decr);
 
         if(cartypeDAO.add_type(carType) < 0){//添加一个新的座位数
             return ReturnStatus.FAILURE;
@@ -201,7 +203,8 @@ public class CarServiceImpl implements CarService {
     @Override
     public int checkCar(String card) {//审核车辆通过
         Car car = carDAO.get_car(card);
-        car.setStatus(1);//1表示已经检查
+        car.setIschecked(1);
+        car.setAvailable(0);
 
         if(carDAO.update_car(car) < 0){
             return ReturnStatus.FAILURE;
@@ -235,7 +238,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCars(int begin, int length, int type, String brand, String city) {
         List<Car> newlist = new ArrayList<Car>(length);
-        newlist = carDAO.select_car_by_brand_Type_available(brand,type);
+        newlist = carDAO.get_cars(begin,length,type,brand,city);
         return newlist;
     }
 }
