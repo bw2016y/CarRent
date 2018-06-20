@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.CityDAO;
 import org.teamwe.carrent.entity.City;
@@ -24,7 +25,7 @@ public class CityServiceImpl implements CityService {
     public List<City> getCity() {
 
         List<City> cities = cityDAO.get_cities();
-
+        System.out.println("读取的城市列表"+cities.toString());
         return cities;
     }
 
