@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @GetMapping("/user/{email}/order")
-    public Format getOrder(@PathVariable String email) {
+    public Format getOrders(@PathVariable String email) {
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
@@ -55,5 +55,15 @@ public class OrderController {
     @DeleteMapping("/order/{id}/time")
     public Format endOrder(@PathVariable String id) {
         return new Format().code(service.endOrder(id));
+    }
+
+    @GetMapping("/order/{id}")
+    public Format getOrder(@PathVariable String id) {
+        Order o = service.getById(id);
+        if (o == null) {
+            return new Format().code(ReturnStatus.FAILURE).message("No such of order : " + id);
+        } else {
+            return new Format().code(ReturnStatus.SUCCESS).addData("order", o);
+        }
     }
 }

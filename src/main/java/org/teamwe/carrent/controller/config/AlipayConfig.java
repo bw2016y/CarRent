@@ -82,13 +82,13 @@ public class AlipayConfig {
 
     private String getNotify_url() {
         // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        String notify_url = "/alipay.trade.page.pay-JAVA-UTF-8/notify_url.jsp";
+        String notify_url = "/pay";
         return domain + notify_url;
     }
 
     private String getReturn_url() {
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        String return_url = "/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp";
+        String return_url = "/pay";
         return domain + return_url;
     }
 
