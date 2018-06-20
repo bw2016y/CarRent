@@ -27,7 +27,7 @@
 
 
     <select id="find_unchecked_engineers"   resultType="org.teamwe.carrent.entity.User">
-        select * from user where type =1
+        select * from user where type =1 and isauthorized = 0
     </select>
 
     <update id="update_User" parameterType="org.teamwe.carrent.entity.User">

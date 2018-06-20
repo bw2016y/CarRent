@@ -5,6 +5,15 @@ public class TempCar {
     int length;
     int type;
     String brand;
+    String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public int getPage() {
         return page;
@@ -41,16 +50,23 @@ public class TempCar {
     public TempCar() {
     }
 
-    public TempCar(int page, int length, int type, String brand) {
+    @Override
+    public String toString() {
+        return "TempCar{" +
+                "page=" + page +
+                ", length=" + length +
+                ", type=" + type +
+                ", brand='" + brand + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+
+    public TempCar(int page, int length, int type, String brand, String city) {
         this.page = page;
         this.length = length;
         this.type = type;
         this.brand = brand;
-    }
-
-    public TempCar(int length, int type, String brand) {
-        this.length = length;
-        this.type = type;
-        this.brand = brand;
+        this.city = city;
     }
 }

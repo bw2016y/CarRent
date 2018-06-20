@@ -7,7 +7,7 @@ import org.teamwe.carrent.entity.CarBrand;
 import org.teamwe.carrent.entity.User;
 
 import java.util.List;
-
+@Repository
 public class CarBrandDAOimpl implements CarBrandDAO {
      private SqlSessionFactory sqlSessionFactory;
 

@@ -27,6 +27,7 @@
         <mapper resource="sqlmap/CarBrand.xml" />
         <mapper resource="sqlmap/CarType.xml" />
         <mapper resource="sqlmap/CarImg.xml" />
+        <mapper resource="sqlmap/City.xml" />
     </mappers>
 
 

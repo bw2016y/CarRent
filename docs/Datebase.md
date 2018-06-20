@@ -11,7 +11,7 @@
      9  phone       varchar     允许空值 
      10 credit      int     允许空值
      11 points      int     允许空值
-     12 isauthorized int                    0技师验证成功 1技师未验证
+     12 isauthorized int                    1技师验证成功 0技师未验证
      13 balance   bigint  允许空值          账户余额
 ## car
     1 card      varchar     主键      非空

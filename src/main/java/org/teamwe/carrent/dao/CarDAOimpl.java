@@ -2,12 +2,13 @@ package org.teamwe.carrent.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Repository;
 import org.teamwe.carrent.entity.Car;
 import org.teamwe.carrent.entity.TempCar;
 import org.teamwe.carrent.entity.User;
 
 import java.util.List;
-
+@Repository
 public class CarDAOimpl implements CarDAO{
     private SqlSessionFactory sqlSessionFactory;
 
@@ -135,18 +136,19 @@ public class CarDAOimpl implements CarDAO{
     }
 
     @Override
-    public int get_car_pages(int length, int type, String brand) {
+    public int get_car_pages(int length, int type, String brand,String city) {
         TempCar tc=new TempCar();
         tc.setLength(length);
         tc.setType(type);
         tc.setBrand(brand);
+        tc.setCity(city);
         int cnt=-1;
         int page;
         SqlSession sqlSession=sqlSessionFactory.openSession();
         try{
             cnt=sqlSession.selectOne("test.get_car_pages",tc);
 
-            System.out.println(cnt);
+            System.out.println("记录数"+cnt);
 
         }catch (Exception c){
             c.printStackTrace();
@@ -156,12 +158,12 @@ public class CarDAOimpl implements CarDAO{
             }
         }
         page=(int)Math.ceil(1.0*cnt/length);
-        System.out.println(page);
+        System.out.println("页数"+page);
         return page;
     }
 
     @Override
-    public List<Car> get_cars(int page, int length, int type, String brand) {
+    public List<Car> get_cars(int page, int length, int type, String brand,String city) {
         List<Car> list=null;
         TempCar tc= new TempCar();
         tc.setBrand(brand);
@@ -169,7 +171,7 @@ public class CarDAOimpl implements CarDAO{
         tc.setLength(length);
         int pg=(page-1)*length;
         tc.setPage(pg);
-
+        tc.setCity(city);
 
 
 
@@ -177,7 +179,7 @@ public class CarDAOimpl implements CarDAO{
         try{
             list=sqlSession.selectList("test.get_cars_by_pages_type_brand",tc);
 
-            System.out.println(list.size());
+            System.out.println("该页记录数"+list.size());
             for(Car u:list){
                 System.out.println(u.toString());
             }

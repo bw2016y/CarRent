@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-//@Repository
+@Repository
 public class UserDAOimpl  implements  UserDAO {
      private SqlSessionFactory sqlSessionFactory;
 
