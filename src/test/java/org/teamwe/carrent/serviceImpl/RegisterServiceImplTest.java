@@ -31,7 +31,7 @@ public class RegisterServiceImplTest {
 
     @Test
     public void active() {
-        registerService.active("AXEYQlpd0sOg4wYEiIpq");
+        registerService.active("DLG8euEtP2mJm4gH3gO7");
     }
 
 

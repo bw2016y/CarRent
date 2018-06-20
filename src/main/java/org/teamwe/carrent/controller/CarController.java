@@ -81,7 +81,7 @@ public class CarController {
         }
 
         return new Format().code(service.addCar(email.trim(),
-                type, card.trim(), brand.trim(), im, message, price));
+                type, card.trim(), brand.trim(), im, message, price,null));
     }
 
     @GetMapping("/checkcar")
@@ -102,9 +102,9 @@ public class CarController {
 
         if (brand == null || brand.trim().length() == 0) {
             return new Format().code(ReturnStatus.SUCCESS)
-                    .addData("cars", service.getCars(begin, length, type, null));
+                    .addData("cars", service.getCars(begin, length, type, null,null));
         }
         return new Format().code(ReturnStatus.SUCCESS)
-                .addData("cars", service.getCars(begin, length, type, brand.trim()));
+                .addData("cars", service.getCars(begin, length, type, brand.trim(),null));
     }
 }

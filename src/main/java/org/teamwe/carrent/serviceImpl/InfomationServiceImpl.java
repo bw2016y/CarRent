@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.service.InformationService;
@@ -9,6 +10,7 @@ import org.teamwe.carrent.utils.hash.Hash;
 import org.teamwe.carrent.utils.serviceUtil.EmailTest;
 import org.teamwe.carrent.utils.serviceUtil.ResisTest;
 
+@Service
 public class InfomationServiceImpl implements InformationService {
 
     @Autowired
@@ -84,7 +86,7 @@ public class InfomationServiceImpl implements InformationService {
         String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
         System.out.println("随机字符："+random_string);
 
-        String hash_random_string = hashh.hashPassword(random_string);
+        String hash_random_string = hashh.hashNormal(random_string);
         EmailTest.sendMail(email,"重置密码",random_string);//向用户发送重置密码邮件，包含随机字符
 
         resisTest.insertString(hash_random_string,email);//将随机字符的hash值存入redis中
@@ -102,7 +104,7 @@ public class InfomationServiceImpl implements InformationService {
      */
     @Override
     public int resetPassword(String hash, String password) {
-        String hash_random = hashh.hashPassword(hash);
+        String hash_random = hashh.hashNormal(hash);
 
         if (!resisTest.isExist(hash_random))
         {

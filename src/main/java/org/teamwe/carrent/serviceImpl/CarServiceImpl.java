@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.CarBrandDAO;
 import org.teamwe.carrent.dao.CarDAO;
 import org.teamwe.carrent.dao.CarimgDAO;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class CarServiceImpl implements CarService {
 
     /**
@@ -58,11 +60,11 @@ public class CarServiceImpl implements CarService {
 
             CarImg carImg = carImgIterator.next();
             carImages[i] = carImg.getImg();
+            System.out.println(carImages[i]);
             i++;
 
         }
 
-        System.out.println("输出该车辆所有图片hash"+carImages.toString());
 
         return carImages;
     }
@@ -81,9 +83,9 @@ public class CarServiceImpl implements CarService {
      */
 
     @Override
-    public int addCar(String email, int type, String card, String brand, String[] hash, String message, int price) {
+    public int addCar(String email, int type, String card, String brand, String[] hash, String message, int price,String city) {
 
-        Car car = new Car(card,brand,message,price,ischecked,available,status,type);//上传车辆信息
+        Car car = new Car(card,brand,message,price,ischecked,available,status,type,email,city);//上传车辆信息
         if(carDAO.save_car(car) < 0){ //保存车辆信息
             return ReturnStatus.FAILURE;
         }
@@ -109,13 +111,12 @@ public class CarServiceImpl implements CarService {
         List<CarType> carTypes = cartypeDAO.get_all_type();
         List<Integer> types = new ArrayList<Integer>();
 
-        for (Iterator<CarType> carTypeIterator = carTypes.iterator();carTypeIterator.hasNext();){
+        for(Iterator<CarType> carTypeIterator = carTypes.iterator();carTypeIterator.hasNext();){
             CarType carType = carTypeIterator.next();
 
             types.add(carType.getType());
         }
-
-        System.out.println("获得所有车辆类型"+types.toString());
+        System.out.println("共有车型："+ types.size());
 
         return types;
     }
@@ -128,7 +129,8 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public int addType(int number) {
-        CarType carType = new CarType(number," ");
+        String decr = "这是"+number+"座车";
+        CarType carType = new CarType(number,decr);
 
         if(cartypeDAO.add_type(carType) < 0){//添加一个新的座位数
             return ReturnStatus.FAILURE;
@@ -201,7 +203,8 @@ public class CarServiceImpl implements CarService {
     @Override
     public int checkCar(String card) {//审核车辆通过
         Car car = carDAO.get_car(card);
-        car.setStatus(1);//1表示已经检查
+        car.setIschecked(1);
+        car.setAvailable(0);
 
         if(carDAO.update_car(car) < 0){
             return ReturnStatus.FAILURE;
@@ -212,6 +215,19 @@ public class CarServiceImpl implements CarService {
         return ReturnStatus.SUCCESS;
     }
 
+
+    /**
+     * @param type   Car type
+     * @param brand  Car brand
+     * @param length Length of one page
+     * @return ALl of car pages
+     */
+    @Override
+    public int carPages(int type, String brand, int length, String city) {
+        int count = carDAO.get_car_pages(length,type,brand,city);
+        return count;
+    }
+
     /**
      * @param begin  开始的页数
      * @param length 每页的长度
@@ -220,26 +236,27 @@ public class CarServiceImpl implements CarService {
      * @return Car对象的列表
      */
     @Override
-    public List<Car> getCars(int begin, int length, int type, String brand) {
+    public List<Car> getCars(int begin, int length, int type, String brand,String city) {
 
-        List<Car> cars = carDAO.select_car_by_brand_Type_available(brand,type);
-
+//        List<Car> cars = carDAO.select_car_by_brand_Type_available(brand,type);
+//
+//        List<Car> newlist = new ArrayList<Car>(length);
+//
+//        if(begin*length>cars.size()){
+//
+//            newlist=cars.subList((begin-1)*length, cars.size());
+//        }else{
+//            newlist=cars.subList((begin-1)*length, begin*length);
+//        }
+//
+//        System.out.println("截取一页数量的车量"+newlist.size());
         List<Car> newlist = new ArrayList<Car>(length);
 
-        if(begin*length>cars.size()){
+        newlist = carDAO.get_cars(begin,length,type,brand,city);
 
-            newlist=cars.subList((begin-1)*length, cars.size());
-        }else{
-            newlist=cars.subList((begin-1)*length, begin*length);
-        }
-
-        System.out.println("截取一页数量的车量"+newlist.size());
 
         return newlist;
     }
 
-    @Override
-    public int carPages(int type, String brand, int length) {
-        return 0;
-    }
+
 }
