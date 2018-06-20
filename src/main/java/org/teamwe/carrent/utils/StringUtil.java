@@ -13,6 +13,7 @@ public class StringUtil {
     public static String ERROR_PAGE = "This is error page, please close this page and send request again!";
     public static String NO_PERMISSION = "Haven't permission";
 
+
     /**
      * Judge if the string is null or empty
      *
