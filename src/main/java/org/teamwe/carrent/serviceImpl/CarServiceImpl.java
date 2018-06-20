@@ -220,7 +220,7 @@ public class CarServiceImpl implements CarService {
      * @return Car对象的列表
      */
     @Override
-    public List<Car> getCars(int begin, int length, int type, String brand) {
+    public List<Car> getCars(int begin, int length, int type, String brand, String city) {
 
         List<Car> cars = carDAO.select_car_by_brand_Type_available(brand,type);
 
@@ -239,7 +239,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public int carPages(int type, String brand, int length) {
+    public int carPages(int type, String brand, int length, String city) {
         return 0;
     }
 }

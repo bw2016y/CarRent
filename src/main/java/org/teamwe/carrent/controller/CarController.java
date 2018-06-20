@@ -98,13 +98,14 @@ public class CarController {
     public Format getCars(@RequestParam int begin,
                           @RequestParam int length,
                           @RequestParam int type,
+                          @RequestParam String city,
                           @RequestParam(required = false) String brand) {
 
         if (brand == null || brand.trim().length() == 0) {
             return new Format().code(ReturnStatus.SUCCESS)
-                    .addData("cars", service.getCars(begin, length, type, null));
+                    .addData("cars", service.getCars(begin, length, type, null, city));
         }
         return new Format().code(ReturnStatus.SUCCESS)
-                .addData("cars", service.getCars(begin, length, type, brand.trim()));
+                .addData("cars", service.getCars(begin, length, type, brand.trim(), city));
     }
 }
