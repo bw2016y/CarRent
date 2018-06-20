@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.OrderDAO;
 import org.teamwe.carrent.entity.Order;
 import org.teamwe.carrent.service.CommentService;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
@@ -24,8 +26,14 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public int comment(String orderId, String comment) {
+
+
        Order order = orderDAO.get_order(Integer.parseInt(orderId));
 
+       if (order.getType() != 3){
+           System.out.println("订单尚未完成");
+           return ReturnStatus.FAILURE;
+       }
        order.setComment(comment);
        order.setTimeendr(System.currentTimeMillis());//评论时间
 

@@ -1,13 +1,15 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.CityDAO;
 import org.teamwe.carrent.entity.City;
 import org.teamwe.carrent.service.CityService;
+import org.teamwe.carrent.utils.ReturnStatus;
 
 import java.util.List;
 
-
+@Service
 public class CityServiceImpl implements CityService {
 
     @Autowired
@@ -22,7 +24,7 @@ public class CityServiceImpl implements CityService {
     public List<City> getCity() {
 
         List<City> cities = cityDAO.get_cities();
-        System.out.println("读取的城市列表"+cities.toString());
+
         return cities;
     }
 
@@ -36,11 +38,39 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public int addCity(String name, String location) {
-        return 0;
+
+
+        if(cityDAO.get_city(name) != null){
+            System.out.println("该城市已经存在！");
+            return ReturnStatus.FAILURE;
+        }
+
+        City city = new City(name,location);
+        int result = cityDAO.add_city(city);
+
+        if(result < 0){
+            System.out.println("插入城市失败！");
+            return ReturnStatus.FAILURE;
+        }
+
+        System.out.println("插入城市成功");
+        return ReturnStatus.SUCCESS;
+
     }
 
     @Override
     public int updateCity(String name, String newLoc) {
-        return 0;
+
+        City city = cityDAO.get_city(name);
+        city.setSite(newLoc);
+
+        int result = cityDAO.update_city(city);
+        if(result < 0 ){
+            System.out.println("更新城市地址失败");
+            return  ReturnStatus.FAILURE;
+        }
+
+        System.out.println("更新城市地址成功");
+        return ReturnStatus.SUCCESS;
     }
 }
