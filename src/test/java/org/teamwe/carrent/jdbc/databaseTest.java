@@ -109,7 +109,6 @@ public class databaseTest {
      // userDAO.getUserlist();
     //  User newuser=new User("new9.com","124","sddd","null","null","null",1,0,1,0,0,0,1000);
    //   userDAO.Update_user(newuser);
-        userDAO.get_unchecked_engineers();
     // userDAO.Get_userByEmial("new9.com");
 
     }
@@ -148,7 +147,6 @@ public class databaseTest {
 
       //  orderDAO.get_Orders_by_email("123.com");
      //   orderDAO.get_Orders_by_card("9999");
-
        Order  order=  orderDAO.get_order(3);
       //order.get(0).getMoney();
 
