@@ -56,7 +56,6 @@ public class OrderController {
     public Format endOrder(@PathVariable String id) {
         return new Format().code(service.endOrder(id));
     }
-
     @GetMapping("/order/{id}")
     public Format getOrder(@PathVariable String id) {
         Order o = service.getById(id);
