@@ -105,7 +105,6 @@ public class CarController {
                           @RequestParam int type,
                           @RequestParam String city,
                           @RequestParam String brand) {
-
         return new Format().code(ReturnStatus.SUCCESS)
                 .addData("cars", service.getCars(begin, length, type, brand.trim(), city));
     }

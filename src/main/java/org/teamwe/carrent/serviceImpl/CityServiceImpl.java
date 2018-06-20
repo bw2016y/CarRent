@@ -25,7 +25,7 @@ public class CityServiceImpl implements CityService {
     public List<City> getCity() {
 
         List<City> cities = cityDAO.get_cities();
-        System.out.println("读取的城市列表"+cities.toString());
+
         return cities;
     }
 
