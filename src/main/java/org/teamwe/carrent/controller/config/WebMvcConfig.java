@@ -2,6 +2,7 @@ package org.teamwe.carrent.controller.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
@@ -16,8 +17,15 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
     private String[] allowedOrigins;
 
-    @Value("#{'${project.controller.allowed.methods:GET, POST, PUT, DELETE}'.split(', *')}")
+    @Value("#{'${project.controller.allowed.methods:GET, POST, PUT, DELETE, OPTIONS}'.split(', *')}")
     private String[] allowedMethods;
+
+    @Override
+    protected void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedMethods(allowedMethods)
+                .allowedOrigins(allowedOrigins);
+    }
 
     public String[] getAllowedMethods() {
         return allowedMethods;

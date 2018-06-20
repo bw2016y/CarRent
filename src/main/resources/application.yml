@@ -28,7 +28,7 @@ project:
   controller:
     allowed:
       origins: a.com, b.com, c.com
-      methods: GET, POST, PUT, DELETE
+      methods: GET, POST, PUT, DELETE, OPTIONS
     domain: http://localhost:8008 #后端域名
     domain-front: http://localhost:8080 #前端域名
       interval: 1000
