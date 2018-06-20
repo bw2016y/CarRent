@@ -23,29 +23,33 @@ import java.sql.ResultSet;
 @SpringBootTest
 public class databaseTest {
 
-    //@Autowired
-    //DBut db;
 
-    @Autowired
-    CarimgDAO ci;
+   @Autowired
+   CarDAO carDAO;
+   @Autowired
+   UserDAO userDAO;
+   @Autowired
+   OrderDAO orderDAO;
+   @Autowired
+   CarBrandDAO carBrandDAO;
+   @Autowired
+   CarimgDAO carimgDAO;
+   @Autowired
+   CartypeDAO cartypeDAO;
+   @Autowired
+   CityDAO cityDAO;
+    @Ignore
+    public void testJdbc(){
 
-   // @Autowired
-  //  ApplicationContext applicationContext;
-  //  @Autowired
-   // DataSourceProperties dataSourceProperties;
-
-//    @Test
-//    public void testJdbc(){
-//
-//         UserDAOimpl test=new UserDAOimpl();
-//         User user=test.Get_userByEmial("1844002977@qq.com");
+//        UserDAOimpl test=new UserDAOimpl();
+//        User user=test.Get_userByEmial("1844002977@qq.com");
 //         System.out.println(user.toString());
 //        DataSource dataSource=applicationContext.getBean(DataSource.class);
 //        System.out.println(dataSource);
 //        System.out.println(dataSource.getClass().getName());
 //        System.out.println(dataSourceProperties);
 //        System.out.println("finish");
-//    }
+    }
 
 
     @Ignore
@@ -94,84 +98,103 @@ public class databaseTest {
 //    }
 
 
+
+
     @Test
-    public  void test_new()throws  Exception{
+    public void test_UserDAO(){
+    //  User user=new User("new9.com","12345","sddd","null","null","null",1,0,1,0,0,0,1000);
+    //  userDAO.Add_usr(user);
+     // userDAO.getUserlist();
+    //  User newuser=new User("new9.com","124","sddd","null","null","null",1,0,1,0,0,0,1000);
+   //   userDAO.Update_user(newuser);
+    //   userDAO.get_unchecked_engineers();
+    // userDAO.Get_userByEmial("new9.com");
 
-        UserDAOimpl ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
-       User user=new User("new7.com","12345","sddd","null","null","null",1,0,1,0,0,0,1000);
-       System.out.println(ts.Add_usr(user));
+    }
 
-
-
-       //  UserDAO ts= new UserDAOimpl(GetSqlSessionFactory.get_fac());
-        //  String email="1844002977@qq.com";
-        // ts.Get_userByEmial(email);
-      //    String email="100.com";
-      //   ts.Delete_user(email);
-      //     CarDAO cs= new CarDAOimpl(GetSqlSessionFactory.get_fac());
-
-        //Car car=new Car("9999","benz","good",101,1,0,0,8);
-        // cs.get_car_pages(2,0,null);
-        // cs.get_car_pages(10,4,null);
-        // cs.select_car_by_brand_Type_available("Audi",4);
-        //cs.get_car_pages(10,0,"benz");
-       //    int i=cs.get_car_pages(2,4,"benz");
-      //    for(int c=1;c<=i;c++)
-      //     cs.get_cars(c,2,4,"benz");
-
-        //  cs.select_unchecked_car();
-      //  cs.save_car(car);
-       // System.out.println(cs.update_car(car));
-       // Car car=cs.get_car("9999");
-      //  if(car==null){
-      //      System.out.println("there is null");
-     //   }
-      //  System.out.println(car.toString());
-  //  OrderDAO od=new OrderDAOimpl(GetSqlSessionFactory.get_fac());
-     //Order  order=new Order(2,"cc","8888",1,2,3,"nice",0);
-//   Order order=new Order();
-//   order.setOrderid(2);
-//   order.setEmail("abcddd@qq.com");
-//   order.setCard("8889");
-//   order.setComment("nice");
-//   order.setStatus(0);
-//   order.setTimebegin(1);
-//   order.setTimeende(2);
-//   order.setTimeendr(3);
-   //od.add_Order(order);
-       // od.get_Orders_by_email("1844002977@qq.com");
-      //  od.get_Orders_by_card("8888");
-    //    od.update_order(order);
-// od.add_Order(order);
+    @Test
+    public void test_CarDAO(){
 
 
-//        CarBrandDAO cb= new CarBrandDAOimpl(GetSqlSessionFactory.get_fac());
-//        CarBrand carBrand=new CarBrand("benz","xixi");
-//        CarBrand carBrand2=new CarBrand("Audi","haha");
-//        cb.add_brand(carBrand);
-//        cb.add_brand(carBrand2);
-//
-//        cb.get_all_brand_img();
-     //   CartypeDAO ct=new CartypeDAOimpl(GetSqlSessionFactory.get_fac());
-//       CarType carType=new CarType(2,"niubicar");
-//        CarType carType2=new CarType(4,"normal");
-//        ct.add_type(carType);
-//        ct.add_type(carType2);
-       // ct.get_all_type();
+       // Car car=new Car("7422","benz","good",101,1,0,0,4,"new9.com","beijing");
 
-       //CarimgDAO ci=new CarImgImpl(GetSqlSessionFactory.get_fac());
-//         CarImg carImg=new CarImg();
-//         carImg.setCard("9999");
-//         carImg.setImg("ccc");
-//         carImg.setImgid(1);
-//        CarImg carImg2=new CarImg();
-//        carImg2.setCard("8888");
-//        carImg2.setImg("xixidemo2");
-//        ci.sava_img(carImg);
-//        ci.sava_img(carImg2);
-      //  ci.get_cardimg_by_card("8888");
+     //   carDAO.save_car(car);
+
+     //   carDAO.get_car("7419");
+
+     //   carDAO.select_unchecked_car();
+     //   Car car=new Car("7419","benz","well",101,1,0,0,8,"new9.com","beijing");
+    //   carDAO.update_car(car);
+
+        //    carDAO.select_car_by_brand_Type_available("benz",4);
+ //      int i= carDAO.get_car_pages(2,4,"benz","beijing");
+
+ //         for(int c=1;c<=i;c++)
+  //            carDAO.get_cars(c,2,4,"benz","beijing");
+
+    }
+
+
+    @Test
+    public void test_OrderDAO(){
+       // Order order=new Order("123.com","9999",0,1,2,"bad",0,3,100);
+       // orderDAO.add_Order(order);
+       // orderDAO.get_order(3);
+        //Order order=new Order(3,"123.com","9999",0,1,2,"bad",0,3,111);
+
+        //orderDAO.update_order(order);
+
+      //  orderDAO.get_Orders_by_email("123.com");
+     //   orderDAO.get_Orders_by_card("9999");
 
 
 
+
+
+    }
+
+    @Test
+    public void test_CarBrandDAO(){
+
+
+      //CarBrand carBrand=new CarBrand("cadirrac","xixi");
+     //  carBrandDAO.add_brand(carBrand);
+
+     carBrandDAO.get_all_brand_img();
+
+
+    }
+
+    @Test
+    public void test_CarImgDAO(){
+
+        // CarImg carImg=new CarImg("9999","bbb");
+        //  carimgDAO.sava_img(carImg);
+         carimgDAO.get_cardimg_by_card("9999");
+
+
+
+
+    }
+    @Test
+    public void test_CarTypeDAO(){
+
+
+     //CarType carType=new CarType(20,"bigcar");
+     //cartypeDAO.add_type(carType);
+
+      cartypeDAO.get_all_type();
+
+    }
+    @Test
+    public void test_CityDAO(){
+       // City city=new City("xian","somewhere");
+      //  cityDAO.add_city(city);
+
+       // cityDAO.get_city("xian");
+      //  City city=new City("xian","哈哈");
+
+        //   cityDAO.update_city(city);
+         cityDAO.get_cities();
     }
 }

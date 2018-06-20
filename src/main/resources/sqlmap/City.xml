@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+    <insert id="insert_city"  parameterType="org.teamwe.carrent.entity.City">
+
+
+        insert into citytable( city , site )
+        values (#{city},#{site})
+
+    </insert>
+
+    <select id="select_all_city"  resultType="org.teamwe.carrent.entity.City">
+
+      select * from citytable
+    </select>
+
+    <select id="select_city_by_cityname"  parameterType="String" resultType="org.teamwe.carrent.entity.City">
+
+      select * from citytable where city=#{city}
+    </select>
+
+
+
+    <update id="update_city"  parameterType="org.teamwe.carrent.entity.City" >
+
+         update citytable set
+
+         site =#{site}
+
+         where city= #{city}
+    </update>
+</mapper>

@@ -6,6 +6,11 @@ public class CarImg {
     String card;
     String img;
 
+    public CarImg(String card, String img) {
+        this.card = card;
+        this.img = img;
+    }
+
     public CarImg(int imgid, String card, String img) {
         this.imgid = imgid;
         this.card = card;
