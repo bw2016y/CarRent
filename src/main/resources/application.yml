@@ -15,6 +15,9 @@ spring:
         view:
           suffix: .jsp
           prefix: /
+      redis:
+        host: v4bug.com
+        password: teampass
 hello:
       myname: bwy
 mybatis:

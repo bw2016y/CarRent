@@ -2,6 +2,7 @@ package org.teamwe.carrent.controller.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * Created on 2018/6/19 15:01
  */
 @Configuration
+@EnableRedisHttpSession
 public class WebMvcConfig extends WebMvcConfigurationSupport {
     /**
      * Allowed Origins
