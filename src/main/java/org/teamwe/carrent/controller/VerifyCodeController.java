@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
@@ -28,6 +29,9 @@ public class VerifyCodeController {
      */
     private static int NUMBERS = 4;
 
+    @Value("${project.controller.verify.interval:1000}")
+    private int interval;
+
     /**
      * Get the Verify Code Image
      * If the interval time less than 1s, return null
@@ -38,7 +42,7 @@ public class VerifyCodeController {
     @GetMapping("/validate")
     public StreamingResponseBody genCode(HttpSession session) {
         Object o = session.getAttribute(VerifyCodeImage.TIME);
-        if (o != null && System.currentTimeMillis() - (long) o < 1000) {
+        if (o != null && System.currentTimeMillis() - (long) o < interval) {
             return null;
         }
 

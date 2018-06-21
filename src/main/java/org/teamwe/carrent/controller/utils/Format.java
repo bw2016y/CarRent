@@ -52,10 +52,6 @@ public class Format {
         return message;
     }
 
-    public Map<String, Object> getData() {
-        return data;
-    }
-
     @Override
     public String toString() {
         return "Format{" +

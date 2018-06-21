@@ -64,8 +64,6 @@ public class CarServiceImpl implements CarService {
             i++;
 
         }
-
-
         return carImages;
     }
 
@@ -97,8 +95,6 @@ public class CarServiceImpl implements CarService {
         }
 
         System.out.println("保存车辆图片成功");
-
-
         return ReturnStatus.SUCCESS;
     }
     /**
@@ -236,24 +232,9 @@ public class CarServiceImpl implements CarService {
      * @return Car对象的列表
      */
     @Override
-    public List<Car> getCars(int begin, int length, int type, String brand,String city) {
-
-//        List<Car> cars = carDAO.select_car_by_brand_Type_available(brand,type);
-//
-//        List<Car> newlist = new ArrayList<Car>(length);
-//
-//        if(begin*length>cars.size()){
-//
-//            newlist=cars.subList((begin-1)*length, cars.size());
-//        }else{
-//            newlist=cars.subList((begin-1)*length, begin*length);
-//        }
-//
-//        System.out.println("截取一页数量的车量"+newlist.size());
+    public List<Car> getCars(int begin, int length, int type, String brand, String city) {
         List<Car> newlist = new ArrayList<Car>(length);
-
         newlist = carDAO.get_cars(begin,length,type,brand,city);
-
 
         return newlist;
     }

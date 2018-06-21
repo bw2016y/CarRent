@@ -9,6 +9,7 @@ import java.util.List;
  * Created on 2018/6/12 10:24
  */
 
+@SuppressWarnings("unused")
 public interface OrderService {
     /**
      * 技师对订单的评级

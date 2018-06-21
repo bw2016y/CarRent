@@ -43,7 +43,6 @@ public class databaseTest {
 
    @Ignore
     public void testJdbc(){
-
 //        UserDAOimpl test=new UserDAOimpl();
 //        User user=test.Get_userByEmial("1844002977@qq.com");
 //         System.out.println(user.toString());
@@ -110,7 +109,6 @@ public class databaseTest {
      // userDAO.getUserlist();
     //  User newuser=new User("new9.com","124","sddd","null","null","null",1,0,1,0,0,0,1000);
    //   userDAO.Update_user(newuser);
-        userDAO.get_unchecked_engineers();
     // userDAO.Get_userByEmial("new9.com");
 
     }
@@ -151,7 +149,6 @@ public class databaseTest {
      //   orderDAO.get_Orders_by_card("9999");
        Order  order=  orderDAO.get_order(3);
       //order.get(0).getMoney();
-
         //System.out.println(order.get(0).getMoney());
         long m=order.getMoney();
         System.out.println(order.toString());
@@ -200,7 +197,6 @@ public class databaseTest {
 
        // cityDAO.get_city("xian");
       //  City city=new City("xian","哈哈");
-
         //   cityDAO.update_city(city);
          cityDAO.get_cities();
     }

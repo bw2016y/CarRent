@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.controller.utils.FileUtil;
@@ -8,7 +9,6 @@ import org.teamwe.carrent.controller.utils.ParamValidate;
 import org.teamwe.carrent.service.CarService;
 import org.teamwe.carrent.utils.ReturnStatus;
 import org.teamwe.carrent.utils.StringUtil;
-import org.teamwe.carrent.utils.hash.Hash;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -21,11 +21,15 @@ import java.util.List;
 
 @RestController
 public class CarController {
-    private CarService service;
-    private FileUtil fu;
-    private Hash hash;
+    private final CarService service;
+    private final FileUtil fu;
 
-    // TODO Talk to add new get request
+    @Autowired
+    public CarController(CarService service, FileUtil fu) {
+        this.service = service;
+        this.fu = fu;
+    }
+
     @GetMapping("/images/:card")
     public Format getCarImages(@PathVariable String card) {
         return new Format().code(ReturnStatus.SUCCESS).
@@ -64,7 +68,8 @@ public class CarController {
                          @RequestParam String brand,
                          @RequestParam("file") MultipartFile[] files,
                          @RequestParam String message,
-                         @RequestParam int price) {
+                         @RequestParam int price,
+                         @RequestParam String city) {
 
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
@@ -81,7 +86,7 @@ public class CarController {
         }
 
         return new Format().code(service.addCar(email.trim(),
-                type, card.trim(), brand.trim(), im, message, price,null));
+                type, card.trim(), brand.trim(), im, message, price, city));
     }
 
     @GetMapping("/checkcar")
@@ -98,13 +103,18 @@ public class CarController {
     public Format getCars(@RequestParam int begin,
                           @RequestParam int length,
                           @RequestParam int type,
-                          @RequestParam(required = false) String brand) {
-
-        if (brand == null || brand.trim().length() == 0) {
-            return new Format().code(ReturnStatus.SUCCESS)
-                    .addData("cars", service.getCars(begin, length, type, null,null));
-        }
+                          @RequestParam String city,
+                          @RequestParam String brand) {
         return new Format().code(ReturnStatus.SUCCESS)
-                .addData("cars", service.getCars(begin, length, type, brand.trim(),null));
+                .addData("cars", service.getCars(begin, length, type, brand.trim(), city));
+    }
+
+    @GetMapping("/car/pages")
+    public Format getPages(@RequestParam int type,
+                           @RequestParam String brand,
+                           @RequestParam int length,
+                           @RequestParam String city) {
+        return new Format().code(ReturnStatus.SUCCESS).
+                addData("page", service.carPages(type, brand, length, city));
     }
 }

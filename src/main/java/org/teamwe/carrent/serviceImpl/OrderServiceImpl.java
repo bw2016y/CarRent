@@ -96,7 +96,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public int finishOrder(String orderId, int level) {
-
         Order order = orderDAO.get_order(Integer.parseInt(orderId));
         User user = userDAO.Get_userByEmial(order.getEmail());
 

@@ -1,9 +1,8 @@
 package org.teamwe.carrent.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.ParamValidate;
 import org.teamwe.carrent.controller.utils.SessionAttr;
@@ -19,8 +18,12 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 public class LoginController {
+    private final LoginService service;
 
-    private LoginService service;
+    @Autowired
+    public LoginController(LoginService service) {
+        this.service = service;
+    }
 
     @PostMapping("/session")
     public Format login(@RequestParam String email,
@@ -54,6 +57,7 @@ public class LoginController {
     @DeleteMapping("/session")
     public void logout(HttpSession session) {
         session.removeAttribute(SessionAttr.USER_ID);
+        session.removeAttribute(SessionAttr.USER_TYPE);
     }
 
     private void addFlag(HttpSession session, String email, String type) {
@@ -64,5 +68,11 @@ public class LoginController {
     private void removeCode(HttpSession session) {
         session.removeAttribute(VerifyCodeImage.NAME);
         session.removeAttribute(VerifyCodeImage.TIME);
+    }
+
+    @GetMapping("/session/status")
+    public Format status(HttpSession session) {
+        return new Format().code(ReturnStatus.SUCCESS)
+                .addData("status", session.getAttribute(SessionAttr.USER_ID) != null);
     }
 }
