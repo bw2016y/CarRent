@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+<div>
+    <input type="button" value="STATUS" onclick="sessionStatus()"/>
+</div>
+<script>
+    let baseUrl = "http://localhost:8080";
+
+    function sessionStatus() {
+        $.ajax({
+            url: baseUrl + '/session/status',
+            type: 'GET',
+            success(text) {
+                alert(text);
+            },
+            withCredentials: true
+        });
+    }
+</script>
+</body>
+</html>
