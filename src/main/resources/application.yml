@@ -11,10 +11,6 @@ spring:
           initial-size: 5
           connection-properties: characterEncoding=utf8
           max-total:  10
-      mvc:
-        view:
-          suffix: .jsp
-          prefix: /
       redis:
         host: v4bug.com
         password: teampass
