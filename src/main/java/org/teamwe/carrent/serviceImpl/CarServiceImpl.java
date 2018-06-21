@@ -64,8 +64,6 @@ public class CarServiceImpl implements CarService {
             i++;
 
         }
-
-
         return carImages;
     }
 
@@ -97,8 +95,6 @@ public class CarServiceImpl implements CarService {
         }
 
         System.out.println("保存车辆图片成功");
-
-
         return ReturnStatus.SUCCESS;
     }
     /**
@@ -242,4 +238,6 @@ public class CarServiceImpl implements CarService {
 
         return newlist;
     }
+
+
 }

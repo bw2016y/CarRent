@@ -149,7 +149,6 @@ public class databaseTest {
      //   orderDAO.get_Orders_by_card("9999");
        Order  order=  orderDAO.get_order(3);
       //order.get(0).getMoney();
-
         //System.out.println(order.get(0).getMoney());
         long m=order.getMoney();
         System.out.println(order.toString());

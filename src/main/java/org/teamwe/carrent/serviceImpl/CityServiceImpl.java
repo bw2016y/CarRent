@@ -1,7 +1,6 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.CityDAO;
 import org.teamwe.carrent.entity.City;
