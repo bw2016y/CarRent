@@ -51,6 +51,7 @@ public class LoginController {
     @DeleteMapping("/session")
     public void logout(HttpSession session) {
         session.removeAttribute(SessionAttr.USER_ID);
+        session.removeAttribute(SessionAttr.USER_TYPE);
     }
 
     private void addFlag(HttpSession session, String email, String type) {

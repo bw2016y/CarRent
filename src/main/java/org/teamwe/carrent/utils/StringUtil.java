@@ -11,6 +11,7 @@ public class StringUtil {
     public static String PARAM_ILLEGAL = "Parameters is illegal";
     public static String ERROR_OCCUR = "Some error occur in server";
     public static String ERROR_PAGE = "This is error page, please close this page and send request again!";
+    public static String NO_PERMISSION = "Haven't permission";
 
     /**
      * Judge if the string is null or empty

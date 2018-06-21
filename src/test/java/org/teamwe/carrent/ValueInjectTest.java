@@ -2,9 +2,12 @@ package org.teamwe.carrent;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.teamwe.carrent.entity.User;
 
 import java.util.Arrays;
 
@@ -33,6 +36,9 @@ public class ValueInjectTest {
     @Value("${project.controller.domain-front}")
     private String front;
 
+    @Autowired
+    RedisTemplate<String, Object> redis;
+
     @Test
     public void test() {
         System.out.println(imagePath);
@@ -42,5 +48,20 @@ public class ValueInjectTest {
         System.out.println(domain);
         System.out.println(interval);
         System.out.println(front);
+    }
+
+    @Test
+    public void test1() {
+//        User u = new User();
+//        u.setEmail("123@qq.com");
+//        u.setCredit(123);
+//        u.setHead("fjdlsfkdsa");
+//        u.setLicence("234232");
+//        u.setPassword("password");
+//        String key = System.currentTimeMillis() + "";
+//
+//        redis.opsForValue().set(key, u);
+//
+//        System.out.println(redis.opsForValue().get(key));
     }
 }
