@@ -1,7 +1,5 @@
 package org.teamwe.carrent.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,15 +23,15 @@ import java.util.concurrent.Callable;
  */
 @RestController
 public class RegisterController {
-    private static Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-    private RegisterService service;
+    private final RegisterService service;
 
     private final FileUtil fileUtil;
 
     @Autowired
-    public RegisterController(FileUtil fu) {
+    public RegisterController(FileUtil fu, RegisterService service) {
         this.fileUtil = fu;
+        this.service = service;
     }
 
     @PostMapping("/user")

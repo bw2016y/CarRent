@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.service.CityService;
@@ -12,7 +13,12 @@ import org.teamwe.carrent.utils.ReturnStatus;
 
 @RestController
 public class CityController {
-    private CityService service;
+    private final CityService service;
+
+    @Autowired
+    public CityController(CityService service) {
+        this.service = service;
+    }
 
     @GetMapping("/city")
     public Format getCities() {

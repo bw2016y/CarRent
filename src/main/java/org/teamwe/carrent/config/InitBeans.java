@@ -17,8 +17,12 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 @Configuration
 public class InitBeans {
 
+    private final RedisConnectionFactory factory;
+
     @Autowired
-    private RedisConnectionFactory factory;
+    public InitBeans(RedisConnectionFactory factory) {
+        this.factory = factory;
+    }
 
     @Bean("multipartResolver")
     public MultipartResolver multipartResolver() {

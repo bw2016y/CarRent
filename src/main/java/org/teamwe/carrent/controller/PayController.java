@@ -29,13 +29,14 @@ import java.util.Map;
 public class PayController {
     private static Logger log = LoggerFactory.getLogger(PayController.class);
 
-    private OrderService service;
+    private final OrderService service;
 
     private final AlipayConfig alipay;
 
     @Autowired
-    public PayController(AlipayConfig alipay) {
+    public PayController(AlipayConfig alipay, OrderService service) {
         this.alipay = alipay;
+        this.service = service;
     }
 
 

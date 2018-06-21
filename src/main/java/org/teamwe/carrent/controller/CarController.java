@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.controller.utils.FileUtil;
@@ -8,7 +9,6 @@ import org.teamwe.carrent.controller.utils.ParamValidate;
 import org.teamwe.carrent.service.CarService;
 import org.teamwe.carrent.utils.ReturnStatus;
 import org.teamwe.carrent.utils.StringUtil;
-import org.teamwe.carrent.utils.hash.Hash;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -21,9 +21,14 @@ import java.util.List;
 
 @RestController
 public class CarController {
-    private CarService service;
-    private FileUtil fu;
-    private Hash hash;
+    private final CarService service;
+    private final FileUtil fu;
+
+    @Autowired
+    public CarController(CarService service, FileUtil fu) {
+        this.service = service;
+        this.fu = fu;
+    }
 
     @GetMapping("/images/:card")
     public Format getCarImages(@PathVariable String card) {

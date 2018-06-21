@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.controller.utils.FileUtil;
@@ -18,9 +19,16 @@ import org.teamwe.carrent.utils.hash.Hash;
 @RestController
 public class InformationController {
 
-    private InformationService service;
-    private Hash hash;
-    private FileUtil fu;
+    private final InformationService service;
+    private final Hash hash;
+    private final FileUtil fu;
+
+    @Autowired
+    public InformationController(FileUtil fu, Hash hash, InformationService service) {
+        this.fu = fu;
+        this.hash = hash;
+        this.service = service;
+    }
 
     @GetMapping("/user/{email}")
     public Format getInfo(@PathVariable String email) {
@@ -30,6 +38,7 @@ public class InformationController {
         if (user == null) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.NO_SUCH_USER);
         } else {
+            user.setPassword("");
             return new Format().code(ReturnStatus.SUCCESS).
                     addData("user", user);
         }

@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.SessionAttr;
@@ -19,8 +20,14 @@ import java.util.List;
 
 @RestController
 public class CommentController {
-    private CommentService service;
-    private OrderService orderService;
+    private final CommentService service;
+    private final OrderService orderService;
+
+    @Autowired
+    public CommentController(CommentService service, OrderService orderService) {
+        this.service = service;
+        this.orderService = orderService;
+    }
 
     @PostMapping("/comment")
     public Format newComment(@RequestParam String content,

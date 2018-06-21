@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.ParamValidate;
@@ -16,8 +17,12 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 public class LoginController {
+    private final LoginService service;
 
-    private LoginService service;
+    @Autowired
+    public LoginController(LoginService service) {
+        this.service = service;
+    }
 
     @PostMapping("/session")
     public Format login(@RequestParam String email,

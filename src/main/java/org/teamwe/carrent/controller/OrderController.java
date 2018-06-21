@@ -1,5 +1,6 @@
 package org.teamwe.carrent.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.SessionAttr;
@@ -19,8 +20,12 @@ import java.util.List;
 
 @RestController
 public class OrderController {
+    private final OrderService service;
 
-    private OrderService service;
+    @Autowired
+    public OrderController(OrderService service) {
+        this.service = service;
+    }
 
     @PostMapping("/order")
     public Format makeOrder(@RequestParam String email,
