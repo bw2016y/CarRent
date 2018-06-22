@@ -136,12 +136,17 @@ public class PermitInterceptor implements HandlerInterceptor {
         String type = "" + session.getAttribute(SessionAttr.USER_TYPE);
         String email = "" + session.getAttribute(SessionAttr.USER_ID);
 
+        if (!email.trim().equals("null")
+                && "/session".equals(url)
+                && HttpMethod.DELETE.name().equals(method)) {
+            return true;
+        }
+
         if (!type.equals(User.COMMEN_USER + "")) {
             return false;
         }
 
         String[][] patterns = {
-                {"/session", HttpMethod.DELETE.name()},
                 {"/car", HttpMethod.POST.name()},
                 {"/order", HttpMethod.POST.name()},
         };

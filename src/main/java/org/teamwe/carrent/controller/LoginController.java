@@ -56,9 +56,10 @@ public class LoginController {
     }
 
     @DeleteMapping("/session")
-    public void logout(HttpSession session) {
+    public Format logout(HttpSession session) {
         session.removeAttribute(SessionAttr.USER_ID);
         session.removeAttribute(SessionAttr.USER_TYPE);
+        return new Format().code(ReturnStatus.SUCCESS);
     }
 
     private void addFlag(HttpSession session, String email, String type) {
