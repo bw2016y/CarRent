@@ -38,7 +38,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addMapping("/**")
                 .allowedMethods(allowedMethods)
                 .allowedOrigins(allowedOrigins)
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 
     @Override

@@ -31,6 +31,7 @@ public class LoginController {
                         @RequestParam String code,
                         HttpSession session) {
         Object c = session.getAttribute(VerifyCodeImage.NAME);
+        session.removeAttribute(VerifyCodeImage.NAME);
         if (c == null || !c.equals(code)) {
             return new Format().code(ReturnStatus.FAILURE).message("Code is Illegal");
         }

@@ -1,27 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="./index.css"/>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
 </head>
 <body>
-<div>
+<script>
+    let baseUrl = "http://localhost:8523";
+
+    function as(param) {
+        param.url = baseUrl + (param.url ? param.url : '');
+        console.log(param.url);
+        param.xhrFields = param.xhrFields ? param.xhrFields : {};
+        param.xhrFields.withCredentials = true;
+        if (!param.error) {
+            param.error = (msg) => {
+                alert('ERROR :' + msg);
+            }
+        }
+        return param;
+    }
+
+    function changeCode(obj) {
+        $.ajax(as({
+            type: 'GET',
+            url: '/validate',
+            success(data) {
+                if (data.code === 0) {
+                    $(obj).attr('src', 'data:image/png;base64,' + data.data.image)
+                }
+            }
+        }));
+    }
+</script>
+<div id="d01">
     <input type="button" value="STATUS" onclick="sessionStatus()"/>
 </div>
 <script>
-    let baseUrl = "http://localhost:8080";
 
     function sessionStatus() {
-        $.ajax({
-            url: baseUrl + '/session/status',
+        $.ajax(as({
+            url: '/session/status',
             type: 'GET',
-            success(text) {
-                alert(text);
-            },
-            withCredentials: true
-        });
+            success(data) {
+                alert(data.data.status);
+            }
+        }));
     }
 </script>
+<hr>
+<script>
+    function register() {
+        $.ajax(as({
+            url: '/user',
+            type: 'POST',
+            data: new FormData($('#d020')[0]),
+            processData: false,
+            contentType: false,
+            success(data) {
+                alert(data.code);
+            }
+        }));
+    }
+</script>
+<div id="d02">
+    <form enctype="multipart/form-data" id="d020">
+        <input name="name" placeholder="input name"/>
+        <br>
+        <input name="email" placeholder="input email">
+        <br>
+        <input name="password" type="password" placeholder="input password"/>
+        <br>
+        <input name="license" placeholder="License">
+        <br>
+        <input type="file" name="file"/>
+        <br>
+        <select name="type" title="user type">
+            <option value="0">User</option>
+            <option value="1">Engineer</option>
+        </select>
+        <br>
+        <input name="phone" placeholder="phone">
+        <br>
+        <input name="code" placeholder="code">
+        <img id="d0210" src="" onclick="changeCode(this)">
+    </form>
+    <input id="d02sub" value="SUBMIT" type="button" onclick="register()"/>
+</div>
+<hr>
+<div id="d03">
+    <input id="d031" name="id" placeholder="id">
+    <input onclick="pay()" type="button" VALUE="SUBMIT">
+    <a href="http://localhost:8523/pay?id=6">PAY</a>
+</div>
+
+
+<script>
+    changeCode($('#d0210'));
+</script>
+
 </body>
 </html>
