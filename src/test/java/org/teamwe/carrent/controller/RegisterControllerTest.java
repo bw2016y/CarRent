@@ -43,15 +43,15 @@ public class RegisterControllerTest {
 
     @Test
     public void register() throws Exception {
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/user")
-                .param("name", "test")
-                .param("email", "1234@123.com")
-                .param("password", "pass123")
-                .param("code", "1234")
-                .param("license", "123123123123123159")
-                .param("type", "1")
-                .param("phone", "12312312312")).andDo(MockMvcResultHandlers.print()).andReturn();
-        System.out.println(result.getAsyncResult());
-        System.out.println(fu.getMaxFileSize());
+//        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/user")
+//                .param("name", "test")
+//                .param("email", "1234@123.com")
+//                .param("password", "pass123")
+//                .param("code", "1234")
+//                .param("license", "123123123123123159")
+//                .param("type", "1")
+//                .param("phone", "12312312312")).andDo(MockMvcResultHandlers.print()).andReturn();
+//        System.out.println(result.getAsyncResult());
+//        System.out.println(fu.getMaxFileSize());
     }
 }

@@ -23,7 +23,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     private String[] allowedOrigins;
 
     @Value("#{'${project.controller.allowed.methods:GET, POST, PUT, DELETE, OPTIONS}'.split(', *')}")
-
     private String[] allowedMethods;
 
     private final PermitInterceptor permitInterceptor;
@@ -37,7 +36,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     protected void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedMethods(allowedMethods)
-                .allowedOrigins(allowedOrigins);
+                .allowedOrigins(allowedOrigins)
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 
     @Override

@@ -5,9 +5,11 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 import java.util.Map;
 
@@ -26,10 +28,17 @@ public class AlipayConfig {
     @Value("${project.controller.domain}")
     private String domain;
 
-    @Value("${project.controller.domain-front}")
-    private String domainFront;
+    @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
+    private String[] domainFront;
+
+    private final Environment env;
 
     private AlipayClient client;
+
+    @Autowired
+    public AlipayConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public AlipayClient getClient() {
@@ -86,13 +95,13 @@ public class AlipayConfig {
     private String getNotify_url() {
         // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
         String notify_url = "/pay";
-        return domain + notify_url;
+        return domain + ":" + env.getProperty("local.server.port") + notify_url;
     }
 
     private String getReturn_url() {
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
         String return_url = "/pay";
-        return domainFront + return_url;
+        return domainFront[0] + return_url;
     }
 
     private String getSign_type() {
@@ -100,7 +109,7 @@ public class AlipayConfig {
         return "RSA2";
     }
 
-    public String getCharset() {
+    private String getCharset() {
         // 字符编码格式
         return "utf-8";
     }

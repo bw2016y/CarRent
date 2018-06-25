@@ -52,6 +52,11 @@ public class Format {
         return message;
     }
 
+    @SuppressWarnings("unused")
+    public Map<String, Object> getData() {
+        return data;
+    }
+
     @Override
     public String toString() {
         return "Format{" +

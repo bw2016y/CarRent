@@ -33,9 +33,15 @@ public class ValueInjectTest {
     private String domain;
     @Value("${project.controller.verify.interval:1000}")
     private int interval;
+    @Value("${project.controller.verify.width:200}")
+    private int width;
+    @Value("${project.controller.verify.height:60}")
+    private int height;
+    @Value("${project.controller.verify.number:6}")
+    private int number;
 
-    @Value("${project.controller.domain-front}")
-    private String front;
+    @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
+    private String[] front;
 
     @Autowired
     RedisTemplate<String, Object> redis;
@@ -48,7 +54,10 @@ public class ValueInjectTest {
         System.out.println(Arrays.toString(methods));
         System.out.println(domain);
         System.out.println(interval);
-        System.out.println(front);
+        System.out.println(width);
+        System.out.println(height);
+        System.out.println(number);
+        System.out.println(front[0]);
     }
 
     @Test

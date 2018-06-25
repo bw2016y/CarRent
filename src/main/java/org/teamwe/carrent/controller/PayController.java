@@ -43,7 +43,7 @@ public class PayController {
     @GetMapping("/pay")
     public StreamingResponseBody sendPayRequest(@RequestParam String id, HttpServletResponse response) {
         Order order = service.getById(id);
-        if (order == null) {
+        if (order == null || order.getType() != 1) {
             return outputStream -> outputStream.write(StringUtil.ERROR_PAGE.getBytes());
         }
         response.setContentType(MediaType.TEXT_HTML_VALUE);

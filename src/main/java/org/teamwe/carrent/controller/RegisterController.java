@@ -46,7 +46,8 @@ public class RegisterController {
                                      HttpSession session) {
 
         Object c = session.getAttribute(VerifyCodeImage.NAME);
-        if (c == null || !c.equals(code.trim())) {
+        session.removeAttribute(VerifyCodeImage.NAME);
+        if (c == null || !c.equals(code.trim().toLowerCase())) {
             return () -> new Format().code(ReturnStatus.FAILURE).message("Code is error");
         }
 
