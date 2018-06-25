@@ -3,7 +3,9 @@ package org.teamwe.carrent.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     public static int COMMEN_USER = 0;
     public static int ENGENEER = 1;

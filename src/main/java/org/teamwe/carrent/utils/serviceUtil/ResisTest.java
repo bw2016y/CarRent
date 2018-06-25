@@ -4,21 +4,56 @@ import org.apache.commons.jexl2.Expression;
 import org.apache.commons.jexl2.JexlContext;
 import org.apache.commons.jexl2.JexlEngine;
 import org.apache.commons.jexl2.MapContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.teamwe.carrent.entity.User;
 import org.teamwe.carrent.utils.ReturnStatus;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 @Component
 public class ResisTest {
 
+    @Resource
+    private RedisTemplate<String,User> redisTemplate;//redis封装Java对象
 
+
+
+    public static  String host = null;
+
+    public  static  String password = null;
+
+    @Autowired
+    public ResisTest(@Value("${spring.redis.host}") String host,@Value("${spring.redis.password}") String password){
+        ResisTest.host = host;
+        ResisTest.password = password;
+    }
+
+
+    public void saveUserO(String key, User user){
+
+        redisTemplate.opsForValue().set(key,user,3000,TimeUnit.SECONDS);//插入整个user对象，key为随机字符的hash值
+        System.out.println("c存储user"+user.toString());
+
+    }
+
+    public  User getUserO(String key){
+        User user = null;
+         user = redisTemplate.opsForValue().get(key);//获得user对象
+        System.out.println("取出user"+user.toString());
+
+        return user;
+    }
 //连接到Redis服务器
     public static Jedis jdeisConnection() {
         //Connecting to Redis server on localhost
-        Jedis jedis = new Jedis("114.116.21.191");
-        jedis.auth("123456");
+        Jedis jedis = new Jedis(host);
+        jedis.auth(password);
        return jedis;
     }
 //关闭连接
@@ -142,6 +177,7 @@ public class ResisTest {
     public boolean isExist(String key){
         Jedis jedis = ResisTest.jdeisConnection();
         Boolean isexist = jedis.exists(key);
+
         jedis.disconnect();
         return isexist;
 
@@ -215,6 +251,8 @@ public class ResisTest {
     public static void main(String[] args) {
         //System.out.println(new ResisTest().getUser("1553741667@qq.com"));
         //new ResisTest().delete("1553741667@qq.com");
+        System.out.println(password);
+
 
 
     }
