@@ -49,8 +49,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     //@Autowired
     private TempUserDAO tempUserDAO;
-
-    private ResisTest resisTest = new ResisTest();
+    @Autowired
+    private ResisTest resisTest;
 
     public RegisterServiceImpl() throws NoSuchAlgorithmException {
     }
@@ -92,9 +92,6 @@ public class RegisterServiceImpl implements RegisterService {
         String password_hash = hashh.hashPassword(password);
 
 
-
-
-
        User user = new User( email,password_hash, name,license, head, phone,type,credit,isvalidated,status,points,0,0);
         System.out.println(user.toString());
         int result1 = resisTest.insertUser(user," ");//将用户注册信息插入Redis
@@ -102,11 +99,20 @@ public class RegisterServiceImpl implements RegisterService {
         String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
         System.out.println("随机字符："+random_string);
 
+        String context =
+                "<html lang='zh-CN'><head ><meta charset='utf-8'>"
+                        + "</head><body>欢迎注册敝舆汽车租赁网站"
+                        + "<a href='http://www.baidu.com?randomString="+random_string+"'>【点击链接完成注册激活】</a></body></html>"+random_string;
 
         String hash_random_string = hashh.hashNormal(random_string);
-        EmailTest.sendMail(email,"激活账号",random_string);
+       if(!EmailTest.sendMail(email, "激活账号", context)){
+           System.out.println("邮件发送失败");
+           return "邮件发送失败";
+       }
+
 
         System.out.println("随机字符的hash："+hash_random_string);
+
 
         resisTest.insertUser(user,hash_random_string);//将用户信息插入redis，key为随机字符的hash
         resisTest.insertString(email," ");//将用户email插入redis，用来表明用户已经在注册过程中

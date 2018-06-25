@@ -34,3 +34,9 @@ project:
       width: 100
       height: 30
       number: 4
+
+emailServer:
+    serverhost: smtp.wmgblog.shop
+    user: hanshuocar@wmgblog.shop
+    password: hs12345678+
+

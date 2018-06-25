@@ -1,5 +1,9 @@
 package org.teamwe.carrent.utils.serviceUtil;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message.RecipientType;
@@ -10,7 +14,22 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+@Component
 public class EmailTest {
+
+    private static String host = null;
+    private static String user = null;
+    private static String password = null;
+
+    @Autowired
+    public EmailTest(@Value("${emailServer.serverhost}") String host,@Value("${emailServer.user}") String user,@Value("${emailServer.password}" ) String password ) {
+
+        EmailTest.host = host;
+        EmailTest.user = user;
+        EmailTest.password = password;
+    }
+
     public static boolean sendMail(String strMail, String strTitle, String strText){
         boolean bret = false;
         try
@@ -18,11 +37,11 @@ public class EmailTest {
             final Properties props = new Properties();
 
             props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.host", "smtp.wmgblog.shop");
+            props.put("mail.smtp.host", host);
             //你自己的邮箱
-            props.put("mail.user", "hanshuocar@wmgblog.shop");
+            props.put("mail.user", user);
             //你开启pop3/smtp时的验证码
-            props.put("mail.password", "hs12345678+");
+            props.put("mail.password", password);
             props.put("mail.smtp.port", "25");
             props.put("mail.smtp.starttls.enable", "true");
 

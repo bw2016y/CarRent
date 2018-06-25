@@ -24,15 +24,17 @@ public class RegisterServiceImplTest {
     @Test
     public void register() {
 
-        registerService.register("hs","1553741667@qq.com","1234","xxx","image",2,"12345678");
+        registerService.register("hs","153741667@qq.com","1234","xxx","image",2,"12345678");
 
 
     }
 
     @Test
     public void active() {
-        registerService.active("DLG8euEtP2mJm4gH3gO7");
+        registerService.active("iF9ds8tVjD5dsDPiV3PH");
     }
+
+
 
 
 }
