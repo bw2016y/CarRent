@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.controller.utils.VerifyCodeImage;
 import org.teamwe.carrent.utils.ReturnStatus;
@@ -29,15 +28,18 @@ public class VerifyCodeController {
     /**
      * The Verify Code Image's Width
      */
-    private static int WIDTH = 100;
+    @Value("${project.controller.verify.width:100}")
+    private int width;
     /**
      * The Verify Code Image's Height
      */
-    private static int HEIGHT = 50;
+    @Value("${project.controller.verify.height:50}")
+    private int height;
     /**
      * The Verify Code Image's Numbers
      */
-    private static int NUMBERS = 4;
+    @Value("${project.controller.verify.number:4}")
+    private int number;
 
     @Value("${project.controller.verify.interval:1000}")
     private int interval;
@@ -49,19 +51,6 @@ public class VerifyCodeController {
      * @param session User's Session
      * @return The streaming of Image
      */
-//    @GetMapping("/validate")
-//    public StreamingResponseBody genCode(HttpSession session) {
-//        Object o = session.getAttribute(VerifyCodeImage.TIME);
-//        if (o != null && System.currentTimeMillis() - (long) o < interval) {
-//            return null;
-//        }
-//
-//        return outputStream -> {
-//            String code = VerifyCodeImage.outputVerifyImage(WIDTH, HEIGHT, outputStream, NUMBERS);
-//            session.setAttribute(VerifyCodeImage.NAME, code);
-//            session.setAttribute(VerifyCodeImage.TIME, System.currentTimeMillis());
-//        };
-//    }
     @GetMapping("/validate")
     public Format genCode(HttpSession session) {
         Object o = session.getAttribute(VerifyCodeImage.TIME);
@@ -71,7 +60,7 @@ public class VerifyCodeController {
 
         String code;
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-            code = VerifyCodeImage.outputVerifyImage(WIDTH, HEIGHT, out, NUMBERS);
+            code = VerifyCodeImage.outputVerifyImage(width, height, out, number);
             session.setAttribute(VerifyCodeImage.NAME, code.toLowerCase());
             session.setAttribute(VerifyCodeImage.TIME, System.currentTimeMillis());
             return new Format().code(ReturnStatus.SUCCESS).addData("image", Base64.getEncoder().encodeToString(out.toByteArray()));
