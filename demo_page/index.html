@@ -65,6 +65,9 @@
                 } else {
                     alert('Sign Out Failure');
                 }
+            },
+            error(data){
+                alert('Error: ' + data)
             }
         }));
     }
