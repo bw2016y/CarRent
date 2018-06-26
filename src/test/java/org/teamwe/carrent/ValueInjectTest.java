@@ -43,8 +43,6 @@ public class ValueInjectTest {
     @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
     private String[] front;
 
-    @Autowired
-    RedisTemplate<String, Object> redis;
 
     @Test
     public void test() {
