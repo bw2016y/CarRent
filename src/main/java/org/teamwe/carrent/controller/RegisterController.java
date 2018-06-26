@@ -13,6 +13,7 @@ import org.teamwe.carrent.utils.ReturnStatus;
 import org.teamwe.carrent.utils.StringUtil;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 /**
@@ -38,10 +39,10 @@ public class RegisterController {
     public Callable<Format> register(@RequestParam String name,
                                      @RequestParam String email,
                                      @RequestParam String password,
-                                     @RequestParam String license,
-                                     @RequestParam MultipartFile file,
+                                     @RequestParam(required = false) String license,
+                                     @RequestParam(required = false) MultipartFile file,
                                      @RequestParam String type,
-                                     @RequestParam String phone,
+                                     @RequestParam(required = false) String phone,
                                      @RequestParam String code,
                                      HttpSession session) {
 
@@ -63,11 +64,12 @@ public class RegisterController {
                 } else {
                     fileName = fileUtil.saveImage(file);
                 }
-
                 String r = service.register(name.trim(),
                         email.trim(), password.trim(),
-                        license.trim(), fileName,
-                        Integer.parseInt(type.trim()), phone.trim());
+                        Optional.ofNullable(license).orElse("").trim(),
+                        fileName,
+                        Integer.parseInt(type.trim()),
+                        Optional.ofNullable(phone).orElse("").trim());
 
                 if (StringUtil.nullOrEmpty(r)) {
                     return new Format().code(ReturnStatus.SUCCESS);

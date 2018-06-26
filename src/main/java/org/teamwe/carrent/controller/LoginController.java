@@ -75,6 +75,7 @@ public class LoginController {
     @GetMapping("/session/status")
     public Format status(HttpSession session) {
         return new Format().code(ReturnStatus.SUCCESS)
-                .addData("status", session.getAttribute(SessionAttr.USER_ID) != null);
+                .addData("status", session.getAttribute(SessionAttr.USER_ID) != null)
+                .addData("email", session.getAttribute(SessionAttr.USER_ID));
     }
 }
