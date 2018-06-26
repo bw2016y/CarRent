@@ -73,7 +73,7 @@ public class PermitInterceptor implements HandlerInterceptor {
                 {"/city", HttpMethod.PUT.name()},
         };
         for (String[] pat : patterns) {
-            if (pat[0].equals(url) && pat[1].equals(method)) {
+            if (url.matches(pat[0]) && pat[1].equals(method)) {
                 return true;
             }
         }
@@ -93,7 +93,7 @@ public class PermitInterceptor implements HandlerInterceptor {
                 {"/session", HttpMethod.POST.name()},
         };
         for (String[] pat : patterns) {
-            if (pat[0].equals(url) && pat[1].equals(method)) {
+            if (url.matches(pat[0]) && pat[1].equals(method)) {
                 return true;
             }
         }
@@ -156,7 +156,7 @@ public class PermitInterceptor implements HandlerInterceptor {
             }
         }
 
-        if ("/user/[^/]+".matches(url) &&
+        if (url.matches("/user/[^/]+") &&
                 HttpMethod.GET.name().equals(method) &&
                 partUrl.length == 3 &&
                 email.equals(url.split("/")[2])) {
@@ -169,14 +169,14 @@ public class PermitInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        if ("/user/[^/]+".equals(url) &&
+        if (url.matches("/user/[^/]+") &&
                 HttpMethod.DELETE.name().equals(method) &&
                 partUrl.length == 3 &&
                 email.equals(url.split("/")[2])) {
             return true;
         }
 
-        return "/user/[^/]+/order".equals(url) &&
+        return url.matches("/user/[^/]+/order") &&
                 HttpMethod.GET.name().equals(method) &&
                 partUrl.length == 4 &&
                 email.equals(partUrl[2]);
@@ -202,7 +202,7 @@ public class PermitInterceptor implements HandlerInterceptor {
                 {"/order/[^/]", HttpMethod.GET.name()},
         };
         for (String[] pat : patterns) {
-            if (pat[0].equals(url) && pat[1].equals(method)) {
+            if (url.matches(pat[0]) && pat[1].equals(method)) {
                 return true;
             }
         }
