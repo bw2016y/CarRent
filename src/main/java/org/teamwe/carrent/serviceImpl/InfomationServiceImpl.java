@@ -1,6 +1,7 @@
 package org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.UserDAO;
 import org.teamwe.carrent.entity.User;
@@ -19,6 +20,8 @@ public class InfomationServiceImpl implements InformationService {
     private Hash hashh;
     @Autowired
     private ResisTest resisTest;
+    @Value("${project.controller.allowed.origins}")
+    public String host;
     /**
      * 获取用户实体类
      *
@@ -87,7 +90,12 @@ public class InfomationServiceImpl implements InformationService {
         System.out.println("随机字符："+random_string);
 
         String hash_random_string = hashh.hashNormal(random_string);
-        EmailTest.sendMail(email,"重置密码",random_string);//向用户发送重置密码邮件，包含随机字符
+        String context =
+                "<html lang='zh-CN'><head ><meta charset='utf-8'>"
+                        + "</head><body>点击链接重置密码"
+                        + "<a href='"+host+"/reset.html?id="+random_string+"'>【点击链接重置密码】</a></body></html>"+random_string;
+
+        EmailTest.sendMail(email,"重置密码",context);//向用户发送重置密码邮件，包含随机字符
 
         resisTest.insertString(hash_random_string,email);//将随机字符的hash值存入redis中
         System.out.println("在redis中存储随机字符hash："+hash_random_string+"及用户email");

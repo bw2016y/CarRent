@@ -18,21 +18,27 @@ import static org.junit.Assert.*;
 public class RegisterServiceImplTest {
 
     @Autowired
-    private RegisterService registerService;
+    private RegisterServiceImpl registerService;
 
 
     @Test
     public void register() {
 
-        registerService.register("hs","153741667@qq.com","1234","xxx","image",2,"12345678");
+        registerService.register("hs","155374166@qq.com","123456789","xxx","image",2,"12345678");
 
 
     }
 
     @Test
     public void active() {
-        registerService.active("iF9ds8tVjD5dsDPiV3PH");
+        registerService.active("YoyZ75fRcxWccDuxh3Mp");
     }
+
+    @Test
+    public void test(){
+        System.out.println(registerService.host);
+    }
+
 
 
 
