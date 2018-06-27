@@ -66,7 +66,7 @@ public class PermitInterceptor implements HandlerInterceptor {
     private boolean allowedAdmin(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String method = request.getMethod().toUpperCase();
-        String url = request.getRequestURI();
+        String url = request.getRequestURI().replace("@@", ".");
 
         String type = "" + session.getAttribute(SessionAttr.USER_TYPE);
 
@@ -94,7 +94,7 @@ public class PermitInterceptor implements HandlerInterceptor {
         if (request.getSession().getAttribute(SessionAttr.USER_ID) != null) {
             return false;
         }
-        String url = request.getRequestURI();
+        String url = request.getRequestURI().replace("@@", ".");
         String method = request.getMethod().toUpperCase();
 
         String[][] patterns = {
@@ -140,7 +140,7 @@ public class PermitInterceptor implements HandlerInterceptor {
     private boolean allowedUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String method = request.getMethod().toUpperCase();
-        String url = request.getRequestURI();
+        String url = request.getRequestURI().replace("@@", ".");
         String[] partUrl = url.split("/");
 
         String type = "" + session.getAttribute(SessionAttr.USER_TYPE);
@@ -190,7 +190,7 @@ public class PermitInterceptor implements HandlerInterceptor {
     private boolean allowEngineer(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String method = request.getMethod().toUpperCase();
-        String url = request.getRequestURI();
+        String url = request.getRequestURI().replace("@@", ".");
 
         String type = "" + session.getAttribute(SessionAttr.USER_TYPE);
 
