@@ -68,7 +68,7 @@ public class ResisTest {
         Jedis jedis = ResisTest.jdeisConnection();
         //简单的key-value 存储
         jedis.set(key, value);
-        jedis.expire(key,3000);
+        jedis.expire(key,300);
         System.out.println("插入redis一条string："+jedis.get(key));
         jedis.disconnect();
     }

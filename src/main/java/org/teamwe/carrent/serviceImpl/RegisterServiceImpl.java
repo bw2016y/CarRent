@@ -1,6 +1,7 @@
 package  org.teamwe.carrent.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.teamwe.carrent.dao.TempUserDAO;
 import org.teamwe.carrent.dao.UserDAO;
@@ -33,19 +34,22 @@ public class RegisterServiceImpl implements RegisterService {
     private  static  int status = 0;
     private  static  int points = 1000;
 
+    @Value("${project.controller.allowed.origins}")
+    public String host;
+
     @Autowired
     private UserDAO userDao;
 
     @Autowired
     private Hash hashh;
 
-    {
-        try {
-            hashh = new BCryptMd5Hash();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-    }
+//    {
+//        try {
+//            hashh = new BCryptMd5Hash();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     //@Autowired
     private TempUserDAO tempUserDAO;
@@ -102,7 +106,7 @@ public class RegisterServiceImpl implements RegisterService {
         String context =
                 "<html lang='zh-CN'><head ><meta charset='utf-8'>"
                         + "</head><body>欢迎注册敝舆汽车租赁网站"
-                        + "<a href='http://www.baidu.com?randomString="+random_string+"'>【点击链接完成注册激活】</a></body></html>"+random_string;
+                        + "<a href='"+host+"/active.html?id="+random_string+"'>【点击链接完成注册激活】</a></body></html>"+random_string;
 
         String hash_random_string = hashh.hashNormal(random_string);
        if(!EmailTest.sendMail(email, "激活账号", context)){
