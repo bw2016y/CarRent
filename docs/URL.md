@@ -30,7 +30,7 @@
         - 当`code`为1时标识注册失败
         - 当`code`为0时标识注册成功
 2. 激活用户, 未登录用户
-    - 服务器发送的激活链接格式为`/active?id=:hash`
+    - 服务器发送的激活链接格式为`/active.html?id=:hash`
     - 请求URL为`GET '/active/:id'`, id即为邮件中的激活序列号 -03
     - 无请求参数
     - 返回值
@@ -85,7 +85,7 @@
 4. 忘记密码与重置, 所有人
     - 请求发送重置邮件的URL` GET '/password/:email'` -09
     - 无请求参数
-    - 邮件格式为`/reset?id=:hash`
+    - 邮件格式为`/reset.html?id=:hash`
     - 重置密码URL `PUT '/password'` -10
     - 请求参数为
         - `hash`: 用户邮件中的序列码
