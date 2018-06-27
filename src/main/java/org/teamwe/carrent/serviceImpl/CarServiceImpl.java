@@ -56,7 +56,7 @@ public class CarServiceImpl implements CarService {
         String[] carImages = new String[carImgs.size()];
 
         int i = 0;
-        for(Iterator<CarImg> carImgIterator = carImgs.iterator();carImgIterator.hasNext();){
+        for(Iterator<CarImg> carImgIterator = carImgs.iterator();carImgIterator.hasNext(); ){
 
             CarImg carImg = carImgIterator.next();
             carImages[i] = carImg.getImg();
