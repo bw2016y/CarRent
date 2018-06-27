@@ -30,7 +30,7 @@ public class CarController {
         this.fu = fu;
     }
 
-    @GetMapping("/images/:card")
+    @GetMapping("/images/{card}")
     public Format getCarImages(@PathVariable String card) {
         return new Format().code(ReturnStatus.SUCCESS).
                 addData("images", Arrays.asList(service.get_car_imgs(card)));

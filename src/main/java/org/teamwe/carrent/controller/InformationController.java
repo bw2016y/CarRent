@@ -32,13 +32,13 @@ public class InformationController {
 
     @GetMapping("/user/{email}")
     public Format getInfo(@PathVariable String email) {
+        email = email.replace("@@", ".");
         if (!StringUtil.isLegalMail(email.trim()))
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         User user = service.info(email.trim());
         if (user == null) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.NO_SUCH_USER);
         } else {
-            user.setPassword("");
             return new Format().code(ReturnStatus.SUCCESS).
                     addData("user", user);
         }
@@ -83,6 +83,7 @@ public class InformationController {
 
     @DeleteMapping("/user/{email}")
     public Format delete(@PathVariable String email) {
+        email = email.replace("@@", ".");
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
@@ -92,6 +93,7 @@ public class InformationController {
 
     @GetMapping("/password/{email}")
     public Format forgetPassword(@PathVariable String email) {
+        email = email.replace("@@", ".");
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
