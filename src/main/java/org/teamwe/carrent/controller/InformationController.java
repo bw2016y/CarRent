@@ -30,7 +30,7 @@ public class InformationController {
         this.service = service;
     }
 
-    @GetMapping("/user/{email}")
+    @GetMapping("/user/{email:.+}")
     public Format getInfo(@PathVariable String email) {
         if (!StringUtil.isLegalMail(email.trim()))
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
@@ -81,7 +81,7 @@ public class InformationController {
         return new Format().code(ReturnStatus.SUCCESS);
     }
 
-    @DeleteMapping("/user/{email}")
+    @DeleteMapping("/user/{email:.+}")
     public Format delete(@PathVariable String email) {
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
@@ -90,7 +90,7 @@ public class InformationController {
         return new Format().code(res);
     }
 
-    @GetMapping("/password/{email}")
+    @GetMapping("/password/{email:.+}")
     public Format forgetPassword(@PathVariable String email) {
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
