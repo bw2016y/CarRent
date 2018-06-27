@@ -3,6 +3,7 @@ package org.teamwe.carrent.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.teamwe.carrent.controller.utils.Format;
 import org.teamwe.carrent.utils.ReturnStatus;
@@ -72,5 +73,9 @@ public class GlobalController {
             sb.append("]");
             log.error(sb.toString());
         }
+    }
+    @RequestMapping("/")
+    public Format error(){
+        return new Format().code(ReturnStatus.SUCCESS).message("Error Message");
     }
 }

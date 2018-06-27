@@ -40,8 +40,9 @@ public class OrderController {
         return new Format().code(res);
     }
 
-    @GetMapping("/user/{email:.+}/order")
+    @GetMapping("/user/{email}/order")
     public Format getOrders(@PathVariable String email) {
+        email = email.replace("@@", ".");
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
