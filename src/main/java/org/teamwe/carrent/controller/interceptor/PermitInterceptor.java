@@ -1,7 +1,9 @@
 package org.teamwe.carrent.controller.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,6 +23,11 @@ import javax.servlet.http.HttpSession;
  */
 @Configuration
 public class PermitInterceptor implements HandlerInterceptor {
+    @Value("${project.controller.allowed.origins}")
+    private String origins;
+    @Value("${project.controller.allowed.methods}")
+    private String methods;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (HttpMethod.OPTIONS.name().equals(request.getMethod())) {
@@ -50,6 +57,9 @@ public class PermitInterceptor implements HandlerInterceptor {
                 .addData("type", request.getSession().getAttribute(SessionAttr.USER_TYPE));
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         response.getWriter().write(new ObjectMapper().writeValueAsString(format));
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origins);
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, methods);
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
         return false;
     }
 
