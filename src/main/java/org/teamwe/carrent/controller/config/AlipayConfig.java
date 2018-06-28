@@ -100,7 +100,7 @@ public class AlipayConfig {
 
     private String getReturn_url() {
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        String return_url = "/pay";
+        String return_url = "/pay.html";
         return domainFront[0] + return_url;
     }
 

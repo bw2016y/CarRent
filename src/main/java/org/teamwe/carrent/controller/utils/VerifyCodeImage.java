@@ -60,7 +60,7 @@ public class VerifyCodeImage {
         graphics2D.fillRect(0, 2, w, h - 4);
 
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             graphics2D.setColor(getRandColor(0, 200));
             int x = rand.nextInt(w - 1);
             int y = rand.nextInt(h - 1);
