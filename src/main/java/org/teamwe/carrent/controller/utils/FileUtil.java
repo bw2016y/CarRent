@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartFile;
 import org.teamwe.carrent.utils.hash.Hash;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  * @author FDws
@@ -28,6 +30,12 @@ public class FileUtil {
      */
     @Value("${file.max-file-size:5242880}")
     private long maxFileSize;
+
+    @Value("${file.server-port:0}")
+    private int port;
+
+    @Value("${file.server-host:localhost}")
+    private String host;
 
     private File imageParent = null;
 
@@ -63,6 +71,13 @@ public class FileUtil {
     }
 
     public String saveImage(MultipartFile image) {
+        if (port != 0) {
+            try {
+                return netSaveImage(image);
+            } catch (IOException e) {
+                log.error("Save File Use net error ", e);
+            }
+        }
         String name = "";
         if (image == null || image.isEmpty()) {
             return name;
@@ -71,9 +86,25 @@ public class FileUtil {
             name = hash.hashBytes(image.getBytes()) + suffix(image.getOriginalFilename());
             image.transferTo(new File(getImageParent(), name));
         } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Save file error " + name);
+            log.error("Save file error " + name, e);
         }
+        return name;
+    }
+
+    public String netSaveImage(MultipartFile image) throws IOException {
+        String name = "";
+        if (image == null || image.isEmpty()) {
+            return name;
+        }
+        name = hash.hashBytes(image.getBytes()) + suffix(image.getOriginalFilename());
+        Socket socket = new Socket(host, port);
+        DataOutputStream stream = new DataOutputStream(socket.getOutputStream());
+        stream.writeUTF(name);
+        stream.flush();
+        stream.writeLong(image.getBytes().length);
+        stream.flush();
+        stream.write(image.getBytes());
+        stream.close();
         return name;
     }
 

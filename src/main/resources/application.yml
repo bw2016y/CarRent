@@ -22,6 +22,8 @@ mybatis:
 file:
   image-path: c:/temp/image
   max-file-size: 5242880 #5MB
+  server-port: 6435
+  server-host: localhost
 
 project:
   controller:
