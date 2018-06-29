@@ -69,8 +69,14 @@ public interface   CarDAO {
     public List<Car> get_cars(int page,int length,int type,String brand,String city);
 
 
-
-
+    /**
+     * 根据车牌card
+     * 如果存在则返回对应Car对象
+     *
+     * @param card
+     * @return
+     */
+    public Car get_car_by_card(String card);
 
 
 

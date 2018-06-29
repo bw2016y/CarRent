@@ -208,6 +208,8 @@ public class ResisTest {
 //        return e.evaluate(jc);
 //    }
     //依据key的值，完成相应的User属性的赋值
+    //其实一开始我是拒绝的 是韩硕写的
+    //@author 韩硕
     public void judge(String pattern ,String value,User user) {
 
         switch (pattern) {

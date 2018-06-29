@@ -194,4 +194,22 @@ public class CarDAOimpl implements CarDAO{
 
 
     }
+
+    @Override
+    public Car get_car_by_card(String card) {
+        Car car=null;
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        try{
+            car=sqlSession.selectOne("test.findCarByCard",card);
+
+            System.out.println(car);
+        }catch (Exception c){
+            c.printStackTrace();
+        } finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return car;
+    }
 }
