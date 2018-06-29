@@ -23,7 +23,7 @@ public class ImgServer {
         PORT = port;
         DIR = dir;
         if ("".equals(DIR)) {
-            DIR = System.getenv("user.home") + "/img";
+            DIR = System.getProperty("user.home") + "/img";
         }
         parentDir = new File(DIR);
         if (!parentDir.exists() && parentDir.mkdirs()) {
@@ -57,6 +57,7 @@ public class ImgServer {
         DataInputStream stream = new DataInputStream(socket.getInputStream());
         String name = stream.readUTF();
         long size = stream.readLong();
+        System.out.println("Accept File : " + name + ", " + size);
         OutputStream stream1 = new FileOutputStream(new File(parentDir, name));
         int _5MB = 5242880;
         byte[] buf = new byte[_5MB];
