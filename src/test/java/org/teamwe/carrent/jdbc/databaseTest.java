@@ -74,7 +74,7 @@ public class databaseTest {
     public void test_UserDAO(){
     //  User user=new User("new9.com","12345","sddd","null","null","null",1,0,1,0,0,0,1000);
     //  userDAO.Add_usr(user);
-     // userDAO.getUserlist();
+      userDAO.getUserlist();
     //  User newuser=new User("new9.com","124","sddd","null","null","null",1,0,1,0,0,0,1000);
    //   userDAO.Update_user(newuser);
     // userDAO.Get_userByEmial("new9.com");
@@ -83,8 +83,11 @@ public class databaseTest {
 
     @Test
     public void test_CarDAO(){
-         Car car=carDAO.get_car_by_card("1234");
+          Car car=carDAO.get_car_by_card("1234");
           System.out.println(car.toString());
+       //  Car car=carDAO.get_car_by_card("mmmmmm");
+         //if(car==null)
+       //      System.out.println("null");
 
        // Car car=new Car("7422","benz","good",101,1,0,0,4,"new9.com","beijing");
 
