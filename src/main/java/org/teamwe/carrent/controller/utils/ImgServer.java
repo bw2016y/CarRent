@@ -43,9 +43,10 @@ public class ImgServer {
             ServerSocket server = new ServerSocket(PORT);
             //noinspection InfiniteLoopStatement
             while (true) {
+                Socket sc = server.accept();
                 new Thread(() -> {
                     try {
-                        saveToFile(server.accept());
+                        saveToFile(sc);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
