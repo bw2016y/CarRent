@@ -43,6 +43,12 @@ public class ValueInjectTest {
     @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
     private String[] front;
 
+    @Value("${file.server-port}")
+    private int port;
+
+    @Value("${file.server-host}")
+    private String host;
+
 
     @Test
     public void test() {
@@ -56,6 +62,8 @@ public class ValueInjectTest {
         System.out.println(height);
         System.out.println(number);
         System.out.println(front[0]);
+        System.out.println(port);
+        System.out.println(host);
     }
 
     @Test
