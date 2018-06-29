@@ -41,13 +41,16 @@ public class ImgServer {
     private void listen() {
         try {
             ServerSocket server = new ServerSocket(PORT);
-            new Thread(() -> {
-                try {
-                    saveToFile(server.accept());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                new Thread(() -> {
+                    try {
+                        saveToFile(server.accept());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
