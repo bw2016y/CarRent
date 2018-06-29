@@ -16,8 +16,7 @@ spring:
         password: teampass
 hello:
       myname: bwy
-mybatis:
-        type-aliases-package: cn.saytime.bean
+
 
 file:
   image-path: c:/temp/image

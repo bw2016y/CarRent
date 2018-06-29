@@ -115,7 +115,8 @@ public class databaseTest {
 
     @Test
     public void test_CarDAO(){
-
+          Car car=carDAO.get_car_by_card("1234");
+          System.out.println(car.toString());
 
        // Car car=new Car("7422","benz","good",101,1,0,0,4,"new9.com","beijing");
 
@@ -136,7 +137,7 @@ public class databaseTest {
     }
 
 
-    @Test
+    @Ignore
     public void test_OrderDAO(){
        // Order order=new Order("123.com","9999",0,1,2,"bad",0,3,100);
        // orderDAO.add_Order(order);
@@ -157,7 +158,7 @@ public class databaseTest {
 
     }
 
-    @Test
+    @Ignore
     public void test_CarBrandDAO(){
 
 
@@ -169,7 +170,7 @@ public class databaseTest {
 
     }
 
-    @Test
+    @Ignore
     public void test_CarImgDAO(){
 
         // CarImg carImg=new CarImg("9999","bbb");
@@ -180,7 +181,7 @@ public class databaseTest {
 
 
     }
-    @Test
+    @Ignore
     public void test_CarTypeDAO(){
 
 
@@ -190,7 +191,7 @@ public class databaseTest {
       cartypeDAO.get_all_type();
 
     }
-    @Test
+    @Ignore
     public void test_CityDAO(){
        // City city=new City("xian","somewhere");
       //  cityDAO.add_city(city);

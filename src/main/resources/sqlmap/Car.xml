@@ -79,4 +79,8 @@
    </select>
 
 
+    <select id="findCarByCard" parameterType="java.lang.String" resultType="org.teamwe.carrent.entity.Car">
+        select * from car where card = #{card}
+    </select>
+
 </mapper>
