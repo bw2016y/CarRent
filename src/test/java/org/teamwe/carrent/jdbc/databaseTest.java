@@ -11,8 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.teamwe.carrent.dao.*;
 import org.teamwe.carrent.entity.*;
-import org.teamwe.carrent.utils.DBut;
-import org.teamwe.carrent.utils.DButils;
+
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -54,37 +53,6 @@ public class databaseTest {
     }
 
 
-    @Ignore
-    public  void test_con()throws  Exception{
-
-
-
-        Connection con=DButils.getConnection();
-        System.out.println(con);
-
-
-        //  db.init();
-        //  Connection con2=db.getConnection();
-        //  System.out.println(con2);
-
-        ResultSet rs;
-        String sql="select * from user where email=?";
-        PreparedStatement ps=con.prepareStatement(sql);
-        ps.setString(1,"1844002977@qq.com");
-        rs=  ps.executeQuery();
-        while(rs.next()){
-            rs.getString("email");
-            rs.getString("name");
-            System.out.println( rs.getString("email"));
-            System.out.println( rs.getString("name"));
-        }
-
-
-
-
-
-
-    }
 
 //    @Ignore
 //    public  void test_add()throws  Exception{
@@ -115,7 +83,7 @@ public class databaseTest {
 
     @Test
     public void test_CarDAO(){
-          Car car=carDAO.get_car_by_card("1234");
+         Car car=carDAO.get_car_by_card("1234");
           System.out.println(car.toString());
 
        // Car car=new Car("7422","benz","good",101,1,0,0,4,"new9.com","beijing");
