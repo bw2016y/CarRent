@@ -83,6 +83,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public int addCar(String email, int type, String card, String brand, String[] hash, String message, int price,String city) {
 
+        if(carDAO.get_car(card)!=null){
+            System.out.println("该车辆已经被上传");
+            return ReturnStatus.FAILURE;
+        }
+
         Car car = new Car(card,brand,message,price,ischecked,available,status,type,email,city);//上传车辆信息
         if(carDAO.save_car(car) < 0){ //保存车辆信息
             return ReturnStatus.FAILURE;
@@ -127,6 +132,7 @@ public class CarServiceImpl implements CarService {
     public int addType(int number) {
         String decr = "这是"+number+"座车";
         CarType carType = new CarType(number,decr);
+
 
         if(cartypeDAO.add_type(carType) < 0){//添加一个新的座位数
             return ReturnStatus.FAILURE;
