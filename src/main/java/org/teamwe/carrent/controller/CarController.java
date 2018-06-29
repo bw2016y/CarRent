@@ -74,6 +74,9 @@ public class CarController {
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
+        if (files.length > 4 || files.length < 1) {
+            return new Format().code(ReturnStatus.FAILURE).message("Car's Picture number " + files.length + " is Illegal");
+        }
         List<String> images = new LinkedList<>();
         for (MultipartFile file : files) {
             if (new ParamValidate(null).file(file, fu.getMaxFileSize(), true).validate()) {

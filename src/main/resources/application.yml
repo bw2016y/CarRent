@@ -28,9 +28,9 @@ file:
 project:
   controller:
     allowed:
-      origins: http://localhost:9000
+      origins: http://car.v4bug.com
       methods: GET, POST, PUT, DELETE, OPTIONS
-    domain: http://localhost #后端域名
+    domain: http://car.v4bug.com #后端域名
     verify:
       interval: 1000
       width: 100

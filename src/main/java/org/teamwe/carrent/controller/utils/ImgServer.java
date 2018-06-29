@@ -23,9 +23,13 @@ public class ImgServer {
         PORT = port;
         DIR = dir;
         if ("".equals(DIR)) {
-            DIR = System.getenv("user.home") + "/img";
+            DIR = System.getProperty("user.home") + "/img";
         }
         parentDir = new File(DIR);
+        if (!parentDir.exists() && !parentDir.mkdirs()) {
+            System.out.println("Make dir " + parentDir.getAbsolutePath() + " Error");
+            System.exit(1);
+        }
         if (parentDir.isFile()) {
             parentDir = parentDir.getParentFile();
         }
@@ -37,13 +41,16 @@ public class ImgServer {
     private void listen() {
         try {
             ServerSocket server = new ServerSocket(PORT);
-            new Thread(() -> {
-                try {
-                    saveToFile(server.accept());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                new Thread(() -> {
+                    try {
+                        saveToFile(server.accept());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +60,7 @@ public class ImgServer {
         DataInputStream stream = new DataInputStream(socket.getInputStream());
         String name = stream.readUTF();
         long size = stream.readLong();
+        System.out.println("Accept File : " + name + ", " + size);
         OutputStream stream1 = new FileOutputStream(new File(parentDir, name));
         int _5MB = 5242880;
         byte[] buf = new byte[_5MB];
