@@ -26,6 +26,10 @@ public class ImgServer {
             DIR = System.getenv("user.home") + "/img";
         }
         parentDir = new File(DIR);
+        if (!parentDir.exists() && parentDir.mkdirs()) {
+            System.out.println("Make dir " + parentDir.getAbsolutePath() + " Error");
+            System.exit(1);
+        }
         if (parentDir.isFile()) {
             parentDir = parentDir.getParentFile();
         }

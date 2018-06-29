@@ -77,6 +77,7 @@ public class FileUtil {
             } catch (IOException e) {
                 log.error("Save File Use net error ", e);
             }
+            return "";
         }
         String name = "";
         if (image == null || image.isEmpty()) {
