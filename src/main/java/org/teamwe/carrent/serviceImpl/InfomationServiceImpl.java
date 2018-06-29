@@ -86,6 +86,11 @@ public class InfomationServiceImpl implements InformationService {
     @Override
     public int forgetPassword(String email) {
 
+        if(userDAO.Get_userByEmial(email) == null){
+            System.out.println("该用户不存在！");
+            return ReturnStatus.FAILURE;
+        }
+
         String random_string = hashh.genRandomChar(20); //随机生成hash值用来激活用户
         System.out.println("随机字符："+random_string);
 
