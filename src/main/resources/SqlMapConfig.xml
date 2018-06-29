@@ -14,6 +14,8 @@
                 <property name="url" value="jdbc:mysql://123.207.172.223:3306/car?characterEncoding=utf-8" />
                 <property name="username" value="team" />
                 <property name="password" value="teampass" />
+                <property name="poolPingQuery" value="select now()"/>
+                <property name="poolPingEnabled" value="true"/>
             </dataSource>
 
         </environment>
