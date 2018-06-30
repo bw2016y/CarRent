@@ -74,6 +74,8 @@ public class ResisTest {
     }
 
 
+
+
 //插入一条user记录，key设置为email
     public  int insertUser(User user,String hash_random){
 
