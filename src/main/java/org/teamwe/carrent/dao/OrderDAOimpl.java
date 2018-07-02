@@ -122,4 +122,25 @@ public class OrderDAOimpl implements  OrderDAO {
         }
         return list;
     }
+
+    @Override
+    public List<Order> get_unfinished_orders() {
+        List<Order> list=null;
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        try{
+            list=sqlSession.selectList("test.select_unfinished_orders");
+
+            System.out.println(list.size());
+            for(Order u:list){
+                System.out.println(u.toString());
+            }
+        }catch (Exception c){
+            c.printStackTrace();
+        } finally {
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return list;
+    }
 }

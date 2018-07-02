@@ -36,14 +36,19 @@ public class CarServiceImpl implements CarService {
     private static int available = 1;//用户上传车辆时车辆默认不可用
     private static  int status = 0;//用户上传车辆默认逻辑存在
 
+    private final CarimgDAO carimgDAO;
+    private final CarDAO carDAO;
+    private final CartypeDAO cartypeDAO;
+    private final CarBrandDAO carBrandDAO;
+
     @Autowired
-    private CarimgDAO carimgDAO;
-    @Autowired
-    private CarDAO carDAO;
-    @Autowired
-    private CartypeDAO cartypeDAO;
-    @Autowired
-    private CarBrandDAO carBrandDAO;
+    public CarServiceImpl(CarimgDAO carimgDAO, CarDAO carDAO, CartypeDAO cartypeDAO, CarBrandDAO carBrandDAO) {
+        this.carimgDAO = carimgDAO;
+        this.carDAO = carDAO;
+        this.cartypeDAO = cartypeDAO;
+        this.carBrandDAO = carBrandDAO;
+    }
+
     /**
      *   根据card值 返回所有图片hash
      * @param card
