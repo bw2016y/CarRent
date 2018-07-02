@@ -76,4 +76,11 @@ public interface OrderService {
      * @return 是否成功
      */
     int payOrder(String orderId);
+
+    /**
+     * 返回未完成订单列表
+     * @return
+     */
+    List<Order> getUnfinishedOrder();
+
 }

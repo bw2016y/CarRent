@@ -87,4 +87,9 @@ public class OrderController {
         }
         return new Format().code(ReturnStatus.FAILURE).message("No such of order : " + id);
     }
+
+    @GetMapping("/order/unfinished")
+    public Format getUnfinishedOrder(){
+        return new Format().code(ReturnStatus.SUCCESS).addData("orders", service.getUnfinishedOrder());
+    }
 }

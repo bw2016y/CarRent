@@ -242,4 +242,9 @@ public class OrderServiceImpl implements OrderService {
 
         return ReturnStatus.SUCCESS;
     }
+
+    @Override
+    public List<Order> getUnfinishedOrder() {
+        return orderDAO.
+    }
 }
