@@ -31,6 +31,10 @@
         select * from ordertable where  card =#{card}
     </select>
 
+    <select id="select_unfinished_orders"   resultType="org.teamwe.carrent.entity.Order">
+        select * from ordertable where  type = 0
+    </select>
+
     <update id="update_order" parameterType="org.teamwe.carrent.entity.Order">
        update ordertable set
         email =#{email},

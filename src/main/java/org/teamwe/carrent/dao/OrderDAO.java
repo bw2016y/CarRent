@@ -45,8 +45,11 @@ public interface OrderDAO {
     public List<Order> get_Orders_by_card(String card);
 
 
-
-
+    /**
+     * 返回所有type 为0 的订单
+     * @return
+     */
+    public List<Order> get_unfinished_orders();
 
 
 }

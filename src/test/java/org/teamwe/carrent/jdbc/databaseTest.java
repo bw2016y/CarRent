@@ -83,8 +83,8 @@ public class databaseTest {
 
     @Test
     public void test_CarDAO(){
-          Car car=carDAO.get_car_by_card("1234");
-          System.out.println(car.toString());
+        //  Car car=carDAO.get_car_by_card("1234");
+       //   System.out.println(car.toString());
        //  Car car=carDAO.get_car_by_card("mmmmmm");
          //if(car==null)
        //      System.out.println("null");
@@ -100,15 +100,16 @@ public class databaseTest {
     //   carDAO.update_car(car);
 
         //    carDAO.select_car_by_brand_Type_available("benz",4);
- //      int i= carDAO.get_car_pages(2,4,"benz","beijing");
+//       int i= carDAO.get_car_pages(2,0,"","");
+//
+//          for(int c=1;c<=i;c++)
+//             carDAO.get_cars(c,2,0,"","");
 
- //         for(int c=1;c<=i;c++)
-  //            carDAO.get_cars(c,2,4,"benz","beijing");
 
     }
 
 
-    @Ignore
+    @Test
     public void test_OrderDAO(){
        // Order order=new Order("123.com","9999",0,1,2,"bad",0,3,100);
        // orderDAO.add_Order(order);
@@ -119,13 +120,13 @@ public class databaseTest {
 
       //  orderDAO.get_Orders_by_email("123.com");
      //   orderDAO.get_Orders_by_card("9999");
-       Order  order=  orderDAO.get_order(3);
+     //  Order  order=  orderDAO.get_order(3);
       //order.get(0).getMoney();
         //System.out.println(order.get(0).getMoney());
-        long m=order.getMoney();
-        System.out.println(order.toString());
-        System.out.println(m);
-
+      //  long m=order.getMoney();
+      //  System.out.println(order.toString());
+      //  System.out.println(m);
+        orderDAO.get_unfinished_orders();
 
     }
 
