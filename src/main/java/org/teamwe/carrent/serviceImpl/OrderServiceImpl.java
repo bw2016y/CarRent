@@ -41,6 +41,11 @@ public class OrderServiceImpl implements OrderService {
             return ReturnStatus.FAILURE;//车辆已被使用，不可生成订单
         }
 
+        if(userDAO.Get_userByEmial(email).getIsvalidated() == 0){
+            System.out.println("该用户已被封号，无法生成订单");
+            return  ReturnStatus.FAILURE;
+        }
+
        // long timebegin = System.currentTimeMillis();
 
         long timeendr = 0;
@@ -107,29 +112,35 @@ public class OrderServiceImpl implements OrderService {
 
             switch (level){
                 case OrderService.BEST :
-                    credit += 100;
+                    credit += 5;
                     break;
                 case OrderService.GOOD :
-                    credit += 50;
+                    credit += 3;
                     break;
                 case OrderService.WELL :
-                    credit += 30;
+                    credit += 2;
                     break;
                 case OrderService.MID:
-                    credit += 10;
+                    credit += 1;
                     break;
                 case OrderService.BAD:
-                    credit -= 20;
+                    credit -= 2;
                     break;
                 case OrderService.WORSE:
-                    credit -= 50;
+                    credit -= 10;
                     break;
 
             }
 
             user.setCredit(credit);
             user.setPoints(points);
+
+            if(credit < 0){
+                user.setIsvalidated(0);//用户信用分过低的话，封号
+            }
             userDAO.Update_user(user);//根据此订单，完成用户的信用和积分的更新
+
+
 
             order.setType(3);
             orderDAO.update_order(order);
@@ -193,7 +204,7 @@ public class OrderServiceImpl implements OrderService {
 
             long time = order.getTimeende() - order.getTimebegin();
 
-            int hour = 1 + (int) (time/3600000);
+            int hour = 1 + (int) (time/86400000);
             Car car = carDAO.get_car(order.getCard());
 
             order.setMoney(hour*car.getPrice());
@@ -245,6 +256,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUnfinishedOrder() {
-        return orderDAO.
+        return orderDAO.get_unfinished_orders();
     }
 }

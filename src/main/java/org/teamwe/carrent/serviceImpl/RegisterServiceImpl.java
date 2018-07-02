@@ -29,10 +29,10 @@ import java.security.NoSuchAlgorithmException;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
-    private  static  int credit = 1000;
-    private  static  int isvalidated = 0;
+    private  static  int credit = 20;
+    private  static  int isvalidated = 1;//初始用户未被封号
     private  static  int status = 0;
-    private  static  int points = 1000;
+    private  static  int points = 0;
 
     @Value("${project.controller.allowed.origins}")
     public String host;
