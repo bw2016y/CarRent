@@ -33,17 +33,17 @@ public class OrderServiceImpl implements OrderService {
      * @return {@link org.teamwe.carrent.utils.ReturnStatus}
      */
     @Override
-    public int makeOrder(String email, String card, long timebegin, long timeend) {
+    public String makeOrder(String email, String card, long timebegin, long timeend) {
 
         Car car = carDAO.get_car(card);
         if(car.getAvailable() == 1){
             System.out.println("车辆已被使用，不可生成订单");
-            return ReturnStatus.FAILURE;//车辆已被使用，不可生成订单
+            return null;//车辆已被使用，不可生成订单
         }
 
         if(userDAO.Get_userByEmial(email).getIsvalidated() == 0){
             System.out.println("该用户已被封号，无法生成订单");
-            return  ReturnStatus.FAILURE;
+            return null;
         }
 
        // long timebegin = System.currentTimeMillis();
@@ -54,14 +54,16 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order(0,email,card,timebegin,timeend,timeendr," ",0);
 
         if(orderDAO.add_Order(order) < 0){//插入一条订单记录
-            return ReturnStatus.FAILURE;
+            return null;
         }
 
         car.setAvailable(1);//将车辆状态设置为不可用
         carDAO.update_car(car);
 
         System.out.println("生成订单成功"+order.toString());
-        return ReturnStatus.SUCCESS;
+
+        String id = String.valueOf(order.getOrderid());
+        return id;
     }
 
     /**
@@ -204,10 +206,10 @@ public class OrderServiceImpl implements OrderService {
 
             long time = order.getTimeende() - order.getTimebegin();
 
-            int hour = 1 + (int) (time/86400000);
+            int day= 1 + (int) (time/86400000);
             Car car = carDAO.get_car(order.getCard());
 
-            order.setMoney(hour*car.getPrice());
+            order.setMoney(day*car.getPrice());
 
             System.out.println("技师结束用车计时，系统生成订单金额");
             System.out.println(order.toString());
@@ -257,5 +259,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUnfinishedOrder() {
         return orderDAO.get_unfinished_orders();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
     }
 }

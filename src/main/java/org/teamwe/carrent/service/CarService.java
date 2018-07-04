@@ -94,4 +94,11 @@ public interface CarService {
      * @return ALl of car pages
      */
     int carPages(int type, String brand, int length, String city);
+
+    /**
+     *
+     * @param Card 通过车牌取出一个车的信息
+     * @return
+     */
+    Car getCar(String Card);
 }

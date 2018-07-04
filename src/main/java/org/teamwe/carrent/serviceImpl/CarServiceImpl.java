@@ -236,6 +236,20 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
+     *
+     * @param Card 通过车牌取出一个车的信息
+     * @return
+     */
+    @Override
+    public Car getCar(String Card) {
+
+        Car car;
+        car = carDAO.get_car(Card);
+
+        return car;
+    }
+
+    /**
      * @param begin  开始的页数
      * @param length 每页的长度
      * @param type   车辆类型

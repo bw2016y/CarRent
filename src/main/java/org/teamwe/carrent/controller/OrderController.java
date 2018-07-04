@@ -32,12 +32,20 @@ public class OrderController {
                             @RequestParam String card,
                             @RequestParam long timebegin,
                             @RequestParam long timeend) {
+
+
         if (!StringUtil.isLegalMail(email.trim())) {
             return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ILLEGAL_EMAIL);
         }
 
-        int res = service.makeOrder(email.trim(), card, timebegin, timeend);
-        return new Format().code(res);
+
+        String orderid  = service.makeOrder(email.trim(), card, timebegin, timeend);
+
+        if(orderid == null){
+            return  new Format().code(ReturnStatus.FAILURE).message("生成订单失败");
+        }
+
+        return new Format().code(ReturnStatus.SUCCESS).addData("id",orderid);
     }
 
     @GetMapping("/user/{email}/order")
