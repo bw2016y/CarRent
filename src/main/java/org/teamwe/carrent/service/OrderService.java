@@ -26,9 +26,9 @@ public interface OrderService {
      * @param card      车牌号
      * @param timebegin 开始租车时间
      * @param timeend   结束租车时间
-     * @return {@link org.teamwe.carrent.utils.ReturnStatus}
+     * @return 返回订单id
      */
-    int makeOrder(String email, String card, long timebegin, long timeend);
+   String makeOrder(String email, String card, long timebegin, long timeend);
 
     /**
      * @param email 用户id

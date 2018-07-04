@@ -192,7 +192,7 @@
         - `card`: 车牌号
         - `timebegin`: 开始时间
         - `timeend`: 结束时间
-    - 无实际返回值
+    - 成功则返回订单id
 2. 获取订单列表, 用户, 技师
     - 请求URL`GET '/user/:email/order` -24
     - 无请求参数

@@ -121,4 +121,10 @@ public class CarController {
         return new Format().code(ReturnStatus.SUCCESS).
                 addData("page", service.carPages(type, brand, length, city));
     }
+
+    @GetMapping("/car/{card}")
+    public Format getCar(@PathVariable String card){
+        return new Format().code(ReturnStatus.SUCCESS).addData("car",service.getCar(card));
+
+    }
 }
