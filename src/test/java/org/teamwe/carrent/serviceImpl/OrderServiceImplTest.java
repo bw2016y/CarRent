@@ -24,7 +24,7 @@ public class OrderServiceImplTest {
 
         long time = System.currentTimeMillis() - 3600000;
 
-        orderService.makeOrder("1553741667@qq.com","陕V123456",time,time);
+        orderService.makeOrder("1553741667@qq.com","陕sddd",10,1000);
     }
 
     @Test

@@ -32,6 +32,7 @@ public class OrderController {
                             @RequestParam String card,
                             @RequestParam long timebegin,
                             @RequestParam long timeend) {
+        System.out.println("fuck you");
 
 
         if (!StringUtil.isLegalMail(email.trim())) {
@@ -39,13 +40,20 @@ public class OrderController {
         }
 
 
-        String orderid  = service.makeOrder(email.trim(), card, timebegin, timeend);
+       String orderid  = service.makeOrder(email, card, timebegin, timeend);
+        System.out.println("fuck");
+        System.out.println("id"+orderid);
+
 
         if(orderid == null){
             return  new Format().code(ReturnStatus.FAILURE).message("生成订单失败");
         }
 
+        System.out.println("you");
         return new Format().code(ReturnStatus.SUCCESS).addData("id",orderid);
+
+
+
     }
 
     @GetMapping("/user/{email}/order")

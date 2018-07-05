@@ -35,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public String makeOrder(String email, String card, long timebegin, long timeend) {
 
+
         Car car = carDAO.get_car(card);
         if(car.getAvailable() == 1){
             System.out.println("车辆已被使用，不可生成订单");
