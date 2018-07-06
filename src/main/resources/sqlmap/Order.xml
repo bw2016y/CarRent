@@ -32,7 +32,7 @@
     </select>
 
     <select id="select_unfinished_orders"   resultType="org.teamwe.carrent.entity.Order">
-        select * from ordertable where  type = 0
+        select * from ordertable where  type = 0  or type = 1 or  type = 2
     </select>
 
     <update id="update_order" parameterType="org.teamwe.carrent.entity.Order">
