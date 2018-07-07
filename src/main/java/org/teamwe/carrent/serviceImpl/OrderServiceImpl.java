@@ -103,8 +103,18 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public int finishOrder(String orderId, int level) {
+        if(orderDAO.get_order(Integer.parseInt(orderId)) == null){
+            System.out.println("订单不存在");
+            return ReturnStatus.FAILURE;
+
+        }
+
         Order order = orderDAO.get_order(Integer.parseInt(orderId));
+
+
         User user = userDAO.Get_userByEmial(order.getEmail());
+
+
 
 
         if(order.getType() == 2){
@@ -209,6 +219,7 @@ public class OrderServiceImpl implements OrderService {
 
             int day= 1 + (int) (time/86400000);
             Car car = carDAO.get_car(order.getCard());
+            car.setAvailable(0);
 
             order.setMoney(day*car.getPrice());
 
@@ -216,6 +227,7 @@ public class OrderServiceImpl implements OrderService {
             System.out.println(order.toString());
 
             orderDAO.update_order(order);
+            carDAO.update_car(car);//将车辆变为可用状态
 
         }
 

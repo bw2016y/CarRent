@@ -55,7 +55,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void endOrder() {
-        orderService.endOrder("4");
+        orderService.endOrder("105050");
     }
 
     @Test
