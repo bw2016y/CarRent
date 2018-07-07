@@ -19,7 +19,7 @@
     3 message       varchar 
     4 price         int      非空
     5 ischecked     int      非空 0未检查 1已检查
-    6 available     int     非空 0 可用  1不可用
+    6 available     int     非空用  1不可用 0 可
     7 status        int     非空 0逻辑存在 1逻辑删除
     8 type          int     非空  表示汽车的可乘坐人数
     9 email       varchar     非空      车主          
