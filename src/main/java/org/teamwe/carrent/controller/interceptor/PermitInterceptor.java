@@ -128,7 +128,8 @@ public class PermitInterceptor implements HandlerInterceptor {
                 {"/comment/[^/]+", HttpMethod.GET.name()},
                 {"/pay", HttpMethod.GET.name()},
                 {"/car/[^/]+", HttpMethod.GET.name()},
-                {"/order/[^/]+",HttpMethod.GET.name()}
+                {"/order/[^/]+",HttpMethod.GET.name()},
+                {"/order/[^/]+",HttpMethod.DELETE.name()}
         };
 
         for (String[] pat : patterns) {
