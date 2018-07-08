@@ -16,6 +16,10 @@ import org.teamwe.carrent.utils.StringUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author FDws
@@ -173,7 +177,7 @@ public class PermitInterceptor implements HandlerInterceptor {
 
         if ("/user".equals(url) &&
                 HttpMethod.PUT.name().equals(method) &&
-                email.equals(request.getParameter("email"))) {
+                email.equals(getParam("email", request))) {
             return true;
         }
 
@@ -215,5 +219,30 @@ public class PermitInterceptor implements HandlerInterceptor {
             }
         }
         return false;
+    }
+    
+    private String partContent(InputStream inputStream) {
+        byte[] b = new byte[1024];
+        try {
+            int l = inputStream.read(b);
+            return new String(b, 0, l);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private String getParam(@SuppressWarnings("SameParameterValue") String name, HttpServletRequest request) {
+        String re = request.getParameter(name);
+        if (null != re) {
+            return re;
+        }
+        try {
+            Part p = request.getPart(name);
+            return partContent(p.getInputStream());
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }
