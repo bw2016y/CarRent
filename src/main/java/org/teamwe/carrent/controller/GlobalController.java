@@ -31,7 +31,7 @@ public class GlobalController {
     public Format otherException(Exception e, HttpServletRequest request) {
         log.error(e.getMessage());
         saveRequestInfo(request);
-        return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ERROR_OCCUR);
+        return new Format().code(ReturnStatus.FAILURE).message(StringUtil.ERROR_OCCUR).addData("message",e.getMessage());
     }
 
     private void saveRequestInfo(HttpServletRequest request) {
