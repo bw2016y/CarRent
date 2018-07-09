@@ -51,7 +51,7 @@ public class PayController {
         //付款金额，必填
         String total_amount = String.valueOf(order.getMoney());
         //订单名称，必填
-        String subject = "Car number: " + order.getCard();
+        String subject = "Order Id: " + order.getOrderid();
 
         try {
             String result = alipay.getClient().pageExecute(alipay.newRequest(id, total_amount, subject)).getBody();
