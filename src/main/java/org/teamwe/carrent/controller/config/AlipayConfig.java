@@ -34,6 +34,8 @@ public class AlipayConfig {
     private final Environment env;
 
     private AlipayClient client;
+    
+    private String payServerIp = 'http://123.207.172.223:8088';
 
     @Autowired
     public AlipayConfig(Environment env) {
@@ -94,14 +96,16 @@ public class AlipayConfig {
 
     private String getNotify_url() {
         // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        String notify_url = "/pay";
-        return domain + ":" + env.getProperty("local.server.port") + notify_url;
+        //String notify_url = "/pay";
+        //return domain + ":" + env.getProperty("local.server.port") + notify_url;
+        return payServerIp + '/pay';
     }
 
     private String getReturn_url() {
         // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-        String return_url = "/pay.html";
-        return domainFront[0] + return_url;
+        //String return_url = "/pay.html";
+        //return domainFront[0] + return_url;
+        return payServerIp + '/paydone';
     }
 
     private String getSign_type() {
