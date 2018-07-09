@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 
 import java.util.Map;
 
@@ -31,16 +30,9 @@ public class AlipayConfig {
     @Value("#{'${project.controller.allowed.origins}'.split(', *')}")
     private String[] domainFront;
 
-    private final Environment env;
-
     private AlipayClient client;
     
     private String payServerIp = "http://123.207.172.223:8088";
-
-    @Autowired
-    public AlipayConfig(Environment env) {
-        this.env = env;
-    }
 
     @Bean
     public AlipayClient getClient() {
