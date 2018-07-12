@@ -100,10 +100,10 @@ public class databaseTest {
     //   carDAO.update_car(car);
 
         //    carDAO.select_car_by_brand_Type_available("benz",4);
-//       int i= carDAO.get_car_pages(2,0,"","");
-//
-//          for(int c=1;c<=i;c++)
-//             carDAO.get_cars(c,2,0,"","");
+      int i= carDAO.get_car_pages(2,0,"","");
+
+        for(int c=1;c<=i;c++)
+             carDAO.get_cars(c,2,0,"","");
 
 
     }

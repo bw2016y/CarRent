@@ -160,6 +160,7 @@ public class PermitInterceptor implements HandlerInterceptor {
         String[][] patterns = {
                 {"/car", HttpMethod.POST.name()},
                 {"/order", HttpMethod.POST.name()},
+                {"/comment", HttpMethod.POST.name()},
                 {"/session", HttpMethod.DELETE.name()}
         };
         for (String[] pat : patterns) {
